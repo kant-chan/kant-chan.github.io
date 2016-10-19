@@ -8,11 +8,7 @@
   <meta name="description" content="序言
 环境配置
 安装Express     
-Bootstrap
-
-
-
-#序言本项目为1234567891011#环境配置所需软件及框架:```Node.js```,```Express```,```MongoDB```,```Bootstrap```.    `Node.js`是JavaScript运行在服务器端的平台，为Real-tiem Web而生。[Node.js](https://no">
+Bootstrap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Microblog实例">
 <meta property="og:url" content="http://yoursite.com/2016/10/19/hello-world/index.html">
@@ -20,22 +16,14 @@ Bootstrap
 <meta property="og:description" content="序言
 环境配置
 安装Express     
-Bootstrap
-
-
-
-#序言本项目为1234567891011#环境配置所需软件及框架:```Node.js```,```Express```,```MongoDB```,```Bootstrap```.    `Node.js`是JavaScript运行在服务器端的平台，为Real-tiem Web而生。[Node.js](https://no">
-<meta property="og:updated_time" content="2016-10-19T10:45:04.373Z">
+Bootstrap">
+<meta property="og:updated_time" content="2016-10-19T11:02:27.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Microblog实例">
 <meta name="twitter:description" content="序言
 环境配置
 安装Express     
-Bootstrap
-
-
-
-#序言本项目为1234567891011#环境配置所需软件及框架:```Node.js```,```Express```,```MongoDB```,```Bootstrap```.    `Node.js`是JavaScript运行在服务器端的平台，为Real-tiem Web而生。[Node.js](https://no">
+Bootstrap">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -114,27 +102,11 @@ Bootstrap
 </ul>
 </li>
 </ul>
-<p>#序言<br>本项目为<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#环境配置</div><div class="line">所需软件及框架:```Node.js```,```Express```,```MongoDB```,```Bootstrap```.    </div><div class="line">`Node.js`是JavaScript运行在服务器端的平台，为Real-tiem Web而生。[Node.js](https://nodejs.org/en/)    </div><div class="line">安装完成后可以看这个[教程](http://ourjs.com/detail/529ca5950cb6498814000005#serving-something-useful)，对nodejs有个大概了解。</div><div class="line"></div><div class="line"></div><div class="line">##&lt;a id=&quot;安装Express&quot; /&gt;安装Express   </div><div class="line">`npm`提供了大量第三方模块，其中Web框架有很多，Node.js官方推荐[Express](http://www.expressjs.com.cn/)作为Web开发框架。它是一个轻量级的Web框架，多数功能只是对HTTP协议中常用操作的封装，如需要其他功能或模块，可以安装插件或者整合其他模块来完成。&lt;br&gt;</div><div class="line"></div><div class="line">Express安装分为本地安装(在你所建立的工程目录下安装并使用，但不能用命令行调用)和全局安装(可以用命令行调用)    </div><div class="line">* express安装（windows）</div></pre></td></tr></table></figure></p>
-<p>npm install -g express –registry=<a href="http://registry.npm.taobao.org" target="_blank" rel="external">http://registry.npm.taobao.org</a><br>npm install express-generator –registry=<a href="http://registry.npm.taobao.org" target="_blank" rel="external">http://registry.npm.taobao.org</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*注：`--registry=http://registry.npm.taobao.org`部分为替换软件下载源，可以不加。在express@&gt;4的版本中，将generator分离出去了，需单独安装。*    </div><div class="line">安装完成后，在命令行`express --help`查看帮助信息。  </div><div class="line">* 建立工程      </div><div class="line">cd到你要建立工程的目录，`express -e microblog(采用ejs模板引擎)`。创建成功，命令行给出提示，根据提示键入命令。其中`npm install`命令会检查`package.json`文件中所列出的依赖并安装这些依赖。</div></pre></td></tr></table></figure></p>
-<p>{<br>  “name”: “exam”,<br>  “version”: “0.0.0”,<br>  “private”: true,<br>  “scripts”: {<br>    “start”: “node ./bin/www”<br>  },<br>  “dependencies”: {<br>    “body-parser”: “~1.15.1”,<br>    “cookie-parser”: “~1.4.3”,<br>    “debug”: “~2.2.0”,<br>    “ejs”: “~2.4.1”,<br>    “express”: “~4.13.4”,<br>    “morgan”: “~1.7.0”,<br>    “serve-favicon”: “~2.3.0”<br>  }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;dependencise下的版本控制符号含义如下：    </div><div class="line">&gt;&gt;version 完全匹配    </div><div class="line">&gt;&gt;\&gt;version 大于这个版本   </div><div class="line">&gt;&gt;\&gt;=version大于或等于这个版本   </div><div class="line">&gt;&gt;~version 非常接近这个版本    </div><div class="line">&gt;&gt;^version 与当前版本兼容   </div><div class="line">&gt;&gt;1.2.x X代表任意数字，因此1.2.1, 1.2.3等都可以     </div><div class="line">&gt;&gt;\* 任何版本都可以,&quot;&quot;任何版本都可以</div><div class="line">&gt;&gt;version1 - version2  等价于 &gt;=version1 &lt;=version2.   </div><div class="line">&gt;&gt;range1 || range2 满足任意一个即可         </div><div class="line"></div><div class="line"></div><div class="line">**使用过程中还需要其他依赖或模块，由于版本不同，相同模块的名字也会不一样，参考[express官方文档](http://www.expressjs.com.cn/resources/middleware.html)**</div></pre></td></tr></table></figure></p>
-<p>  “dependencies”: {<br>    “body-parser”: “~1.15.1”,<br>    “connect-flash”: “^0.1.1”,<br>    “connect-mongo”: “^1.3.2”,<br>    “cookie-parser”: “~1.4.3”,<br>    “debug”: “~2.2.0”,<br>    “ejs”: “~2.4.1”,<br>    “express”: “~4.13.4”,<br>    “express-session”: “^1.14.1”,<br>    “mongoose”: “^4.6.1”,<br>    “morgan”: “~1.7.0”,<br>    “serve-favicon”: “~2.3.0”<br>  }<br>```</p>
-<blockquote>
-<p>npm install express-partials<br>npm install connect-flash (支持falsh功能)    </p>
-<blockquote>
-<p>需要在app.js中添加如下代码：   </p>
-</blockquote>
-<p>npm install express-session (支持会话)    </p>
-<blockquote>
-<p>需要在app.js中添加如下代码：   </p>
-</blockquote>
-<p>npm install connect-mongo (将session存入mongoDB中)   </p>
-</blockquote>
-<p>##<a id="Bootstrap">Bootstrap<br>Bootstrap是由Twitter的设计师和工程师发起的开源项目，提供一套与Twitter风格一致的简洁、优雅的Web UI。可以从此<a href="http://getbootstrap.com/" target="_blank" rel="external">下载</a>，具体可参看这个<a href="http://www.runoob.com/bootstrap/bootstrap-environment-setup.html" target="_blank" rel="external">教程</a>。当然也可以采用Bootstrap CDN的方式，教程同上。<br></a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/19/hello-world/" data-id="ciugsz0g500004st5xgokisil" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/19/hello-world/" data-id="ciugt83h60000ewt5fbbhzg9p" class="article-share-link">Share</a>
       
       
     </footer>
