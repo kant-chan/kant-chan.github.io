@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down1.JPG">
 <meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down2.JPG">
 <meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down3.JPG">
-<meta property="og:updated_time" content="2016-11-09T14:12:19.545Z">
+<meta property="og:updated_time" content="2016-11-09T16:23:29.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RockMongo-PHP MongoDB Administrator-配置(Windows环境)">
 <meta name="twitter:description" content="前期准备RockMongo是PHP5写的一个MongoDB管理工具。    
@@ -331,7 +331,7 @@
       
 
       
-        <h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><p>RockMongo是PHP5写的一个MongoDB管理工具。    </p>
+        <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>RockMongo是PHP5写的一个MongoDB管理工具。    </p>
 <ul>
 <li><p>一个能运行PHP的Web服务器，比如<code>Apache</code> ，<code>Httpd</code>, <code>Nginx</code>…<br>我选择的是Apache服务器，具体配置如下：   </p>
 <ul>
@@ -346,7 +346,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[method1]</div><div class="line">打开htdocs下的index.html,在结尾处加入<span class="meta">&lt;?php</span> phpinfo()<span class="meta">?&gt;</span></div><div class="line">在浏览器中打开localhost,如果正确输出PHP信息说明PHP+Apache配置完成，如果能找到mongo的支持信息，说明和mongodb的连接也配置完成了，否则需要重新配置与mongo相关的信息。</div><div class="line">[method2]</div><div class="line">在命令行输入：php -i | findstr mongo查看mongo的支持信息。</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="RockMongo"><a href="#RockMongo" class="headerlink" title="RockMongo"></a>RockMongo</h1><p>不要在官网上下载，否则由于版本问题导致无法启动，到<a href="https://github.com/iwind/rockmongo" target="_blank" rel="external">github上下载</a>，然后解压出来放到你的Apache配置文件中的DocumentRoot字段指定的目录，我的是<code>c:\Apache24\htdocs</code>。<br>至此环境搭建完毕。打开MongoDB，在浏览器地址中输入<code>localhost/rockmongo/index.php</code>即可进行登录和管理数据库了。</p>
+<h2 id="RockMongo"><a href="#RockMongo" class="headerlink" title="RockMongo"></a>RockMongo</h2><p>不要在官网上下载，否则由于版本问题导致无法启动，到<a href="https://github.com/iwind/rockmongo" target="_blank" rel="external">github上下载</a>，然后解压出来放到你的Apache配置文件中的DocumentRoot字段指定的目录，我的是<code>c:\Apache24\htdocs</code>。<br>至此环境搭建完毕。打开MongoDB，在浏览器地址中输入<code>localhost/rockmongo/index.php</code>即可进行登录和管理数据库了。</p>
 
       
     </div>
@@ -508,7 +508,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前期准备"><span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RockMongo"><span class="nav-text">RockMongo</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RockMongo"><span class="nav-text">RockMongo</span></a></li></ol></div>
             
           </div>
         </section>
