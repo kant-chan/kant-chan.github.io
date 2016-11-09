@@ -316,9 +316,9 @@
 <ul>
 <li><p>一个能运行PHP的Web服务器，比如<code>Apache</code> ，<code>Httpd</code>, <code>Nginx</code>…<br>我选择的是Apache服务器，具体配置如下：   </p>
 <ul>
-<li>环境配置<br><a href="http://httpd.apache.org/download.cgi" target="_blank" rel="external">下载地址</a>，选择对应平台，下载。下载截图如下所示：
-
-</li>
+<li>环境配置<br><a href="http://httpd.apache.org/download.cgi" target="_blank" rel="external">下载地址</a>，选择对应平台，下载。下载截图如下所示：<img src="/2016/11/05/article-3/apache_down1.JPG" alt="apache_down1.JPG" title="">
+<img src="/2016/11/05/article-3/apache_down2.JPG" alt="apache_down2.JPG" title="">
+<img src="/2016/11/05/article-3/apache_down3.JPG" alt="apache_down3.JPG" title=""></li>
 <li>安装与设置<br>解压下载的压缩包，找到<code>readme_first.html</code>文件，里面有详细的安装步骤。<br>找到Apache的配置文件<code>httpd.config</code>打开，修改包括<code>ServerRoot</code>、<code>DocumentRoot</code>、<code>Directory</code>，<code>ScriptAlias</code>等字段，需要改为你的Apache目录的地址。也可以自定义端口号通过<code>listen port</code>字段。<br>为了支持PHP5，还需要添加以下内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># php5 support</div><div class="line">LoadModule php5_module path/to/php5apache2_4.dll(即解压的PHP压缩包中的php5apache2_4.dll文件的目录)</div><div class="line">AddType application/x-httpd-php .php .html .htm</div><div class="line"># configure the path to php.ini</div><div class="line">PHPIniDir &quot;your php path&quot;</div></pre></td></tr></table></figure>
 </li>
 </ul>
