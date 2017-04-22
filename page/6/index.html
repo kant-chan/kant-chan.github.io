@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/28/JS-use-trick/" itemprop="url">
-                  JS_AngularJS_jQuery's TRICK
+                <a class="post-title-link" href="/2016/12/11/Linux/" itemprop="url">
+                  LINUX TRICK & TRAP
                 </a>
               
             
@@ -263,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-28T15:55:40+08:00" content="2016-11-28">
-              2016-11-28
+            <time itemprop="dateCreated" datetime="2016-12-11T04:05:34+08:00" content="2016-12-11">
+              2016-12-11
             </time>
           </span>
 
@@ -277,8 +277,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/FRONTEND/" itemprop="url" rel="index">
-                    <span itemprop="name">FRONTEND</span>
+                  <a href="/categories/BACKEND/" itemprop="url" rel="index">
+                    <span itemprop="name">BACKEND</span>
                   </a>
                 </span>
 
@@ -312,12 +312,57 @@
       
         
           
-            <h2 id="内联元素与块级元素区别"><a href="#内联元素与块级元素区别" class="headerlink" title="内联元素与块级元素区别"></a>内联元素与块级元素区别</h2><ul>
-<li>block<br>（1）独占一行<br>（2）width\height\padding\margin都可控<br>（3）address\blockquote\center\dir\div\dl\fieldset\form\h\hr\isindex\menu\noframe\noscript\ol\p\pre\table\ul\li</li>
-<li>inline<br>（1）与相邻内联元素同一行<br>（2）width\height\padding-top\padding-bottom\margin-top\margin-bottom都不可控<br>（3）a\abbr\acronym\b\bdo\big\br\cite\code\dfn\em\font\i\img\input\kbd\label\q\s\samp\select\small\span\strike\strong\sub\sup\textarea\tt\u\var           </li>
-<li>在CSS中的应用<br>display:block/inline/inline-block(表现为同行显示但是可以修改宽高内外边距)      </li>
-<li>内联元素中也可以放块级元素，而且内部的块级元素会撑大外部的内联标签。</li>
+            <ul>
+<li><a href="#1">环境配置</a><ul>
+<li><a href="#1.1">ubuntu软件安装</a> <ul>
+<li><a href="#1.1.1">apt&amp;dpkg</a></li>
+<li><a href="#1.1.2">ubuntu nginx配置</a></li>
+<li><a href="#1.1.3">LNMP配置</a></li>
 </ul>
+</li>
+<li><a href="#1.2">环境变量</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a><a id="1">环境配置</a></h1><h2 id="ubuntu软件安装"><a href="#ubuntu软件安装" class="headerlink" title="ubuntu软件安装"></a><a id="1.1">ubuntu软件安装</a></h2><h3 id="apt-amp-dpkg"><a href="#apt-amp-dpkg" class="headerlink" title="apt&amp;dpkg"></a><a id="1.1.1">apt&amp;dpkg</a></h3><p>(1)apt-get install安装应用程序(apt-get理论上是要求能够联网,但是如果制作了本地源,就不需要联网.下载的deb文件都会存放在/var/cache/apt/archives/下.)<br><code>apt-get install</code>( <code>-d  仅下载</code>,<code>-f  强制安装</code>.)<br>apt-get remove<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">apt-get remove --purge xxx <span class="comment"># 移除应用及配置</span></div><div class="line">apt-get autoremove <span class="comment"># 移除没用的包</span></div><div class="line">apt-cache depends xxx(正向依赖)</div><div class="line">apt-cache rdepends xxx(方向依赖，被依赖)</div><div class="line">apt-cache show   &lt;pkg_name&gt;   <span class="comment"># 显示软件包pkg_name的详细信息</span></div><div class="line">sudo apt-get --reinstall install xxx=xxx.1.2.3(即重新安装该包为1.2.3版本)</div><div class="line">apt-get install --reinstall &lt;pkg&gt; <span class="comment"># 重新安装软件包&lt;pkg&gt;</span></div></pre></td></tr></table></figure></p>
+<p><code>apt-get update</code>更新软件信息数据库.<code>apt-get upgrade</code>进行系统升级.<br>(2)dpkg安装deb包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">dpkg -i package.deb 安装包</div><div class="line">dpkg -r package 删除包</div><div class="line">dpkg -P package 删除包（包括配置文件）</div><div class="line">dpkg -L package 列出与该包关联的文件</div><div class="line">dpkg <span class="_">-l</span> package 显示该包的版本</div><div class="line">dpkg –unpack package.deb 解开 deb 包的内容</div><div class="line">dpkg -S keyword 搜索所属的包内容</div><div class="line">dpkg <span class="_">-l</span> 列出当前已安装的包</div><div class="line">dpkg -c package.deb 列出 deb 包的内容</div><div class="line">dpkg –configure package 配置包</div></pre></td></tr></table></figure></p>
+<h3 id="ubuntu-nginx配置"><a href="#ubuntu-nginx配置" class="headerlink" title="ubuntu nginx配置"></a><a id="1.1.2">ubuntu nginx配置</a></h3><ul>
+<li>安装<br><code>apt-get install nginx</code>        </li>
+<li>安装后文件结构<br>/etc/nginx –&gt;配置文件<br>/etc/nginx/sites-available –&gt;每个虚拟主机<br>/usr/sbin/nginx –&gt;程序文件<br>/var/log/nginx –&gt;日志文件<br>/etc/init.d/ –&gt;启动脚本        </li>
+<li>启动nginx<br><code>sudo /etc/init.d/nginx start</code>，若端口占用则:修改文件：/etc/nginx/sites-available/default,去掉 listen 前面的#号。     </li>
+<li>修改nginx.conf         <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim etc/nginx/nginx.conf</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在http{}中这两行代码前（<code>include /etc/nginx/conf.d/*.conf;include /etc/nginx/sites-enabled/*;</code>）加入一下代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">client_max_body_size 50m;</div><div class="line">#缓冲区代理缓冲用户端请求的最大字节数,可以理解为保存到本地再传给用户</div><div class="line">client_body_buffer_size 256k;</div><div class="line">client_header_timeout 3m;</div><div class="line">client_body_timeout 3m;</div><div class="line">send_timeout 3m;</div><div class="line">proxy_connect_timeout 300s;</div><div class="line">#nginx跟后端服务器连接超时时间(代理连接超时)</div><div class="line">proxy_read_timeout 300s;</div><div class="line">#连接成功后，后端服务器响应时间(代理接收超时)</div><div class="line">proxy_send_timeout 300s;</div><div class="line">proxy_buffer_size 64k;</div><div class="line">#设置代理服务器（nginx）保存用户头信息的缓冲区大小</div><div class="line">proxy_buffers 4 32k;</div><div class="line">#proxy_buffers缓冲区，网页平均在32k以下的话，这样设置</div><div class="line">proxy_busy_buffers_size 64k;</div><div class="line">#高负荷下缓冲大小（proxy_buffers*2）</div><div class="line">proxy_temp_file_write_size 64k;</div><div class="line">#设定缓存文件夹大小，大于这个值，将从upstream服务器传递请求，而不缓冲到磁盘</div><div class="line">proxy_ignore_client_abort on;</div><div class="line">#不允许代理端主动关闭连接</div><div class="line">server &#123;</div><div class="line">        listen 80;</div><div class="line">        server_name localhost;</div><div class="line">location / &#123;</div><div class="line">    root html;</div><div class="line">    index index.html index.htm;</div><div class="line">&#125;</div><div class="line">        error_page 500 502 503 504 /50x.html;</div><div class="line">location = /50x.html &#123;</div><div class="line">    root html;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>配置vhost.conf<br>默认无此文件，<code>sudo vim /etc/nginx/conf.d/vhost.conf</code>加入以下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">server</div><div class="line">&#123;</div><div class="line">    listen 80;</div><div class="line">    server_name a.com;</div><div class="line">    location / &#123;</div><div class="line">        proxy_redirect off;</div><div class="line">        proxy_set_header Host $host;</div><div class="line">        proxy_set_header X-Real-IP $remote_addr;</div><div class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">        proxy_pass http://127.0.0.1:200;</div><div class="line">    &#125;</div><div class="line">    access_log /var/log/nginx/a.com_access.log;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">server</div><div class="line">&#123;</div><div class="line">    listen 80;</div><div class="line">    server_name b.com;</div><div class="line">    location / &#123;</div><div class="line">        proxy_redirect off;</div><div class="line">        proxy_set_header Host $host;</div><div class="line">        proxy_set_header X-Real-IP $remote_addr;</div><div class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">        proxy_pass http://127.0.0.1:2000;</div><div class="line">    &#125;</div><div class="line">    access_log /var/log/nginx/b.com_access.log;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>因为我的两个项目都在本机所以proxy_pass用了127.0.0.1,如果你们的项目在其他服务器上可以直接写ip地址。access_log一定要配置对,不然的话会因找不到这个日志路径而无法重启nginx。多个server就可以配置多个。     </p>
+<ul>
+<li>重启nginx<br><code>/etc/init.d/nginx restart</code></li>
+</ul>
+<h3 id="LNMP配置"><a href="#LNMP配置" class="headerlink" title="LNMP配置"></a><a id="1.1.3">LNMP配置</a></h3><ul>
+<li>安装mysql<br>sudo apt-get install mysql-server<br>apt-get isntall mysql-client<br>sudo apt-get install libmysqlclient-dev         </li>
+</ul>
+<p>sudo netstat -tap | grep mysql(mysql 的socket处于 listen 状态则表示安装成功)   </p>
+<ul>
+<li><p>安装nginx和php<br>安装apt源管理工具、添加nginx和php的安装源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">apt-get install python-software-properties</div><div class="line">add-apt-repository ppa:nginx/stable</div><div class="line">add-apt-repository ppa:ondrej/php5</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装php及对mysql的支持<br><code>apt-get install php5 php5-fpm php5-mysql php-apc</code>       </p>
+</li>
+<li>php组件<br><code>apt-get install php5 php-pear php5-mysql php5-fpm php5-dev curl libcurl3 libcurl3-dev php5-curl php5-mcrypt php5-gd</code></li>
+<li><p>php供选择的组件     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">apt-get install php-pear php5-dev php5-curl</div><div class="line">apt-get install php5-gd php5-intl php5-imagick</div><div class="line">apt-get install php5-imap php5-mcrypt php5-memcache</div><div class="line">apt-get install php5-ming php5-ps php5-pspell</div><div class="line">apt-get install php5-recode php5-snmp php5-sqlite</div><div class="line">apt-get install php5-tidy php5-xmlrpc php5-xsl</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装nginx<br><code>apt-get install nginx</code></p>
+</li>
+<li>配置php<br>vim /etc/php5/fpm/php.ini,找到：<code>;cgi.fix_pathinfo=1</code>,改为：<code>cgi.fix_pathinfo=0</code></li>
+<li>配置nginx<br><code>vim /etc/nginx/sites-enabled/default</code>。最后重启服务：重启相关服务<code>sudo service php5-fpm start(reload); sudo service nginx start(reload)</code>。可使用<code>nginx -t -c /etc/nginx/nginx.conf</code>查看配置情况是否正确。<br>||:解决php-fpm与nginx的小bug<br>按上述步骤操作后，由于nginx与php-fpm之间的一个小bug，会导致这样的现象：<br>网站中的静态页面 <em>.html 都能正常访问，而 </em>.php 文件虽然会返回200状态码，但实际输出给浏览器的页面内容却是空白。简而言之，原因是nginx无法正确的将 *.php 文件的地址传递给php-fpm去解析，相当于php-fpm接受到了请求，但这请求却指向一个不存在的文件，于是返回空结果。为了解决这个问题，需要改动nginx默认的fastcgi_params配置文件：<code>vi /etc/nginx/fastcgi_params</code>在文件的最后增加一行：<code>fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</code><br>nginx config page:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen 80 default_server;</div><div class="line">    listen [::]:80 default_server;</div><div class="line"></div><div class="line">    # SSL configuration</div><div class="line">    #</div><div class="line">    # listen 443 ssl default_server;</div><div class="line">    # listen [::]:443 ssl default_server;</div><div class="line">    #</div><div class="line">    # Note: You should disable gzip for SSL traffic.</div><div class="line">    # See: https://bugs.debian.org/773332</div><div class="line">    #</div><div class="line">    # Read up on ssl_ciphers to ensure a secure configuration.</div><div class="line">    # See: https://bugs.debian.org/765782</div><div class="line">    #</div><div class="line">    # Self signed certs generated by the ssl-cert package</div><div class="line">    # Don&apos;t use them in a production server!</div><div class="line">    #</div><div class="line">    # include snippets/snakeoil.conf;</div><div class="line"></div><div class="line">    root /var/www;</div><div class="line"></div><div class="line">    # Add index.php to the list if you are using PHP</div><div class="line">    index index.php index.html index.htm index.nginx-debian.html;</div><div class="line"></div><div class="line">    server_name _;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">        # First attempt to serve request as file, then</div><div class="line">        # as directory, then fall back to displaying a 404.</div><div class="line">        try_files $uri $uri/ =404;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</div><div class="line">    #</div><div class="line">    location ~ \.php$ &#123;</div><div class="line">        try_files $uri =404;</div><div class="line">    #   include snippets/fastcgi-php.conf;</div><div class="line">    #   fastcgi_split_path_info ^(.+.\php)(/.+)$;</div><div class="line">    #</div><div class="line">    #   # With php5-cgi alone:</div><div class="line">    #   fastcgi_pass 127.0.0.1:9000;</div><div class="line">    #   # With php5-fpm:</div><div class="line">        fastcgi_pass unix:/var/run/php5-fpm.sock;</div><div class="line">        fastcgi_index index.php;</div><div class="line">        include fastcgi_params;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    # deny access to .htaccess files, if Apache&apos;s document root</div><div class="line">    # concurs with nginx&apos;s one</div><div class="line">    #</div><div class="line">    location ~ /\.ht &#123;</div><div class="line">        deny all;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a><a id="1.2">环境变量</a></h2><p>登陆系统时shell读取的顺序应该是:<br><code>/etc/profile(所有用户的环境变量) -&gt; /etc/enviroment(系统的环境变量) -&gt; $HOME/.profile -&gt; $HOME/.env</code><br>（1）/etc/profile：      此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行. 并从/etc/profile.d目录的配置文件中搜集shell的设置。<br>（2）/etc/bashrc: 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取。<br>（3）~/.bash_profile: 每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件。<code>export PATH=/opt/EmbedSky/4.3.3/bin:$PATH</code><br>（4）~/.bashrc: 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该该文件被读取。<br>（5） ~/.bash_logout:当每次退出系统(退出bash shell)时,执行该文件. 另外,/etc/profile中设定的变量(全局)的可以作用于任何用户,而~/.bashrc等中设定的变量(局部)只能继承 /etc/profile中的变量,他们是”父子”关系。<br>（6）~/.bash_profile 是交互式、login 方式进入 bash 运行的~/.bashrc 是交互式 non-login 方式进入 bash 运行的通常二者设置大致相同，所以通常前者会调用后者。    </p>
 
           
         
@@ -350,7 +395,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -391,7 +436,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -399,7 +444,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
