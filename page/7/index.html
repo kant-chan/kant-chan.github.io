@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/28/JS-use-trick/" itemprop="url">
-                  JS_AngularJS_jQuery's TRICK
+                <a class="post-title-link" href="/2016/12/11/others/" itemprop="url">
+                  待定
                 </a>
               
             
@@ -263,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-28T15:55:40+08:00" content="2016-11-28">
-              2016-11-28
+            <time itemprop="dateCreated" datetime="2016-12-11T04:42:31+08:00" content="2016-12-11">
+              2016-12-11
             </time>
           </span>
 
@@ -277,8 +277,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/FRONTEND/" itemprop="url" rel="index">
-                    <span itemprop="name">FRONTEND</span>
+                  <a href="/categories/Computer-Lang/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Lang</span>
                   </a>
                 </span>
 
@@ -312,12 +312,20 @@
       
         
           
-            <h2 id="内联元素与块级元素区别"><a href="#内联元素与块级元素区别" class="headerlink" title="内联元素与块级元素区别"></a>内联元素与块级元素区别</h2><ul>
-<li>block<br>（1）独占一行<br>（2）width\height\padding\margin都可控<br>（3）address\blockquote\center\dir\div\dl\fieldset\form\h\hr\isindex\menu\noframe\noscript\ol\p\pre\table\ul\li</li>
-<li>inline<br>（1）与相邻内联元素同一行<br>（2）width\height\padding-top\padding-bottom\margin-top\margin-bottom都不可控<br>（3）a\abbr\acronym\b\bdo\big\br\cite\code\dfn\em\font\i\img\input\kbd\label\q\s\samp\select\small\span\strike\strong\sub\sup\textarea\tt\u\var           </li>
-<li>在CSS中的应用<br>display:block/inline/inline-block(表现为同行显示但是可以修改宽高内外边距)      </li>
-<li>内联元素中也可以放块级元素，而且内部的块级元素会撑大外部的内联标签。</li>
+            <ul>
+<li><a href="#1">语言</a><ul>
+<li><a href="#1.1">C/C++</a> </li>
+<li><a href="#1.2">matlab</a></li>
 </ul>
+</li>
+</ul>
+<h1 id="语言"><a href="#语言" class="headerlink" title="语言"></a><a id="1">语言</a></h1><h2 id="C-C"><a href="#C-C" class="headerlink" title="C/C++"></a><a id="1.1">C/C++</a></h2><p>在c中左移是逻辑左移，右移是算术右移(符号位填补)。<br>多文件工程，模块化编程。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//fun.c  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span>  </span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun1</span><span class="params">()</span></span>&#123;  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"The first function!\n"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun2</span><span class="params">()</span></span>&#123;  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"The second function!\n"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun3</span><span class="params">()</span></span>&#123;  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"The third function!\n"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line"><span class="comment">//fun.h  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _FUN_H  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _FUN_H  </span></div><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">fun1</span><span class="params">(<span class="keyword">void</span>)</span></span>;  </div><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">fun2</span><span class="params">(<span class="keyword">void</span>)</span></span>;  </div><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">fun3</span><span class="params">(<span class="keyword">void</span>)</span></span>;  </div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="comment">//main.c   </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span>  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span>  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"fun.h"</span>  </span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;  </div><div class="line">    fun1();  </div><div class="line">    fun2();  </div><div class="line">    fun3();  </div><div class="line">    system(<span class="string">"pause"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="matlab"><a href="#matlab" class="headerlink" title="matlab"></a><a id="1.2">matlab</a></h2><blockquote>
+<p>matlab自定义函数及调用：<br>(1)函数文件+调用函数文件<br><code>y=myfile(t);</code><br>(2)函数文件+子函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function=funtry()   </div><div class="line">y=lfg2(t);   </div><div class="line">end   </div><div class="line">function y=lfg2()  </div><div class="line">y=x^(1/3);  </div><div class="line">``` </div><div class="line"></div><div class="line">(3)inline：无需M文件直接定义</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>f=inline(‘x^2+y’,’x’,’y’);<br>z=f(2,3);<br>此法只支持数值代入，不支持符号代入。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(4)syms+subs</div><div class="line">```  </div><div class="line">syms f x;  </div><div class="line">f=1/(1+x^2);  </div><div class="line">subs(f,’x’,代替x的数值或符号)；</div></pre></td></tr></table></figure></p>
+<p>(5)字符串+subs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">f=’1/(1+x^2)’;%定义字符串  </div><div class="line">z=subs(f,’x’,2);</div></pre></td></tr></table></figure></p>
+<p>(6)句柄<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">f=@(x,y)(x-siny);  </div><div class="line">f(2,3);</div></pre></td></tr></table></figure></p>
 
           
         
@@ -350,7 +358,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -391,7 +399,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -399,7 +407,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

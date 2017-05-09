@@ -84,41 +84,22 @@
 
 
 
-<meta name="description" content="前期准备RockMongo是PHP5写的一个MongoDB管理工具。    
-
-一个能运行PHP的Web服务器，比如Apache ，Httpd, Nginx…我选择的是Apache服务器，具体配置如下：   
-
-环境配置下载地址，选择对应平台，下载。下载截图如下所示：
-
-
-安装与设置解压下载的压缩包，找到readme_first.html文件，里面有详细的安装步骤。找到Apache的配置文件htt">
+<meta name="description" content="文件系统的实现观察常见存储设备.最开始的区域是MBR,用于Linux开机启动.剩余的空间可能分成数个分区(partition).每个分区有一个相关的分区表(Partition table),记录分区的相关信息.这个分区表是储存在分区之外的.分区表说明了对应分区的起始位置和分区的大小.我们在Windows系统常常看到C分区、D分区等.Linux系统下也可以有多个分区,但都被挂载在同一个文件系统树上.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RockMongo-PHP MongoDB Administrator-配置(Windows环境)">
-<meta property="og:url" content="http://yoursite.com/2016/11/05/article-3/index.html">
+<meta property="og:title" content="linux专题(1)">
+<meta property="og:url" content="http://yoursite.com/2017/05/09/linux-index/index.html">
 <meta property="og:site_name" content="MuzhI">
-<meta property="og:description" content="前期准备RockMongo是PHP5写的一个MongoDB管理工具。    
-
-一个能运行PHP的Web服务器，比如Apache ，Httpd, Nginx…我选择的是Apache服务器，具体配置如下：   
-
-环境配置下载地址，选择对应平台，下载。下载截图如下所示：
-
-
-安装与设置解压下载的压缩包，找到readme_first.html文件，里面有详细的安装步骤。找到Apache的配置文件htt">
-<meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down1.JPG">
-<meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down2.JPG">
-<meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down3.JPG">
-<meta property="og:updated_time" content="2016-11-09T16:23:29.938Z">
+<meta property="og:description" content="文件系统的实现观察常见存储设备.最开始的区域是MBR,用于Linux开机启动.剩余的空间可能分成数个分区(partition).每个分区有一个相关的分区表(Partition table),记录分区的相关信息.这个分区表是储存在分区之外的.分区表说明了对应分区的起始位置和分区的大小.我们在Windows系统常常看到C分区、D分区等.Linux系统下也可以有多个分区,但都被挂载在同一个文件系统树上.">
+<meta property="og:image" content="http://yoursite.com/2017/05/09/linux-index/filesystem1.png">
+<meta property="og:image" content="http://yoursite.com/2017/05/09/linux-index/filesystem2.png">
+<meta property="og:image" content="http://yoursite.com/2017/05/09/linux-index/filesystem3.png">
+<meta property="og:image" content="http://yoursite.com/2017/05/09/linux-index/filesystem4.png">
+<meta property="og:image" content="http://yoursite.com/2017/05/09/linux-index/filesystem5.png">
+<meta property="og:updated_time" content="2017-05-09T02:21:21.728Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RockMongo-PHP MongoDB Administrator-配置(Windows环境)">
-<meta name="twitter:description" content="前期准备RockMongo是PHP5写的一个MongoDB管理工具。    
-
-一个能运行PHP的Web服务器，比如Apache ，Httpd, Nginx…我选择的是Apache服务器，具体配置如下：   
-
-环境配置下载地址，选择对应平台，下载。下载截图如下所示：
-
-
-安装与设置解压下载的压缩包，找到readme_first.html文件，里面有详细的安装步骤。找到Apache的配置文件htt">
-<meta name="twitter:image" content="http://yoursite.com/2016/11/05/article-3/apache_down1.JPG">
+<meta name="twitter:title" content="linux专题(1)">
+<meta name="twitter:description" content="文件系统的实现观察常见存储设备.最开始的区域是MBR,用于Linux开机启动.剩余的空间可能分成数个分区(partition).每个分区有一个相关的分区表(Partition table),记录分区的相关信息.这个分区表是储存在分区之外的.分区表说明了对应分区的起始位置和分区的大小.我们在Windows系统常常看到C分区、D分区等.Linux系统下也可以有多个分区,但都被挂载在同一个文件系统树上.">
+<meta name="twitter:image" content="http://yoursite.com/2017/05/09/linux-index/filesystem1.png">
 
 
 
@@ -139,10 +120,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/05/article-3/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/09/linux-index/"/>
 
 
-  <title> RockMongo-PHP MongoDB Administrator-配置(Windows环境) | MuzhI </title>
+  <title> linux专题(1) | MuzhI </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +253,7 @@
             
             
               
-                RockMongo-PHP MongoDB Administrator-配置(Windows环境)
+                linux专题(1)
               
             
           </h1>
@@ -284,8 +265,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-05T16:25:14+08:00" content="2016-11-05">
-              2016-11-05
+            <time itemprop="dateCreated" datetime="2017-05-09T10:01:03+08:00" content="2017-05-09">
+              2017-05-09
             </time>
           </span>
 
@@ -298,8 +279,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/BACKEND/" itemprop="url" rel="index">
-                    <span itemprop="name">BACKEND</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -331,22 +312,10 @@
       
 
       
-        <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>RockMongo是PHP5写的一个MongoDB管理工具。    </p>
-<ul>
-<li><p>一个能运行PHP的Web服务器，比如<code>Apache</code> ，<code>Httpd</code>, <code>Nginx</code>…<br>我选择的是Apache服务器，具体配置如下：   </p>
-<ul>
-<li>环境配置<br><a href="http://httpd.apache.org/download.cgi" target="_blank" rel="external">下载地址</a>，选择对应平台，下载。下载截图如下所示：<img src="/2016/11/05/article-3/apache_down1.JPG" alt="apache_down1.JPG" title="">
-<img src="/2016/11/05/article-3/apache_down2.JPG" alt="apache_down2.JPG" title="">
-<img src="/2016/11/05/article-3/apache_down3.JPG" alt="apache_down3.JPG" title=""></li>
-<li>安装与设置<br>解压下载的压缩包，找到<code>readme_first.html</code>文件，里面有详细的安装步骤。<br>找到Apache的配置文件<code>httpd.config</code>打开，修改包括<code>ServerRoot</code>、<code>DocumentRoot</code>、<code>Directory</code>，<code>ScriptAlias</code>等字段，需要改为你的Apache目录的地址。也可以自定义端口号通过<code>listen port</code>字段。<br>为了支持PHP5，还需要添加以下内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># php5 support</div><div class="line">LoadModule php5_module path/to/php5apache2_4.dll(即解压的PHP压缩包中的php5apache2_4.dll文件的目录)</div><div class="line">AddType application/x-httpd-php .php .html .htm</div><div class="line"># configure the path to php.ini</div><div class="line">PHPIniDir &quot;your php path&quot;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>PHP - 需要PHP v5.1.6或更高版本，需要支持SESSION<br>下载<a href="http://windows.php.net/download#php-7.0" target="_blank" rel="external">PHP(windows下)</a>,我选择的是VC11 x64 Thread Safe (2016-Oct-14 20:34:09)，如果与Apache注意选择thread safe版的，否则解压出来没有php5apache2_4.dll文件。而non thread safe主要与IIS搭配环境。<br>为了能连接MongoDB，需要安装<a href="http://www.php.net/manual/en/mongo.installation.php" target="_blank" rel="external">php_mongo</a>扩展。下载后将压缩包解压，复制php_mongo.dll文件到PHP文件夹下的ext目录下。<br>解压PHP压缩包，将php的目录路径和php主目录下的ext一起加到环境变量。然后复制<code>php.ini-production</code>文件，重命名为<code>php.ini</code>并打开。<br>将<code>extension=php_mbstring.dll</code>字段前的分号去掉，并加入新的字段<code>extension=php_mongo.dll</code>。extension支持完整路径，所以如果出现php无法加载模块时可以考虑采用完整路径，我的完整路径为<code>extension=c:/php-5.6.27/ext/php_mbstring.dll</code>和<code>extension=c:/php-5.6.27/ext/php_mongo.dll</code>。<br>检查环境：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[method1]</div><div class="line">打开htdocs下的index.html,在结尾处加入<span class="meta">&lt;?php</span> phpinfo()<span class="meta">?&gt;</span></div><div class="line">在浏览器中打开localhost,如果正确输出PHP信息说明PHP+Apache配置完成，如果能找到mongo的支持信息，说明和mongodb的连接也配置完成了，否则需要重新配置与mongo相关的信息。</div><div class="line">[method2]</div><div class="line">在命令行输入：php -i | findstr mongo查看mongo的支持信息。</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="RockMongo"><a href="#RockMongo" class="headerlink" title="RockMongo"></a>RockMongo</h2><p>不要在官网上下载，否则由于版本问题导致无法启动，到<a href="https://github.com/iwind/rockmongo" target="_blank" rel="external">github上下载</a>，然后解压出来放到你的Apache配置文件中的DocumentRoot字段指定的目录，我的是<code>c:\Apache24\htdocs</code>。<br>至此环境搭建完毕。打开MongoDB，在浏览器地址中输入<code>localhost/rockmongo/index.php</code>即可进行登录和管理数据库了。</p>
+        <h1 id="文件系统的实现"><a href="#文件系统的实现" class="headerlink" title="文件系统的实现"></a>文件系统的实现</h1><p>观察常见存储设备.最开始的区域是MBR,用于Linux开机启动.剩余的空间可能分成数个分区(partition).每个分区有一个相关的分区表(Partition table),记录分区的相关信息.这个分区表是储存在分区之外的.分区表说明了对应分区的起始位置和分区的大小.<br><img src="/2017/05/09/linux-index/filesystem1.png" alt="filesystem1.png" title=""><br>我们在Windows系统常常看到C分区、D分区等.Linux系统下也可以有多个分区,但都被挂载在同一个文件系统树上.数据被存入到某个分区中.一个典型的Linux分区(partition)包含有下面各个部分:<br><img src="/2017/05/09/linux-index/filesystem2.png" alt="filesystem2.png" title=""><br>分区的第一个部分是启动区(Boot block),它主要是为计算机开机服务的.Linux开机启动后,会首先载入MBR,随后MBR从某个硬盘的启动区加载程序.该程序负责进一步的操作系统的加载和启动.为了方便管理,即使某个分区中没有安装操作系统,Linux也会在该分区预留启动区.启动区之后的是超级区(Super block).它存储有文件系统的相关信息,包括文件系统的类型,inode的数目,数据块的数目.随后是多个inodes,它们是实现文件存储的关键.在Linux系统中,一个文件可以分成几个数据块存储.每个文件对应一个inode,这个inode中包含多个指针,指向属于该文件各个数据块.最后一部分,就是真正储存数据的数据块们(data blocks)了.</p>
+<h4 id="inode"><a href="#inode" class="headerlink" title="inode"></a>inode</h4><p>一个文件除了自身的数据之外，还有一个附属信息，即文件的元数据(metadata)。这个元数据用于记录文件的许多信息，比如文件大小，拥有人，所属的组，修改日期等等。元数据并不包含在文件的数据中，而是由操作系统维护的。事实上，这个所谓的元数据就包含在inode中。我们可以用$ls -l filename来查看这些元数据。正如我们上面看到的，inode所占据的区域与数据块的区域不同。每个inode有一个唯一的整数编号(inode number)表示。inode储存由一些指针，这些指针指向存储设备中的一些数据块，文件的内容就储存在这些数据块中。当Linux想要打开一个文件时，只需要找到文件对应的inode，然后沿着指针，将所有的数据块收集起来，就可以在内存中组成一个文件的数据了。<br><img src="/2017/05/09/linux-index/filesystem3.png" alt="filesystem3.png" title=""><br>inode并不是组织文件的唯一方式。最简单的组织文件的方法，是把文件依次顺序的放入存储设备，DVD就采取了类似的方式。但如果有删除操作，删除造成的空余空间夹杂在正常文件之间，很难利用和管理。复杂的方式可以使用链表，每个数据块都有一个指针，指向属于同一文件的下一个数据块。这样的好处是可以利用零散的空余空间，坏处是对文件的操作必须按照线性方式进行。如果想随机存取，那么必须遍历链表，直到目标位置。在Linux下，可以使用$stat filename，来查询某个文件对应的inode编号。</p>
+<p>FAT系统是将上面链表的指针取出，放入到内存的一个数组中。这样，FAT可以根据内存的索引，迅速的找到一个文件。这样做的主要问题是，索引数组的大小与数据块的总数相同。因此，存储设备很大的话，这个索引数组会比较大。<br>/var/test.txt:<br><img src="/2017/05/09/linux-index/filesystem4.png" alt="filesystem4.png" title=""></p>
+<h4 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h4><p>在Linux的进程中，当我们打开一个文件时，返回的是一个文件描述符。这个文件描述符是一个数组的下标，对应数组元素为一个指针。有趣的是，这个指针并没有直接指向文件的inode，而是指向了一个文件表格，再通过该表格，指向加载到内存中的目标文件的inode。如下图，一个进程打开了两个文件。<br><img src="/2017/05/09/linux-index/filesystem5.png" alt="filesystem5.png" title=""><br>可以看到，每个文件表格中记录了文件打开的状态(status flags)，比如只读，写入等，还记录了每个文件的当前读写位置(offset)。当有两个进程打开同一个文件时，可以有两个文件表格，每个文件表格对应的打开状态和当前位置不同，从而支持一些文件共享的操作，比如同时读取。<br>要注意的是进程fork之后的情况，子进程将只复制文件描述符的数组，而和父进程共享内核维护的文件表格和inode。此时要特别小心程序的编写。</p>
 
       
     </div>
@@ -372,17 +341,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/20/article-2/" rel="next" title="GitHub + Hexo搭建个人博客总结">
-                <i class="fa fa-chevron-left"></i> GitHub + Hexo搭建个人博客总结
+              <a href="/2017/05/06/caffe-sourcecodes/" rel="next" title="caffe源码阅读(1)--protobuf">
+                <i class="fa fa-chevron-left"></i> caffe源码阅读(1)--protobuf
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/28/JS-use-trick/" rel="prev" title="JS_AngularJS_jQuery's TRICK">
-                JS_AngularJS_jQuery's TRICK <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -512,7 +477,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RockMongo"><span class="nav-text">RockMongo</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文件系统的实现"><span class="nav-text">文件系统的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#inode"><span class="nav-text">inode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件共享"><span class="nav-text">文件共享</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

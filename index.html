@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/02/book-store/" itemprop="url">
-                  闲情偶记
+                <a class="post-title-link" href="/2017/05/09/linux-index/" itemprop="url">
+                  linux专题(1)
                 </a>
               
             
@@ -263,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-02T22:04:19+08:00" content="2017-04-02">
-              2017-04-02
+            <time itemprop="dateCreated" datetime="2017-05-09T10:01:03+08:00" content="2017-05-09">
+              2017-05-09
             </time>
           </span>
 
@@ -277,8 +277,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/闲情偶记/" itemprop="url" rel="index">
-                    <span itemprop="name">闲情偶记</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -312,22 +312,10 @@
       
         
           
-            <h2 id="四方上下-往来古今"><a href="#四方上下-往来古今" class="headerlink" title="四方上下  往来古今"></a>四方上下  往来古今</h2><ul>
-<li><a href="#0">计算机</a><ul>
-<li><a href="#0.1">语言</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="计算机"><a href="#计算机" class="headerlink" title="计算机"></a><a id="0">计算机</a></h2><h3 id="LANG"><a href="#LANG" class="headerlink" title="LANG"></a><a id="0.1">LANG</a></h3><h4 id="C-C"><a href="#C-C" class="headerlink" title="C/C++"></a>C/C++</h4><ol>
-<li>网站<br><a href="https://www.codeproject.com/" target="_blank" rel="external">CodeProject - For those who code</a><br>[LeetCode]&lt;主要收集了各大IT公司的笔试面试题&gt;(<a href="https://leetcode.com/" target="_blank" rel="external">https://leetcode.com/</a>)<br><a href="http://www.lintcode.com/zh-cn/" target="_blank" rel="external">lintcode</a><h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4></li>
-<li>书<br>《数据结构与算法分析–c++语言描述》.(美)Mark Allen Weiss.机械工业<br>《算法导论》.(美)Thomas H.Cormen.机械工业</li>
-</ol>
-<h4 id="Computer-Vision"><a href="#Computer-Vision" class="headerlink" title="Computer Vision"></a>Computer Vision</h4><ol>
-<li>书<br>《Computer Vision: A Modern Approach》<br>《Computer Vision: Algorithms and Applications》</li>
-</ol>
-<h4 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h4><ol>
-<li>书<br>《欧洲中世纪简史》.C·沃伦·霍莱斯特.商务印书馆<br>《欧洲中世纪简史》.朱迪斯·贝内特.北京大学出版社<br>《西方文明简史》.杰克逊·J·斯皮瓦格尔.北京大学出版社<br>《英格兰简史》.西蒙·詹金斯<br>《你一定爱读的极简欧洲史》.约翰·赫斯特.广西师范大学出版社<br>《古希腊简史》.托马斯·R·马丁.上海三联书店<br>《极简海洋文明史》.菲利普·德·索萨<br>《英国简史》.史培克</li>
-</ol>
+            <h1 id="文件系统的实现"><a href="#文件系统的实现" class="headerlink" title="文件系统的实现"></a>文件系统的实现</h1><p>观察常见存储设备.最开始的区域是MBR,用于Linux开机启动.剩余的空间可能分成数个分区(partition).每个分区有一个相关的分区表(Partition table),记录分区的相关信息.这个分区表是储存在分区之外的.分区表说明了对应分区的起始位置和分区的大小.<br><img src="/2017/05/09/linux-index/filesystem1.png" alt="filesystem1.png" title=""><br>我们在Windows系统常常看到C分区、D分区等.Linux系统下也可以有多个分区,但都被挂载在同一个文件系统树上.数据被存入到某个分区中.一个典型的Linux分区(partition)包含有下面各个部分:<br><img src="/2017/05/09/linux-index/filesystem2.png" alt="filesystem2.png" title=""><br>分区的第一个部分是启动区(Boot block),它主要是为计算机开机服务的.Linux开机启动后,会首先载入MBR,随后MBR从某个硬盘的启动区加载程序.该程序负责进一步的操作系统的加载和启动.为了方便管理,即使某个分区中没有安装操作系统,Linux也会在该分区预留启动区.启动区之后的是超级区(Super block).它存储有文件系统的相关信息,包括文件系统的类型,inode的数目,数据块的数目.随后是多个inodes,它们是实现文件存储的关键.在Linux系统中,一个文件可以分成几个数据块存储.每个文件对应一个inode,这个inode中包含多个指针,指向属于该文件各个数据块.最后一部分,就是真正储存数据的数据块们(data blocks)了.</p>
+<h4 id="inode"><a href="#inode" class="headerlink" title="inode"></a>inode</h4><p>一个文件除了自身的数据之外，还有一个附属信息，即文件的元数据(metadata)。这个元数据用于记录文件的许多信息，比如文件大小，拥有人，所属的组，修改日期等等。元数据并不包含在文件的数据中，而是由操作系统维护的。事实上，这个所谓的元数据就包含在inode中。我们可以用$ls -l filename来查看这些元数据。正如我们上面看到的，inode所占据的区域与数据块的区域不同。每个inode有一个唯一的整数编号(inode number)表示。inode储存由一些指针，这些指针指向存储设备中的一些数据块，文件的内容就储存在这些数据块中。当Linux想要打开一个文件时，只需要找到文件对应的inode，然后沿着指针，将所有的数据块收集起来，就可以在内存中组成一个文件的数据了。<br><img src="/2017/05/09/linux-index/filesystem3.png" alt="filesystem3.png" title=""><br>inode并不是组织文件的唯一方式。最简单的组织文件的方法，是把文件依次顺序的放入存储设备，DVD就采取了类似的方式。但如果有删除操作，删除造成的空余空间夹杂在正常文件之间，很难利用和管理。复杂的方式可以使用链表，每个数据块都有一个指针，指向属于同一文件的下一个数据块。这样的好处是可以利用零散的空余空间，坏处是对文件的操作必须按照线性方式进行。如果想随机存取，那么必须遍历链表，直到目标位置。在Linux下，可以使用$stat filename，来查询某个文件对应的inode编号。</p>
+<p>FAT系统是将上面链表的指针取出，放入到内存的一个数组中。这样，FAT可以根据内存的索引，迅速的找到一个文件。这样做的主要问题是，索引数组的大小与数据块的总数相同。因此，存储设备很大的话，这个索引数组会比较大。<br>/var/test.txt:<br><img src="/2017/05/09/linux-index/filesystem4.png" alt="filesystem4.png" title=""></p>
+<h4 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h4><p>在Linux的进程中，当我们打开一个文件时，返回的是一个文件描述符。这个文件描述符是一个数组的下标，对应数组元素为一个指针。有趣的是，这个指针并没有直接指向文件的inode，而是指向了一个文件表格，再通过该表格，指向加载到内存中的目标文件的inode。如下图，一个进程打开了两个文件。<br><img src="/2017/05/09/linux-index/filesystem5.png" alt="filesystem5.png" title=""><br>可以看到，每个文件表格中记录了文件打开的状态(status flags)，比如只读，写入等，还记录了每个文件的当前读写位置(offset)。当有两个进程打开同一个文件时，可以有两个文件表格，每个文件表格对应的打开状态和当前位置不同，从而支持一些文件共享的操作，比如同时读取。<br>要注意的是进程fork之后的情况，子进程将只复制文件描述符的数组，而和父进程共享内核维护的文件表格和inode。此时要特别小心程序的编写。</p>
 
           
         
@@ -360,7 +348,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -401,7 +389,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -409,7 +397,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
