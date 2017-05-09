@@ -118,7 +118,7 @@ Hexo部署
 GitHub账号。并新建repository。与GitHub建立好连接之后，就可以方便的使用它提供的 Pages 服务，GitHubPages分两种，一种是用你的GitHub用户名建立的username.github.io这样的用户&amp;amp;组织站">
 <meta property="og:image" content="http://yoursite.com/2016/10/20/article-2/gaideploy.JPG">
 <meta property="og:image" content="http://yoursite.com/2016/10/20/article-2/err1.jpg">
-<meta property="og:updated_time" content="2016-11-09T16:22:29.689Z">
+<meta property="og:updated_time" content="2017-05-09T02:43:57.244Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub + Hexo搭建个人博客总结">
 <meta name="twitter:description" content="前期准备
@@ -404,7 +404,7 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
 <p>如果出现下图错误:<br><img src="/2016/10/20/article-2/err1.jpg" alt="err1.jpg" title=""><br>将_config.yml中的 deploy 标签的 type 改成 git，然后再在 Git Shell 中运行以下命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
 <p>之后重复第二步中的命令即可。到这一步，个人博客就已经部署到 GitHub 上了，你可以到你的GitHub仓库查看是否已经更新。此时,通过 your_user_name.github.io（即你那个仓库的名称，形如：”你的 GitHub 用户名”.github.io）,就可以看到你的个人博客了。</p>
 <h1 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a><a id="index5">写博客<a></a></a></h1><p>具体操作可以参考<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">官方文档</a><br>快捷命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ hexo g == hexo generate</div><div class="line">$ hexo d == hexo deploy</div><div class="line">$ hexo s == hexo server</div><div class="line">$ hexo n == hexo new</div><div class="line"><span class="comment"># 还能组合使用，如：</span></div><div class="line">$ hexo d -g</div></pre></td></tr></table></figure></p>
-<h1 id="安装第三方主题-lt"><a href="#安装第三方主题-lt" class="headerlink" title="安装第三方主题&lt; "></a><a id="index6">安装第三方主题&lt; <a></a></a></h1><p>使用Hexo生成的博客使用的是Hexo的默认主题：Landscape。可以采用<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">其他主题</a>。本博客采用的NexT主题。</p>
+<h1 id="安装第三方主题"><a href="#安装第三方主题" class="headerlink" title="安装第三方主题 "></a><a id="index6">安装第三方主题 <a></a></a></h1><p>使用Hexo生成的博客使用的是Hexo的默认主题：Landscape。可以采用<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">其他主题</a>。本博客采用的NexT主题。</p>
 <p>NexT主题安装参看其<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">文档</a>。</p>
 <p>本文参考了这边篇<a href="http://sunwhut.com/2015/10/30/buildBlog/" target="_blank" rel="external">博文</a>和自己的搭建经历总结而成，有疑问处自行<a href="https://github.com/XX-net/XX-Net" target="_blank" rel="external">Google</a>之。</p>
 <h1 id="任意门"><a href="#任意门" class="headerlink" title="任意门"></a><a id="index7">任意门<a></a></a></h1><ul>
@@ -424,6 +424,22 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
     <div>
       
         
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.jpg" alt="木之 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
 
       
     </div>
@@ -508,7 +524,7 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
                src="/uploads/muzhi.jpg"
                alt="木之" />
           <p class="site-author-name" itemprop="name">木之</p>
-          <p class="site-description motion-element" itemprop="description">日啖荔枝三百颗，但愿长做岭南人</p>
+          <p class="site-description motion-element" itemprop="description">性燥皆因经麻少  心平只缘折磨多</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -575,7 +591,7 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前期准备"><span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接远程库"><span class="nav-text">连接远程库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用Hexo创建博客框架"><span class="nav-text">用Hexo创建博客框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo安装（在Git-Bash中操作）"><span class="nav-text">Hexo安装（在Git Bash中操作）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo部署（在Git-Bash中操作）"><span class="nav-text">Hexo部署（在Git Bash中操作）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将本地文件部署到-GitHub"><span class="nav-text">将本地文件部署到 GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写博客"><span class="nav-text">写博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装第三方主题-lt"><span class="nav-text">安装第三方主题< </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任意门"><span class="nav-text">任意门</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前期准备"><span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接远程库"><span class="nav-text">连接远程库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用Hexo创建博客框架"><span class="nav-text">用Hexo创建博客框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo安装（在Git-Bash中操作）"><span class="nav-text">Hexo安装（在Git Bash中操作）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo部署（在Git-Bash中操作）"><span class="nav-text">Hexo部署（在Git Bash中操作）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将本地文件部署到-GitHub"><span class="nav-text">将本地文件部署到 GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写博客"><span class="nav-text">写博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装第三方主题"><span class="nav-text">安装第三方主题 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任意门"><span class="nav-text">任意门</span></a></li></ol></div>
             
           </div>
         </section>
