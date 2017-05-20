@@ -84,41 +84,24 @@
 
 
 
-<meta name="description" content="前期准备RockMongo是PHP5写的一个MongoDB管理工具。    
+<meta name="description" content="信号可以看作一种粗糙的进程间通信(IPC, interprocess communication)的方式,用以向进程封闭的内存空间传递信息.为了让进程间传递更多的信息量,我们需要其他的进程间通信方式.这些进程间通信方式可以分为两种:
 
-一个能运行PHP的Web服务器，比如Apache ，Httpd, Nginx…我选择的是Apache服务器，具体配置如下：   
-
-环境配置下载地址，选择对应平台，下载。下载截图如下所示：
-
-
-安装与设置解压下载的压缩包，找到readme_first.html文件，里面有详细的安装步骤。找到Apache的配置文件htt">
+管道(PIPE)机制.在Linux文本流中,我们提到可以使用管道将一个进程的输出和另一个进程的输入连接起来,从而利用文件操作API来管理进程间通信.在shell中,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RockMongo-PHP MongoDB Administrator-配置(Windows环境)">
-<meta property="og:url" content="http://yoursite.com/2016/11/05/article-3/index.html">
+<meta property="og:title" content="linux专题(3):进程间通信">
+<meta property="og:url" content="http://yoursite.com/2017/05/09/linux-index2/index.html">
 <meta property="og:site_name" content="MuzhI">
-<meta property="og:description" content="前期准备RockMongo是PHP5写的一个MongoDB管理工具。    
+<meta property="og:description" content="信号可以看作一种粗糙的进程间通信(IPC, interprocess communication)的方式,用以向进程封闭的内存空间传递信息.为了让进程间传递更多的信息量,我们需要其他的进程间通信方式.这些进程间通信方式可以分为两种:
 
-一个能运行PHP的Web服务器，比如Apache ，Httpd, Nginx…我选择的是Apache服务器，具体配置如下：   
-
-环境配置下载地址，选择对应平台，下载。下载截图如下所示：
-
-
-安装与设置解压下载的压缩包，找到readme_first.html文件，里面有详细的安装步骤。找到Apache的配置文件htt">
-<meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down1.JPG">
-<meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down2.JPG">
-<meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down3.JPG">
-<meta property="og:updated_time" content="2016-11-09T16:23:29.938Z">
+管道(PIPE)机制.在Linux文本流中,我们提到可以使用管道将一个进程的输出和另一个进程的输入连接起来,从而利用文件操作API来管理进程间通信.在shell中,">
+<meta property="og:image" content="http://yoursite.com/2017/05/09/linux-index2/pipe1.png">
+<meta property="og:updated_time" content="2017-05-09T15:57:32.682Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RockMongo-PHP MongoDB Administrator-配置(Windows环境)">
-<meta name="twitter:description" content="前期准备RockMongo是PHP5写的一个MongoDB管理工具。    
+<meta name="twitter:title" content="linux专题(3):进程间通信">
+<meta name="twitter:description" content="信号可以看作一种粗糙的进程间通信(IPC, interprocess communication)的方式,用以向进程封闭的内存空间传递信息.为了让进程间传递更多的信息量,我们需要其他的进程间通信方式.这些进程间通信方式可以分为两种:
 
-一个能运行PHP的Web服务器，比如Apache ，Httpd, Nginx…我选择的是Apache服务器，具体配置如下：   
-
-环境配置下载地址，选择对应平台，下载。下载截图如下所示：
-
-
-安装与设置解压下载的压缩包，找到readme_first.html文件，里面有详细的安装步骤。找到Apache的配置文件htt">
-<meta name="twitter:image" content="http://yoursite.com/2016/11/05/article-3/apache_down1.JPG">
+管道(PIPE)机制.在Linux文本流中,我们提到可以使用管道将一个进程的输出和另一个进程的输入连接起来,从而利用文件操作API来管理进程间通信.在shell中,">
+<meta name="twitter:image" content="http://yoursite.com/2017/05/09/linux-index2/pipe1.png">
 
 
 
@@ -139,10 +122,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/05/article-3/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/09/linux-index2/"/>
 
 
-  <title> RockMongo-PHP MongoDB Administrator-配置(Windows环境) | MuzhI </title>
+  <title> linux专题(3):进程间通信 | MuzhI </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +255,7 @@
             
             
               
-                RockMongo-PHP MongoDB Administrator-配置(Windows环境)
+                linux专题(3):进程间通信
               
             
           </h1>
@@ -284,8 +267,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-05T16:25:14+08:00" content="2016-11-05">
-              2016-11-05
+            <time itemprop="dateCreated" datetime="2017-05-09T23:36:49+08:00" content="2017-05-09">
+              2017-05-09
             </time>
           </span>
 
@@ -298,8 +281,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/BACKEND/" itemprop="url" rel="index">
-                    <span itemprop="name">BACKEND</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -331,22 +314,14 @@
       
 
       
-        <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>RockMongo是PHP5写的一个MongoDB管理工具。    </p>
+        <p>信号可以看作一种粗糙的进程间通信(IPC, interprocess communication)的方式,用以向进程封闭的内存空间传递信息.为了让进程间传递更多的信息量,我们需要其他的进程间通信方式.这些进程间通信方式可以分为两种:</p>
 <ul>
-<li><p>一个能运行PHP的Web服务器，比如<code>Apache</code> ，<code>Httpd</code>, <code>Nginx</code>…<br>我选择的是Apache服务器，具体配置如下：   </p>
-<ul>
-<li>环境配置<br><a href="http://httpd.apache.org/download.cgi" target="_blank" rel="external">下载地址</a>，选择对应平台，下载。下载截图如下所示：<img src="/2016/11/05/article-3/apache_down1.JPG" alt="apache_down1.JPG" title="">
-<img src="/2016/11/05/article-3/apache_down2.JPG" alt="apache_down2.JPG" title="">
-<img src="/2016/11/05/article-3/apache_down3.JPG" alt="apache_down3.JPG" title=""></li>
-<li>安装与设置<br>解压下载的压缩包，找到<code>readme_first.html</code>文件，里面有详细的安装步骤。<br>找到Apache的配置文件<code>httpd.config</code>打开，修改包括<code>ServerRoot</code>、<code>DocumentRoot</code>、<code>Directory</code>，<code>ScriptAlias</code>等字段，需要改为你的Apache目录的地址。也可以自定义端口号通过<code>listen port</code>字段。<br>为了支持PHP5，还需要添加以下内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># php5 support</div><div class="line">LoadModule php5_module path/to/php5apache2_4.dll(即解压的PHP压缩包中的php5apache2_4.dll文件的目录)</div><div class="line">AddType application/x-httpd-php .php .html .htm</div><div class="line"># configure the path to php.ini</div><div class="line">PHPIniDir &quot;your php path&quot;</div></pre></td></tr></table></figure>
-</li>
+<li>管道(PIPE)机制.在Linux文本流中,我们提到可以使用管道将一个进程的输出和另一个进程的输入连接起来,从而利用文件操作API来管理进程间通信.在shell中,我们经常利用管道将多个进程连接在一起,从而让各个进程协作,实现复杂的功能.</li>
+<li>传统IPC (interprocess communication).我们主要是指消息队列(message queue),信号量(semaphore),共享内存(shared memory).这些IPC的特点是允许多进程之间共享资源,这与多线程共享heap和global data相类似.由于多进程任务具有并发性 (每个进程包含一个进程,多个进程的话就有多个线程),所以在共享资源的时候也必须解决同步的问题.<h3 id="管道与FIFO文件"><a href="#管道与FIFO文件" class="headerlink" title="管道与FIFO文件"></a>管道与FIFO文件</h3>一个原始的IPC方式是所有的进程通过一个文件交流.比如我在纸(文件)上写下我的名字和年纪.另一个人读这张纸,会知道我的名字和年纪.他也可以在同一张纸上写下他的信息,而当我读这张纸的话,同样也可以知道别人的信息.但是,由于硬盘读写比较慢,所以这个方式效率很低.那么,我们是否可以将这张纸放入内存中以提高读写速度呢？<br>比如在Python子进程中使用Popen和PIPE,在C语言中也有popen库函数来实现管道 (shell中的管道就是根据此编写的).管道是由内核管理的一个缓冲区(buffer),相当于我们放入内存中的一个纸条.管道的一端连接一个进程的输出.这个进程会向管道中放入信息.管道的另一端连接一个进程的输入,这个进程取出被放入管道的信息.一个缓冲区不需要很大,它被设计成为环形的数据结构,以便管道可以被循环利用.当管道中没有信息的话,从管道中读取的进程会等待,直到另一端的进程放入信息.当管道被放满信息的时候,尝试放入信息的进程会等待,直到另一端的进程取出信息.当两个进程都终结的时候,管道也自动消失.<br>从原理上,管道利用fork机制建立.从而让两个进程可以连接到同一个PIPE上.最开始的时候,上面的两个箭头都连接在同一个进程Process 1上(连接在Process 1上的两个箭头).当fork复制进程的时候,会将这两个连接也复制到新的进程(Process 2).随后,每个进程关闭自己不需要的一个连接 (两个黑色的箭头被关闭; Process 1关闭从PIPE来的输入连接,Process 2关闭输出到PIPE的连接),这样,剩下的红色连接就构成了如图的PIPE.<img src="/2017/05/09/linux-index2/pipe1.png" alt="pipe1.png" title="">
+由于基于fork机制,所以管道只能用于父进程和子进程之间,或者拥有相同祖先的两个子进程之间 (有亲缘关系的进程之间).为了解决这一问题,Linux提供了FIFO方式连接进程.FIFO又叫做命名管道(named PIPE).<br>FIFO (First in, First out)为一种特殊的文件类型,它在文件系统中有对应的路径.当一个进程以读(r)的方式打开该文件,而另一个进程以写(w)的方式打开该文件,那么内核就会在这两个进程之间建立管道,所以FIFO实际上也由内核管理,不与硬盘打交道.之所以叫FIFO,是因为管道本质上是一个先进先出的队列数据结构,最早放入的数据被最先读出来(好像是传送带,一头放货,一头取货),从而保证信息交流的顺序.FIFO只是借用了文件系统来为管道命名.写模式的进程向FIFO文件中写入,而读模式的进程从FIFO文件中读出.当删除FIFO文件时,管道连接也随之消失.FIFO的好处在于我们可以通过文件的路径来识别管道,从而让没有亲缘关系的进程之间建立连接.</li>
 </ul>
-</li>
-<li><p>PHP - 需要PHP v5.1.6或更高版本，需要支持SESSION<br>下载<a href="http://windows.php.net/download#php-7.0" target="_blank" rel="external">PHP(windows下)</a>,我选择的是VC11 x64 Thread Safe (2016-Oct-14 20:34:09)，如果与Apache注意选择thread safe版的，否则解压出来没有php5apache2_4.dll文件。而non thread safe主要与IIS搭配环境。<br>为了能连接MongoDB，需要安装<a href="http://www.php.net/manual/en/mongo.installation.php" target="_blank" rel="external">php_mongo</a>扩展。下载后将压缩包解压，复制php_mongo.dll文件到PHP文件夹下的ext目录下。<br>解压PHP压缩包，将php的目录路径和php主目录下的ext一起加到环境变量。然后复制<code>php.ini-production</code>文件，重命名为<code>php.ini</code>并打开。<br>将<code>extension=php_mbstring.dll</code>字段前的分号去掉，并加入新的字段<code>extension=php_mongo.dll</code>。extension支持完整路径，所以如果出现php无法加载模块时可以考虑采用完整路径，我的完整路径为<code>extension=c:/php-5.6.27/ext/php_mbstring.dll</code>和<code>extension=c:/php-5.6.27/ext/php_mongo.dll</code>。<br>检查环境：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[method1]</div><div class="line">打开htdocs下的index.html,在结尾处加入<span class="meta">&lt;?php</span> phpinfo()<span class="meta">?&gt;</span></div><div class="line">在浏览器中打开localhost,如果正确输出PHP信息说明PHP+Apache配置完成，如果能找到mongo的支持信息，说明和mongodb的连接也配置完成了，否则需要重新配置与mongo相关的信息。</div><div class="line">[method2]</div><div class="line">在命令行输入：php -i | findstr mongo查看mongo的支持信息。</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="RockMongo"><a href="#RockMongo" class="headerlink" title="RockMongo"></a>RockMongo</h2><p>不要在官网上下载，否则由于版本问题导致无法启动，到<a href="https://github.com/iwind/rockmongo" target="_blank" rel="external">github上下载</a>，然后解压出来放到你的Apache配置文件中的DocumentRoot字段指定的目录，我的是<code>c:\Apache24\htdocs</code>。<br>至此环境搭建完毕。打开MongoDB，在浏览器地址中输入<code>localhost/rockmongo/index.php</code>即可进行登录和管理数据库了。</p>
+<p>消息队列(message queue)与PIPE相类似.它也是建立一个队列,先放入队列的消息被最先取出.不同的是,消息队列允许多个进程放入消息,也允许多个进程取出消息.每个消息可以带有一个整数识别符(message_type).你可以通过识别符对消息分类 (极端的情况是将每个消息设置一个不同的识别符).某个进程从队列中取出消息的时候,可以按照先进先出的顺序取出,也可以只取出符合某个识别符的消息(有多个这样的消息时,同样按照先进先出的顺序取出).消息队列与PIPE的另一个不同在于它并不使用文件API.最后,一个队列不会自动消失,它会一直存在于内核中,直到某个进程删除该队列.</p>
+<p>多进程协作可以帮助我们充分利用多核和网络时代带来的优势.多进程可以有效解决计算瓶颈的问题.互联网通信实际上也是一个进程间通信的问题,只不过这多个进程分布于不同的电脑上.网络连接是通过socket实现的.由于socket内容庞大,所以我们不在这里深入.一个小小的注解是,socket也可以用于计算机内部进程间的通信.</p>
 
       
     </div>
@@ -388,17 +363,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/20/article-2/" rel="next" title="GitHub + Hexo搭建个人博客总结">
-                <i class="fa fa-chevron-left"></i> GitHub + Hexo搭建个人博客总结
+              <a href="/2017/05/09/linux-index1/" rel="next" title="linux专题(2):多线程与同步">
+                <i class="fa fa-chevron-left"></i> linux专题(2):多线程与同步
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/28/JS-use-trick/" rel="prev" title="JS_AngularJS_jQuery's TRICK">
-                JS_AngularJS_jQuery's TRICK <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -528,7 +499,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RockMongo"><span class="nav-text">RockMongo</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#管道与FIFO文件"><span class="nav-text">管道与FIFO文件</span></a></li></ol></div>
             
           </div>
         </section>

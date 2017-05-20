@@ -191,22 +191,22 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
-            
-            日程
           </a>
         </li>
       
@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/09/linux-index/" itemprop="url">
-                  linux专题(1)
+                <a class="post-title-link" href="/2017/05/09/linux-index2/" itemprop="url">
+                  linux专题(3):进程间通信
                 </a>
               
             
@@ -263,7 +263,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-09T10:01:03+08:00" content="2017-05-09">
+            <time itemprop="dateCreated" datetime="2017-05-09T23:36:49+08:00" content="2017-05-09">
               2017-05-09
             </time>
           </span>
@@ -312,10 +312,14 @@
       
         
           
-            <h1 id="文件系统的实现"><a href="#文件系统的实现" class="headerlink" title="文件系统的实现"></a>文件系统的实现</h1><p>观察常见存储设备.最开始的区域是MBR,用于Linux开机启动.剩余的空间可能分成数个分区(partition).每个分区有一个相关的分区表(Partition table),记录分区的相关信息.这个分区表是储存在分区之外的.分区表说明了对应分区的起始位置和分区的大小.<br><img src="/2017/05/09/linux-index/filesystem1.png" alt="filesystem1.png" title=""><br>我们在Windows系统常常看到C分区、D分区等.Linux系统下也可以有多个分区,但都被挂载在同一个文件系统树上.数据被存入到某个分区中.一个典型的Linux分区(partition)包含有下面各个部分:<br><img src="/2017/05/09/linux-index/filesystem2.png" alt="filesystem2.png" title=""><br>分区的第一个部分是启动区(Boot block),它主要是为计算机开机服务的.Linux开机启动后,会首先载入MBR,随后MBR从某个硬盘的启动区加载程序.该程序负责进一步的操作系统的加载和启动.为了方便管理,即使某个分区中没有安装操作系统,Linux也会在该分区预留启动区.启动区之后的是超级区(Super block).它存储有文件系统的相关信息,包括文件系统的类型,inode的数目,数据块的数目.随后是多个inodes,它们是实现文件存储的关键.在Linux系统中,一个文件可以分成几个数据块存储.每个文件对应一个inode,这个inode中包含多个指针,指向属于该文件各个数据块.最后一部分,就是真正储存数据的数据块们(data blocks)了.</p>
-<h4 id="inode"><a href="#inode" class="headerlink" title="inode"></a>inode</h4><p>一个文件除了自身的数据之外，还有一个附属信息，即文件的元数据(metadata)。这个元数据用于记录文件的许多信息，比如文件大小，拥有人，所属的组，修改日期等等。元数据并不包含在文件的数据中，而是由操作系统维护的。事实上，这个所谓的元数据就包含在inode中。我们可以用$ls -l filename来查看这些元数据。正如我们上面看到的，inode所占据的区域与数据块的区域不同。每个inode有一个唯一的整数编号(inode number)表示。inode储存由一些指针，这些指针指向存储设备中的一些数据块，文件的内容就储存在这些数据块中。当Linux想要打开一个文件时，只需要找到文件对应的inode，然后沿着指针，将所有的数据块收集起来，就可以在内存中组成一个文件的数据了。<br><img src="/2017/05/09/linux-index/filesystem3.png" alt="filesystem3.png" title=""><br>inode并不是组织文件的唯一方式。最简单的组织文件的方法，是把文件依次顺序的放入存储设备，DVD就采取了类似的方式。但如果有删除操作，删除造成的空余空间夹杂在正常文件之间，很难利用和管理。复杂的方式可以使用链表，每个数据块都有一个指针，指向属于同一文件的下一个数据块。这样的好处是可以利用零散的空余空间，坏处是对文件的操作必须按照线性方式进行。如果想随机存取，那么必须遍历链表，直到目标位置。在Linux下，可以使用$stat filename，来查询某个文件对应的inode编号。</p>
-<p>FAT系统是将上面链表的指针取出，放入到内存的一个数组中。这样，FAT可以根据内存的索引，迅速的找到一个文件。这样做的主要问题是，索引数组的大小与数据块的总数相同。因此，存储设备很大的话，这个索引数组会比较大。<br>/var/test.txt:<br><img src="/2017/05/09/linux-index/filesystem4.png" alt="filesystem4.png" title=""></p>
-<h4 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h4><p>在Linux的进程中，当我们打开一个文件时，返回的是一个文件描述符。这个文件描述符是一个数组的下标，对应数组元素为一个指针。有趣的是，这个指针并没有直接指向文件的inode，而是指向了一个文件表格，再通过该表格，指向加载到内存中的目标文件的inode。如下图，一个进程打开了两个文件。<br><img src="/2017/05/09/linux-index/filesystem5.png" alt="filesystem5.png" title=""><br>可以看到，每个文件表格中记录了文件打开的状态(status flags)，比如只读，写入等，还记录了每个文件的当前读写位置(offset)。当有两个进程打开同一个文件时，可以有两个文件表格，每个文件表格对应的打开状态和当前位置不同，从而支持一些文件共享的操作，比如同时读取。<br>要注意的是进程fork之后的情况，子进程将只复制文件描述符的数组，而和父进程共享内核维护的文件表格和inode。此时要特别小心程序的编写。</p>
+            <p>信号可以看作一种粗糙的进程间通信(IPC, interprocess communication)的方式,用以向进程封闭的内存空间传递信息.为了让进程间传递更多的信息量,我们需要其他的进程间通信方式.这些进程间通信方式可以分为两种:</p>
+<ul>
+<li>管道(PIPE)机制.在Linux文本流中,我们提到可以使用管道将一个进程的输出和另一个进程的输入连接起来,从而利用文件操作API来管理进程间通信.在shell中,我们经常利用管道将多个进程连接在一起,从而让各个进程协作,实现复杂的功能.</li>
+<li>传统IPC (interprocess communication).我们主要是指消息队列(message queue),信号量(semaphore),共享内存(shared memory).这些IPC的特点是允许多进程之间共享资源,这与多线程共享heap和global data相类似.由于多进程任务具有并发性 (每个进程包含一个进程,多个进程的话就有多个线程),所以在共享资源的时候也必须解决同步的问题.<h3 id="管道与FIFO文件"><a href="#管道与FIFO文件" class="headerlink" title="管道与FIFO文件"></a>管道与FIFO文件</h3>一个原始的IPC方式是所有的进程通过一个文件交流.比如我在纸(文件)上写下我的名字和年纪.另一个人读这张纸,会知道我的名字和年纪.他也可以在同一张纸上写下他的信息,而当我读这张纸的话,同样也可以知道别人的信息.但是,由于硬盘读写比较慢,所以这个方式效率很低.那么,我们是否可以将这张纸放入内存中以提高读写速度呢？<br>比如在Python子进程中使用Popen和PIPE,在C语言中也有popen库函数来实现管道 (shell中的管道就是根据此编写的).管道是由内核管理的一个缓冲区(buffer),相当于我们放入内存中的一个纸条.管道的一端连接一个进程的输出.这个进程会向管道中放入信息.管道的另一端连接一个进程的输入,这个进程取出被放入管道的信息.一个缓冲区不需要很大,它被设计成为环形的数据结构,以便管道可以被循环利用.当管道中没有信息的话,从管道中读取的进程会等待,直到另一端的进程放入信息.当管道被放满信息的时候,尝试放入信息的进程会等待,直到另一端的进程取出信息.当两个进程都终结的时候,管道也自动消失.<br>从原理上,管道利用fork机制建立.从而让两个进程可以连接到同一个PIPE上.最开始的时候,上面的两个箭头都连接在同一个进程Process 1上(连接在Process 1上的两个箭头).当fork复制进程的时候,会将这两个连接也复制到新的进程(Process 2).随后,每个进程关闭自己不需要的一个连接 (两个黑色的箭头被关闭; Process 1关闭从PIPE来的输入连接,Process 2关闭输出到PIPE的连接),这样,剩下的红色连接就构成了如图的PIPE.<img src="/2017/05/09/linux-index2/pipe1.png" alt="pipe1.png" title="">
+由于基于fork机制,所以管道只能用于父进程和子进程之间,或者拥有相同祖先的两个子进程之间 (有亲缘关系的进程之间).为了解决这一问题,Linux提供了FIFO方式连接进程.FIFO又叫做命名管道(named PIPE).<br>FIFO (First in, First out)为一种特殊的文件类型,它在文件系统中有对应的路径.当一个进程以读(r)的方式打开该文件,而另一个进程以写(w)的方式打开该文件,那么内核就会在这两个进程之间建立管道,所以FIFO实际上也由内核管理,不与硬盘打交道.之所以叫FIFO,是因为管道本质上是一个先进先出的队列数据结构,最早放入的数据被最先读出来(好像是传送带,一头放货,一头取货),从而保证信息交流的顺序.FIFO只是借用了文件系统来为管道命名.写模式的进程向FIFO文件中写入,而读模式的进程从FIFO文件中读出.当删除FIFO文件时,管道连接也随之消失.FIFO的好处在于我们可以通过文件的路径来识别管道,从而让没有亲缘关系的进程之间建立连接.</li>
+</ul>
+<p>消息队列(message queue)与PIPE相类似.它也是建立一个队列,先放入队列的消息被最先取出.不同的是,消息队列允许多个进程放入消息,也允许多个进程取出消息.每个消息可以带有一个整数识别符(message_type).你可以通过识别符对消息分类 (极端的情况是将每个消息设置一个不同的识别符).某个进程从队列中取出消息的时候,可以按照先进先出的顺序取出,也可以只取出符合某个识别符的消息(有多个这样的消息时,同样按照先进先出的顺序取出).消息队列与PIPE的另一个不同在于它并不使用文件API.最后,一个队列不会自动消失,它会一直存在于内核中,直到某个进程删除该队列.</p>
+<p>多进程协作可以帮助我们充分利用多核和网络时代带来的优势.多进程可以有效解决计算瓶颈的问题.互联网通信实际上也是一个进程间通信的问题,只不过这多个进程分布于不同的电脑上.网络连接是通过socket实现的.由于socket内容庞大,所以我们不在这里深入.一个小小的注解是,socket也可以用于计算机内部进程间的通信.</p>
 
           
         
@@ -348,7 +352,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -389,7 +393,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

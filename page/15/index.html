@@ -87,7 +87,7 @@
 <meta name="description" content="性燥皆因经麻少  心平只缘折磨多">
 <meta property="og:type" content="website">
 <meta property="og:title" content="MuzhI">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/page/15/index.html">
 <meta property="og:site_name" content="MuzhI">
 <meta property="og:description" content="性燥皆因经麻少  心平只缘折磨多">
 <meta name="twitter:card" content="summary">
@@ -113,7 +113,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/page/15/"/>
 
 
   <title> MuzhI </title>
@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/09/linux-index1/" itemprop="url">
-                  linux专题(2):多线程与同步
+                <a class="post-title-link" href="/2016/10/19/hello-world/" itemprop="url">
+                  有没有什么适合普通人闲来思索的哲学问题？
                 </a>
               
             
@@ -263,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-09T20:47:28+08:00" content="2017-05-09">
-              2017-05-09
+            <time itemprop="dateCreated" datetime="2016-10-19T16:39:11+08:00" content="2016-10-19">
+              2016-10-19
             </time>
           </span>
 
@@ -277,8 +277,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/哲学/" itemprop="url" rel="index">
+                    <span itemprop="name">哲学</span>
                   </a>
                 </span>
 
@@ -312,21 +312,25 @@
       
         
           
-            <h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><p>多线程相当于一个并发(concunrrency)系统.并发系统一般同时执行多个任务.如果多个任务可以共享资源,特别是同时写入某个变量的时候,就需要解决同步的问题.比如说,我们有一个多线程火车售票系统,用全局变量i存储剩余的票数.多个线程不断地卖票(i = i - 1),直到剩余票数为0.所以每个都需要执行如下操作:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*mu is a global mutex*/</span></div><div class="line"><span class="comment">// 伪C代码</span></div><div class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;                        <span class="comment">/*infinite loop*/</span></div><div class="line">    <span class="keyword">if</span> (i != <span class="number">0</span>) i = i <span class="number">-1</span>;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">      <span class="built_in">printf</span>(<span class="string">"no more tickets"</span>);</div><div class="line">      <span class="built_in">exit</span>();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这里的if结构会给CPU两个指令, 一个是判断是否有剩余的票(i != 0), 一个是卖票 (i = i -1).某个线程会先判断是否有票(比如说此时i为1),但两个指令之间存在一个时间窗口,其它线程可能在此时间窗口内执行卖票操作(i = i -1),导致该线程卖票的条件不再成立.但该线程由于已经执行过了判断指令,所以无从知道i发生了变化,所以继续执行卖票指令,以至于卖出不存在的票 (i成为负数).对于一个真实的售票系统来说,这将成为一个严重的错误 (售出了过多的票,火车爆满).</p>
-<p>在并发情况下,指令执行的先后顺序由内核决定.同一个线程内部,指令按照先后顺序执行,但不同线程之间的指令很难说清除哪一个会先执行.如果运行的结果依赖于不同线程执行的先后的话,那么就会造成竞争条件(race condition),在这样的状况下,计算机的结果很难预知.我们应该尽量避免竞争条件的形成.最常见的解决竞争条件的方法是将原先分离的两个指令构成不可分隔的一个原子操作(atomic operation),而其它任务不能插入到原子操作中.</p>
-<h2 id="多线程同步"><a href="#多线程同步" class="headerlink" title="多线程同步"></a>多线程同步</h2><p>对于多线程程序来说,同步(synchronization)是指在一定的时间内只允许某一个线程访问某个资源 .而在此时间内,不允许其它的线程访问该资源.我们可以通过互斥锁(mutex),条件变量(condition variable)和读写锁(reader-writer lock)来同步资源.</p>
+            <p><img src="/uploads/timg.jpg" alt="yangming"><br>先祭出老先生壮壮胆。<br>（哲学票友，一己之见）<br>“不离日用常行内，直造先天未画前”王阳明先生用自己的经历告诉我们，即使对着一根竹子也可以产生哲学问题。<br>先列举一些：    </p>
 <ol>
-<li>互斥锁<br>互斥锁是一个特殊的变量,它有锁上(lock)和打开(unlock)两个状态.互斥锁一般被设置成全局变量.打开的互斥锁可以由某个线程获得.一旦获得,这个互斥锁会锁上,此后只有该线程有权打开.</li>
-<li>条件变量<br>条件变量是另一种常用的变量.它也常常被保存为全局变量,并和互斥锁合作.假设这样一个状况: 有100个工人,每人负责装修一个房间.当有10个房间装修完成的时候,老板就通知相应的十个工人一起去喝啤酒.<br>我们如何实现呢？老板让工人在装修好房间之后,去检查已经装修好的房间数.但多线程条件下,会有竞争条件的危险.也就是说,其他工人有可能会在该工人装修好房子和检查之间完成工作.采用下面方式解决：<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*mu: global mutex, cond: global codition variable, num: global int*/</span></div><div class="line"><span class="comment">// 伪C代码</span></div><div class="line">mutex_lock(mu)</div><div class="line">num = num + <span class="number">1</span>;                      <span class="comment">/*worker build the room*/</span></div><div class="line"><span class="keyword">if</span> (num &lt;= <span class="number">10</span>) &#123;                     <span class="comment">/*worker is within the first 10 to finish*/</span></div><div class="line">    cond_wait(mu, cond);            <span class="comment">/*wait*/</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"drink beer"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (num = <span class="number">11</span>) &#123;                <span class="comment">/*workder is the 11th to finish*/</span></div><div class="line">  cond_broadcast(mu, cond);         <span class="comment">/*inform the other 9 to wake up*/</span></div><div class="line">&#125;</div><div class="line">mutex_unlock(mu);</div></pre></td></tr></table></figure>
-</li>
+<li>为什么要叠被子？为了整齐。把被子铺好（还可以透气）就不整齐了吗？什么是整齐？由叠被子可以想到军队里，军队里为什么要叠被子？</li>
+<li>王阳明先生帅不帅（仅就图片说，不知道这张图片有多少真实性）？帅有没有一个客观标准？如果有，这种主观的体验为什么会外化成较统一的标准？是就哪个范围说的，这个标准会不会随时间变化？如果会变化，是什么引起的这种变化？</li>
+<li>回想一下自己吃饭时，一般会有左边咀嚼还是右边还是两边同时，有可能想不起来，因为它已经变成了无意识的行为。我一天中还有哪些是无意识的？这些无意识的东西能不能构成我之为我而区别于其他？如果不能，那么在做这些无意识的事情时，能不能说是我在做？多大的程度上能说？</li>
+<li>关于红绿色盲，如果我们绝大多数人都是，而我们这种“正常的”视力占少数，关于红绿，是不是只是个名字代号不同而已？由此联想到假如现在发现了一种古文字，没有人能解出是什么意思，如果有人将这套古文字和我们使用的语言对应起来了，并且是自洽的。那我们能不能说我们理解了这套古文字。由此可以想象人类现有的科学知识有没有可能只是这样一种对应，且就目前来讲还是自洽的。同时我们的感官所感知和思维所知觉的和客观世界有没有可能只是一种对应，就世界的本来知识其实我们一无所知。</li>
 </ol>
-<p>上面使用了条件变量.条件变量除了要和互斥锁配合之外,还需要和另一个全局变量配合(这里的num, 也就是装修好的房间数).这个全局变量用来构成各个条件.<br>具体思路如下.我们让工人在装修好房间(num = num + 1)之后,去检查已经装修好的房间数( num &lt; 10 ).由于mu被锁上,所以不会有其他工人在此期间装修房间(改变num的值).如果该工人是前十个完成的人,那么我们就调用cond_wait()函数.<br>cond_wait()做两件事情,一个是释放mu,从而让别的工人可以建房.另一个是等待,直到cond的通知.这样的话,符合条件的线程就开始等待.<br>当有通知(第十个房间已经修建好)到达的时候,condwait()会再次锁上mu.线程的恢复运行,执行下一句prinft(“drink beer”) (喝啤酒！).从这里开始,直到mutex_unlock(),就构成了另一个互斥锁结构.<br>那么,前面十个调用cond_wait()的线程如何得到的通知呢？我们注意到elif if,即修建好第11个房间的人,负责调用cond_broadcast().这个函数会给所有调用cond_wait()的线程放送通知,以便让那些线程恢复运行.<br>条件变量特别适用于多个线程等待某个条件的发生.如果不使用条件变量,那么每个线程就需要不断尝试获得互斥锁并检查条件是否发生,这样大大浪费了系统的资源.</p>
-<ol>
-<li>读写锁<br>读写锁与互斥锁非常相似.r、RW lock有三种状态: 共享读取锁(shared-read), 互斥写入锁(exclusive-write lock), 打开(unlock).后两种状态与之前的互斥锁两种状态完全相同.<br>一个unlock的RW lock可以被某个线程获取R锁或者W锁.<br>如果被一个线程获得R锁,RW lock可以被其它线程继续获得R锁,而不必等待该线程释放R锁.但是,如果此时有其它线程想要获得W锁,它必须等到所有持有共享读取锁的线程释放掉各自的R锁.<br>如果一个锁被一个线程获得W锁,那么其它线程,无论是想要获取R锁还是W锁,都必须等待该线程释放W锁.<br>这样,多个线程就可以同时读取共享资源.而具有危险性的写入操作则得到了互斥锁的保护.</li>
-</ol>
-<p>需要同步并发系统,这为程序员编程带来了难度.但是多线程系统可以很好的解决许多IO瓶颈的问题.比如我们监听网络端口.如果我们只有一个线程,那么我们必须监听,接收请求,处理,回复,再监听.如果我们使用多线程系统,则可以让多个线程监听.当我们的某个线程进行处理的时候,我们还可以有其他的线程继续监听,这样,就大大提高了系统的利用率.在数据越来越大,服务器读写操作越来越多的今天,这具有相当的意义.多线程还可以更有效地利用多CPU的环境.<br>(就像做饭一样,不断切换去处理不同的菜.)</p>
-
+<p>按照冯友兰先生的说法，哲学是思想思想的学问即反思的学问。所以可以从这个问题本身开始。分两个问题谈，1.<code>哲学性的问题</code>,2.<code>哲学性的思考</code>      </p>
+<h2 id="什么问题是哲学问题？"><a href="#什么问题是哲学问题？" class="headerlink" title="什么问题是哲学问题？"></a>什么问题是哲学问题？</h2><p>正常情况下，当我们产生一个问题或者说疑问时，这个问题或者疑惑一定有所指向。它指向既在，此在或者彼在（不只是指时间空间上的，也指逻辑上的，例如：“是人首先要是动物”，这个判断中的“首先”就是逻辑上的先后，而非时间上的）。</p>
+<p>所谓指向此在意思是“X是什么”【“是，being”，是一个非常重要且深奥的西哲范畴，在此不做讨论】。这类问题一般是指向概念和事实，例如：什么是桌子？苏格拉底是谁？人是什么？这篇文章讲的是什么？（实的概念或事实），什么是正义？幸福是什么？何谓道德罪恶？·有灵魂有鬼吗？（虚的概念或事实）</p>
+<p>指向既在意思是“X有什么根据？X的原因是什么？”。例如：天怎么这么冷？为什么苹果往下落？银杏叶为什么会变黄？</p>
+<p>指向彼在意思是“X还有哪些可能性？”（潜在的）。例如：两点之间直线距离最短是不是任何情况下成立？三角形角之和一定等于180°吗？</p>
+<p>说完问题，再说什么样的问题算是哲学问题。</p>
+<p>网速怎么这么差？你是不是不喜欢我？这节课我是逃还是上呢？这些日常的琐碎的问题，如果寻求的只是日常的功能性的回答，都不能叫哲学性的问题。哲学的问题不在于问的问题是否是哲学界里的问题，（什么存在，此在，一与多，物自性，偶性，必然。。。）而在于是否有形而上的兴趣，倾向。</p>
+<p>例如对网速怎么这么差这个问题，你可以思考这个问题本身，当你问这个问题时，你的心情此时一定是不爽的，由此你可以进一步关注你的情绪，为什么网速差会让你不爽？，然后你可以继续问这种不爽的情绪产生的机理是什么？我明白了这件事背后的道理能不能消解我这种不爽？我能真正控制自己的情绪吗？我的思维和情绪是一种什么关系？这样就可以一步一步深入下去，将一个无聊的牢骚变成一个有意思的问题。</p>
+<h2 id="哲学性的思考"><a href="#哲学性的思考" class="headerlink" title="哲学性的思考"></a>哲学性的思考</h2><h3 id="逻辑上的准备"><a href="#逻辑上的准备" class="headerlink" title="逻辑上的准备"></a>逻辑上的准备</h3><p>思方網，这个网站上介绍了一些比较好的批判式思维方法。<br>找一本讲形式逻辑的书看看，推荐《普通逻辑》上海人民出版社。（教材式的，可能会有些许枯燥）        </p>
+<h3 id="从桌上的杯子谈起"><a href="#从桌上的杯子谈起" class="headerlink" title="从桌上的杯子谈起"></a>从桌上的杯子谈起</h3><p>身边的任何东西都可以产生哲学问题。“桌子上面有杯子”，这是一个事实描述，可以围绕这个描述不断的加一些限定修饰（性质）。先分解这个描述：有哪些主词实词，“桌子”，“杯子”，那就可以问什么是桌子和杯子。自己可以尝试给它们下定义，然后不断找出这种定义的漏洞，不停的丰富加深。如“杯子是一种盛水的器皿”，这个定义是就杯子的功能定义的，且是充分不必要的，我们可以说杯子可以用来盛水，但盛水的器皿不必然被称作杯子，又比如这个杯子破了个洞不能盛水了，但我们依然说这是个杯子。这不是文字游戏，当你追问这种问题时，差不多就可以算作是哲学性的思考了。“<br>再考虑关系问题，“上面”是一个空间关系的描述，这种空间关系是怎么产生的，是因为在地球上引力向下吗？从太空的角度，能不能说月亮在地球上或者地球在月亮上？这种事物间的关系与事物各自的属性是独立的呢，还是分离的？如果是分离的，那我们是如何认识到这种关系的，它是在我们一出生就赋予给我们的吗？还是后天习得的？。。。<br>（说的很混乱，见谅）</p>
+<p>最后推荐两本书：<br><img src="/uploads/zhexue.jpg" alt="zhexue"><br>南大学生写的，从一些日常问题着手慢慢进入一种哲学式的思考。<br><img src="/uploads/bigquestion.jpg" alt="bigquestion"><br>所罗门的大问题从问题为起始点梳理了哲学史，是以问题为导向的。这两本书比较切合题主的问题。</p>
+<h2 id="关于作者"><a href="#关于作者" class="headerlink" title="关于作者"></a>关于作者</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> muzhi = &#123;</div><div class="line">  <span class="attr">nerdName</span>  : <span class="string">"木之"</span>,</div><div class="line">  <span class="attr">site</span> : <span class="string">"https://www.zhihu.com/question/36840804/"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -358,7 +362,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span>
   </nav>
 
 

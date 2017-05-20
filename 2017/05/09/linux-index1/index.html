@@ -84,41 +84,16 @@
 
 
 
-<meta name="description" content="前期准备RockMongo是PHP5写的一个MongoDB管理工具。    
-
-一个能运行PHP的Web服务器，比如Apache ，Httpd, Nginx…我选择的是Apache服务器，具体配置如下：   
-
-环境配置下载地址，选择对应平台，下载。下载截图如下所示：
-
-
-安装与设置解压下载的压缩包，找到readme_first.html文件，里面有详细的安装步骤。找到Apache的配置文件htt">
+<meta name="description" content="并发多线程相当于一个并发(concunrrency)系统.并发系统一般同时执行多个任务.如果多个任务可以共享资源,特别是同时写入某个变量的时候,就需要解决同步的问题.比如说,我们有一个多线程火车售票系统,用全局变量i存储剩余的票数.多个线程不断地卖票(i = i - 1),直到剩余票数为0.所以每个都需要执行如下操作:123456789/*mu is a global mutex*/// 伪C代码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RockMongo-PHP MongoDB Administrator-配置(Windows环境)">
-<meta property="og:url" content="http://yoursite.com/2016/11/05/article-3/index.html">
+<meta property="og:title" content="linux专题(2):多线程与同步">
+<meta property="og:url" content="http://yoursite.com/2017/05/09/linux-index1/index.html">
 <meta property="og:site_name" content="MuzhI">
-<meta property="og:description" content="前期准备RockMongo是PHP5写的一个MongoDB管理工具。    
-
-一个能运行PHP的Web服务器，比如Apache ，Httpd, Nginx…我选择的是Apache服务器，具体配置如下：   
-
-环境配置下载地址，选择对应平台，下载。下载截图如下所示：
-
-
-安装与设置解压下载的压缩包，找到readme_first.html文件，里面有详细的安装步骤。找到Apache的配置文件htt">
-<meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down1.JPG">
-<meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down2.JPG">
-<meta property="og:image" content="http://yoursite.com/2016/11/05/article-3/apache_down3.JPG">
-<meta property="og:updated_time" content="2016-11-09T16:23:29.938Z">
+<meta property="og:description" content="并发多线程相当于一个并发(concunrrency)系统.并发系统一般同时执行多个任务.如果多个任务可以共享资源,特别是同时写入某个变量的时候,就需要解决同步的问题.比如说,我们有一个多线程火车售票系统,用全局变量i存储剩余的票数.多个线程不断地卖票(i = i - 1),直到剩余票数为0.所以每个都需要执行如下操作:123456789/*mu is a global mutex*/// 伪C代码">
+<meta property="og:updated_time" content="2017-05-09T15:39:55.061Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RockMongo-PHP MongoDB Administrator-配置(Windows环境)">
-<meta name="twitter:description" content="前期准备RockMongo是PHP5写的一个MongoDB管理工具。    
-
-一个能运行PHP的Web服务器，比如Apache ，Httpd, Nginx…我选择的是Apache服务器，具体配置如下：   
-
-环境配置下载地址，选择对应平台，下载。下载截图如下所示：
-
-
-安装与设置解压下载的压缩包，找到readme_first.html文件，里面有详细的安装步骤。找到Apache的配置文件htt">
-<meta name="twitter:image" content="http://yoursite.com/2016/11/05/article-3/apache_down1.JPG">
+<meta name="twitter:title" content="linux专题(2):多线程与同步">
+<meta name="twitter:description" content="并发多线程相当于一个并发(concunrrency)系统.并发系统一般同时执行多个任务.如果多个任务可以共享资源,特别是同时写入某个变量的时候,就需要解决同步的问题.比如说,我们有一个多线程火车售票系统,用全局变量i存储剩余的票数.多个线程不断地卖票(i = i - 1),直到剩余票数为0.所以每个都需要执行如下操作:123456789/*mu is a global mutex*/// 伪C代码">
 
 
 
@@ -139,10 +114,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/05/article-3/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/09/linux-index1/"/>
 
 
-  <title> RockMongo-PHP MongoDB Administrator-配置(Windows环境) | MuzhI </title>
+  <title> linux专题(2):多线程与同步 | MuzhI </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +247,7 @@
             
             
               
-                RockMongo-PHP MongoDB Administrator-配置(Windows环境)
+                linux专题(2):多线程与同步
               
             
           </h1>
@@ -284,8 +259,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-05T16:25:14+08:00" content="2016-11-05">
-              2016-11-05
+            <time itemprop="dateCreated" datetime="2017-05-09T20:47:28+08:00" content="2017-05-09">
+              2017-05-09
             </time>
           </span>
 
@@ -298,8 +273,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/BACKEND/" itemprop="url" rel="index">
-                    <span itemprop="name">BACKEND</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -331,22 +306,20 @@
       
 
       
-        <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>RockMongo是PHP5写的一个MongoDB管理工具。    </p>
-<ul>
-<li><p>一个能运行PHP的Web服务器，比如<code>Apache</code> ，<code>Httpd</code>, <code>Nginx</code>…<br>我选择的是Apache服务器，具体配置如下：   </p>
-<ul>
-<li>环境配置<br><a href="http://httpd.apache.org/download.cgi" target="_blank" rel="external">下载地址</a>，选择对应平台，下载。下载截图如下所示：<img src="/2016/11/05/article-3/apache_down1.JPG" alt="apache_down1.JPG" title="">
-<img src="/2016/11/05/article-3/apache_down2.JPG" alt="apache_down2.JPG" title="">
-<img src="/2016/11/05/article-3/apache_down3.JPG" alt="apache_down3.JPG" title=""></li>
-<li>安装与设置<br>解压下载的压缩包，找到<code>readme_first.html</code>文件，里面有详细的安装步骤。<br>找到Apache的配置文件<code>httpd.config</code>打开，修改包括<code>ServerRoot</code>、<code>DocumentRoot</code>、<code>Directory</code>，<code>ScriptAlias</code>等字段，需要改为你的Apache目录的地址。也可以自定义端口号通过<code>listen port</code>字段。<br>为了支持PHP5，还需要添加以下内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># php5 support</div><div class="line">LoadModule php5_module path/to/php5apache2_4.dll(即解压的PHP压缩包中的php5apache2_4.dll文件的目录)</div><div class="line">AddType application/x-httpd-php .php .html .htm</div><div class="line"># configure the path to php.ini</div><div class="line">PHPIniDir &quot;your php path&quot;</div></pre></td></tr></table></figure>
+        <h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><p>多线程相当于一个并发(concunrrency)系统.并发系统一般同时执行多个任务.如果多个任务可以共享资源,特别是同时写入某个变量的时候,就需要解决同步的问题.比如说,我们有一个多线程火车售票系统,用全局变量i存储剩余的票数.多个线程不断地卖票(i = i - 1),直到剩余票数为0.所以每个都需要执行如下操作:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*mu is a global mutex*/</span></div><div class="line"><span class="comment">// 伪C代码</span></div><div class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;                        <span class="comment">/*infinite loop*/</span></div><div class="line">    <span class="keyword">if</span> (i != <span class="number">0</span>) i = i <span class="number">-1</span>;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">      <span class="built_in">printf</span>(<span class="string">"no more tickets"</span>);</div><div class="line">      <span class="built_in">exit</span>();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里的if结构会给CPU两个指令, 一个是判断是否有剩余的票(i != 0), 一个是卖票 (i = i -1).某个线程会先判断是否有票(比如说此时i为1),但两个指令之间存在一个时间窗口,其它线程可能在此时间窗口内执行卖票操作(i = i -1),导致该线程卖票的条件不再成立.但该线程由于已经执行过了判断指令,所以无从知道i发生了变化,所以继续执行卖票指令,以至于卖出不存在的票 (i成为负数).对于一个真实的售票系统来说,这将成为一个严重的错误 (售出了过多的票,火车爆满).</p>
+<p>在并发情况下,指令执行的先后顺序由内核决定.同一个线程内部,指令按照先后顺序执行,但不同线程之间的指令很难说清除哪一个会先执行.如果运行的结果依赖于不同线程执行的先后的话,那么就会造成竞争条件(race condition),在这样的状况下,计算机的结果很难预知.我们应该尽量避免竞争条件的形成.最常见的解决竞争条件的方法是将原先分离的两个指令构成不可分隔的一个原子操作(atomic operation),而其它任务不能插入到原子操作中.</p>
+<h2 id="多线程同步"><a href="#多线程同步" class="headerlink" title="多线程同步"></a>多线程同步</h2><p>对于多线程程序来说,同步(synchronization)是指在一定的时间内只允许某一个线程访问某个资源 .而在此时间内,不允许其它的线程访问该资源.我们可以通过互斥锁(mutex),条件变量(condition variable)和读写锁(reader-writer lock)来同步资源.</p>
+<ol>
+<li>互斥锁<br>互斥锁是一个特殊的变量,它有锁上(lock)和打开(unlock)两个状态.互斥锁一般被设置成全局变量.打开的互斥锁可以由某个线程获得.一旦获得,这个互斥锁会锁上,此后只有该线程有权打开.</li>
+<li>条件变量<br>条件变量是另一种常用的变量.它也常常被保存为全局变量,并和互斥锁合作.假设这样一个状况: 有100个工人,每人负责装修一个房间.当有10个房间装修完成的时候,老板就通知相应的十个工人一起去喝啤酒.<br>我们如何实现呢？老板让工人在装修好房间之后,去检查已经装修好的房间数.但多线程条件下,会有竞争条件的危险.也就是说,其他工人有可能会在该工人装修好房子和检查之间完成工作.采用下面方式解决：<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*mu: global mutex, cond: global codition variable, num: global int*/</span></div><div class="line"><span class="comment">// 伪C代码</span></div><div class="line">mutex_lock(mu)</div><div class="line">num = num + <span class="number">1</span>;                      <span class="comment">/*worker build the room*/</span></div><div class="line"><span class="keyword">if</span> (num &lt;= <span class="number">10</span>) &#123;                     <span class="comment">/*worker is within the first 10 to finish*/</span></div><div class="line">    cond_wait(mu, cond);            <span class="comment">/*wait*/</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"drink beer"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (num = <span class="number">11</span>) &#123;                <span class="comment">/*workder is the 11th to finish*/</span></div><div class="line">  cond_broadcast(mu, cond);         <span class="comment">/*inform the other 9 to wake up*/</span></div><div class="line">&#125;</div><div class="line">mutex_unlock(mu);</div></pre></td></tr></table></figure>
 </li>
-</ul>
-</li>
-<li><p>PHP - 需要PHP v5.1.6或更高版本，需要支持SESSION<br>下载<a href="http://windows.php.net/download#php-7.0" target="_blank" rel="external">PHP(windows下)</a>,我选择的是VC11 x64 Thread Safe (2016-Oct-14 20:34:09)，如果与Apache注意选择thread safe版的，否则解压出来没有php5apache2_4.dll文件。而non thread safe主要与IIS搭配环境。<br>为了能连接MongoDB，需要安装<a href="http://www.php.net/manual/en/mongo.installation.php" target="_blank" rel="external">php_mongo</a>扩展。下载后将压缩包解压，复制php_mongo.dll文件到PHP文件夹下的ext目录下。<br>解压PHP压缩包，将php的目录路径和php主目录下的ext一起加到环境变量。然后复制<code>php.ini-production</code>文件，重命名为<code>php.ini</code>并打开。<br>将<code>extension=php_mbstring.dll</code>字段前的分号去掉，并加入新的字段<code>extension=php_mongo.dll</code>。extension支持完整路径，所以如果出现php无法加载模块时可以考虑采用完整路径，我的完整路径为<code>extension=c:/php-5.6.27/ext/php_mbstring.dll</code>和<code>extension=c:/php-5.6.27/ext/php_mongo.dll</code>。<br>检查环境：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[method1]</div><div class="line">打开htdocs下的index.html,在结尾处加入<span class="meta">&lt;?php</span> phpinfo()<span class="meta">?&gt;</span></div><div class="line">在浏览器中打开localhost,如果正确输出PHP信息说明PHP+Apache配置完成，如果能找到mongo的支持信息，说明和mongodb的连接也配置完成了，否则需要重新配置与mongo相关的信息。</div><div class="line">[method2]</div><div class="line">在命令行输入：php -i | findstr mongo查看mongo的支持信息。</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="RockMongo"><a href="#RockMongo" class="headerlink" title="RockMongo"></a>RockMongo</h2><p>不要在官网上下载，否则由于版本问题导致无法启动，到<a href="https://github.com/iwind/rockmongo" target="_blank" rel="external">github上下载</a>，然后解压出来放到你的Apache配置文件中的DocumentRoot字段指定的目录，我的是<code>c:\Apache24\htdocs</code>。<br>至此环境搭建完毕。打开MongoDB，在浏览器地址中输入<code>localhost/rockmongo/index.php</code>即可进行登录和管理数据库了。</p>
+</ol>
+<p>上面使用了条件变量.条件变量除了要和互斥锁配合之外,还需要和另一个全局变量配合(这里的num, 也就是装修好的房间数).这个全局变量用来构成各个条件.<br>具体思路如下.我们让工人在装修好房间(num = num + 1)之后,去检查已经装修好的房间数( num &lt; 10 ).由于mu被锁上,所以不会有其他工人在此期间装修房间(改变num的值).如果该工人是前十个完成的人,那么我们就调用cond_wait()函数.<br>cond_wait()做两件事情,一个是释放mu,从而让别的工人可以建房.另一个是等待,直到cond的通知.这样的话,符合条件的线程就开始等待.<br>当有通知(第十个房间已经修建好)到达的时候,condwait()会再次锁上mu.线程的恢复运行,执行下一句prinft(“drink beer”) (喝啤酒！).从这里开始,直到mutex_unlock(),就构成了另一个互斥锁结构.<br>那么,前面十个调用cond_wait()的线程如何得到的通知呢？我们注意到elif if,即修建好第11个房间的人,负责调用cond_broadcast().这个函数会给所有调用cond_wait()的线程放送通知,以便让那些线程恢复运行.<br>条件变量特别适用于多个线程等待某个条件的发生.如果不使用条件变量,那么每个线程就需要不断尝试获得互斥锁并检查条件是否发生,这样大大浪费了系统的资源.</p>
+<ol>
+<li>读写锁<br>读写锁与互斥锁非常相似.r、RW lock有三种状态: 共享读取锁(shared-read), 互斥写入锁(exclusive-write lock), 打开(unlock).后两种状态与之前的互斥锁两种状态完全相同.<br>一个unlock的RW lock可以被某个线程获取R锁或者W锁.<br>如果被一个线程获得R锁,RW lock可以被其它线程继续获得R锁,而不必等待该线程释放R锁.但是,如果此时有其它线程想要获得W锁,它必须等到所有持有共享读取锁的线程释放掉各自的R锁.<br>如果一个锁被一个线程获得W锁,那么其它线程,无论是想要获取R锁还是W锁,都必须等待该线程释放W锁.<br>这样,多个线程就可以同时读取共享资源.而具有危险性的写入操作则得到了互斥锁的保护.</li>
+</ol>
+<p>需要同步并发系统,这为程序员编程带来了难度.但是多线程系统可以很好的解决许多IO瓶颈的问题.比如我们监听网络端口.如果我们只有一个线程,那么我们必须监听,接收请求,处理,回复,再监听.如果我们使用多线程系统,则可以让多个线程监听.当我们的某个线程进行处理的时候,我们还可以有其他的线程继续监听,这样,就大大提高了系统的利用率.在数据越来越大,服务器读写操作越来越多的今天,这具有相当的意义.多线程还可以更有效地利用多CPU的环境.<br>(就像做饭一样,不断切换去处理不同的菜.)</p>
 
       
     </div>
@@ -388,16 +361,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/20/article-2/" rel="next" title="GitHub + Hexo搭建个人博客总结">
-                <i class="fa fa-chevron-left"></i> GitHub + Hexo搭建个人博客总结
+              <a href="/2017/05/09/linux-index/" rel="next" title="linux专题(1)">
+                <i class="fa fa-chevron-left"></i> linux专题(1)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/28/JS-use-trick/" rel="prev" title="JS_AngularJS_jQuery's TRICK">
-                JS_AngularJS_jQuery's TRICK <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/09/linux-index2/" rel="prev" title="linux专题(3):进程间通信">
+                linux专题(3):进程间通信 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -528,7 +501,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RockMongo"><span class="nav-text">RockMongo</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#并发"><span class="nav-text">并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程同步"><span class="nav-text">多线程同步</span></a></li></ol></div>
             
           </div>
         </section>
