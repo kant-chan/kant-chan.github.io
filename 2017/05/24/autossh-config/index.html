@@ -84,15 +84,25 @@
 
 
 
-<meta name="description" content="性燥皆因经麻少  心平只缘折磨多">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MuzhI">
-<meta property="og:url" content="http://yoursite.com/categories/影评/index.html">
+<meta name="description" content="外网与内网连接
+Port Forwarding(端口映射)
+Reverse Connection(反向连接)内网主机主动连接外网主机,NAT路由和防火墙内网host与外网host之间建立映射.但这种映射是由NAT路由自动维持的,不会持续下去,连接断开或网络不稳都会导致通信失效.      autossh实现持续反向连接现有内网主机A和外网主机B：
+A : localhostB : 120.27.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="autossh反向连接">
+<meta property="og:url" content="http://yoursite.com/2017/05/24/autossh-config/index.html">
 <meta property="og:site_name" content="MuzhI">
-<meta property="og:description" content="性燥皆因经麻少  心平只缘折磨多">
+<meta property="og:description" content="外网与内网连接
+Port Forwarding(端口映射)
+Reverse Connection(反向连接)内网主机主动连接外网主机,NAT路由和防火墙内网host与外网host之间建立映射.但这种映射是由NAT路由自动维持的,不会持续下去,连接断开或网络不稳都会导致通信失效.      autossh实现持续反向连接现有内网主机A和外网主机B：
+A : localhostB : 120.27.1">
+<meta property="og:updated_time" content="2017-05-23T18:32:41.308Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MuzhI">
-<meta name="twitter:description" content="性燥皆因经麻少  心平只缘折磨多">
+<meta name="twitter:title" content="autossh反向连接">
+<meta name="twitter:description" content="外网与内网连接
+Port Forwarding(端口映射)
+Reverse Connection(反向连接)内网主机主动连接外网主机,NAT路由和防火墙内网host与外网host之间建立映射.但这种映射是由NAT路由自动维持的,不会持续下去,连接断开或网络不稳都会导致通信失效.      autossh实现持续反向连接现有内网主机A和外网主机B：
+A : localhostB : 120.27.1">
 
 
 
@@ -113,10 +123,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/影评/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/24/autossh-config/"/>
 
 
-  <title> 分类: 影评 | MuzhI </title>
+  <title> autossh反向连接 | MuzhI </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +147,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -225,47 +235,160 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        影评
-        <small>分类</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                autossh反向连接
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-24T01:12:51+08:00" content="2017-05-24">
+              2017-05-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+      
+        <h3 id="外网与内网连接"><a href="#外网与内网连接" class="headerlink" title="外网与内网连接"></a>外网与内网连接</h3><ul>
+<li>Port Forwarding(端口映射)</li>
+<li>Reverse Connection(反向连接)<br>内网主机主动连接外网主机,NAT路由和防火墙内网host与外网host之间建立映射.但这种映射是由NAT路由自动维持的,不会持续下去,连接断开或网络不稳都会导致通信失效.      <h3 id="autossh实现持续反向连接"><a href="#autossh实现持续反向连接" class="headerlink" title="autossh实现持续反向连接"></a>autossh实现持续反向连接</h3>现有内网主机A和外网主机B：<blockquote>
+<p>A : localhost<br>B : 120.27.104.101<br>在B终端执行:<code>ssh -NfR 8890:localhost:8888 user@120.27.104.101 -p 22</code>,将A的8888端口和B的8890端口绑定,sshd的端口号为22.</p>
+</blockquote>
+</li>
+</ul>
+<p>要实现autossh还要安装<code>sudo apt-get install autossh</code>(在A host上),和<code>sudo apt-get install openssh-server</code>(在B host上).</p>
+<p>(1) 在主机A上<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/.ssh</div><div class="line">ssh-keygen</div><div class="line">ssh-copy-id user@120.27.104.101</div></pre></td></tr></table></figure></p>
+<p>编辑<code>/etc/ssh/sshd_config</code>,设置<code>PermitRootLogin without-password</code>,重启服务.<br>(2) 在主机B上<br>编辑<code>/etc/ssh/sshd_config</code>，添加<code>GatewayPorts yes</code>,重启服务<code>/etc/init.d/ssh restart</code>.<br>(3) 在主机A终端执行<br><code>autossh -M 30021 -NR *:8890:localhost:8888 user@120.27.104.101</code>,通过端口30021监视连接状态,若断开则重连,后台运行在末尾加上<code>&amp;</code>即可.</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/10/19/article/" itemprop="url">
-              
-                <span itemprop="name">如何评价电影《言叶之庭》？</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="木之 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-19T23:54:55+08:00"
-              content="2016-10-19" >
-          10-19
-        </time>
-      </div>
 
-    </header>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/09/linux-index2/" rel="next" title="linux专题(3):进程间通信">
+                <i class="fa fa-chevron-left"></i> linux专题(3):进程间通信
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </section>
 
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -273,6 +396,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -292,8 +419,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/muzhi.jpg"
@@ -359,6 +495,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#外网与内网连接"><span class="nav-text">外网与内网连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autossh实现持续反向连接"><span class="nav-text">autossh实现持续反向连接</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -446,6 +593,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 

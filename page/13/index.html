@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/20/article-2/" itemprop="url">
-                  GitHub + Hexo搭建个人博客总结
+                <a class="post-title-link" href="/2016/11/05/article-3/" itemprop="url">
+                  RockMongo-PHP MongoDB Administrator-配置(Windows环境)
                 </a>
               
             
@@ -263,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-20T02:41:47+08:00" content="2016-10-20">
-              2016-10-20
+            <time itemprop="dateCreated" datetime="2016-11-05T16:25:14+08:00" content="2016-11-05">
+              2016-11-05
             </time>
           </span>
 
@@ -277,8 +277,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/FRONTEND/" itemprop="url" rel="index">
-                    <span itemprop="name">FRONTEND</span>
+                  <a href="/categories/BACKEND/" itemprop="url" rel="index">
+                    <span itemprop="name">BACKEND</span>
                   </a>
                 </span>
 
@@ -312,68 +312,22 @@
       
         
           
-            <ul>
-<li><a href="#index1">前期准备</a></li>
-<li><a href="#index2">连接远程库</a></li>
-<li><a href="#index3">用Hexo创建博客框架</a><ul>
-<li><a href="#index31">Hexo安装</a></li>
-<li><a href="#index32">Hexo部署</a></li>
-</ul>
-</li>
-<li><a href="#index4">将本地文件部署到 GitHub</a></li>
-<li><a href="#index5">写博客</a></li>
-<li><a href="#index6">第三方主题</a></li>
-<li><a href="#index7">任意门</a></li>
-</ul>
-<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a><a id="index1">前期准备<a></a></a></h1><ul>
-<li>GitHub账号。并新建repository。与GitHub建立好连接之后，就可以方便的使用它提供的 Pages 服务，GitHubPages分两种，一种是用你的GitHub用户名建立的<code>username.github.io</code>这样的用户&amp;组织站点，另一种是依附项目的Pages。想建立个人博客是用的第一种，形如<code>username.github.io</code>这样的可访问的站点。参照此<a href="https://pages.github.com/" target="_blank" rel="external">教程</a>。</li>
-<li>软件环境<ul>
-<li><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a></li>
-<li><a href="https://git-for-windows.github.io/" target="_blank" rel="external">Git for Windows</a></li>
-</ul>
+            <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>RockMongo是PHP5写的一个MongoDB管理工具。    </p>
+<ul>
+<li><p>一个能运行PHP的Web服务器，比如<code>Apache</code> ，<code>Httpd</code>, <code>Nginx</code>…<br>我选择的是Apache服务器，具体配置如下：   </p>
+<ul>
+<li>环境配置<br><a href="http://httpd.apache.org/download.cgi" target="_blank" rel="external">下载地址</a>，选择对应平台，下载。下载截图如下所示：<img src="/2016/11/05/article-3/apache_down1.JPG" alt="apache_down1.JPG" title="">
+<img src="/2016/11/05/article-3/apache_down2.JPG" alt="apache_down2.JPG" title="">
+<img src="/2016/11/05/article-3/apache_down3.JPG" alt="apache_down3.JPG" title=""></li>
+<li>安装与设置<br>解压下载的压缩包，找到<code>readme_first.html</code>文件，里面有详细的安装步骤。<br>找到Apache的配置文件<code>httpd.config</code>打开，修改包括<code>ServerRoot</code>、<code>DocumentRoot</code>、<code>Directory</code>，<code>ScriptAlias</code>等字段，需要改为你的Apache目录的地址。也可以自定义端口号通过<code>listen port</code>字段。<br>为了支持PHP5，还需要添加以下内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># php5 support</div><div class="line">LoadModule php5_module path/to/php5apache2_4.dll(即解压的PHP压缩包中的php5apache2_4.dll文件的目录)</div><div class="line">AddType application/x-httpd-php .php .html .htm</div><div class="line"># configure the path to php.ini</div><div class="line">PHPIniDir &quot;your php path&quot;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="连接远程库"><a href="#连接远程库" class="headerlink" title="连接远程库"></a><a id="index2">连接远程库<a></a></a></h1><ol>
-<li><p>检查SSH keys的设置<br>首先我们需要检查你电脑上现有的ssh key：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.sh</div><div class="line">(如果显示如果显示“No such file or directory”，跳到第三步，否则继续。)</div></pre></td></tr></table></figure>
 </li>
-<li><p>备份和移除原来的ssh key设置<br>因为已经存在key文件，所以需要备份旧的数据并删除：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">$ mkdir key_backup</div><div class="line">$ cp id_rsa* key_backup</div><div class="line">$ rm id_rsa*</div></pre></td></tr></table></figure>
+<li><p>PHP - 需要PHP v5.1.6或更高版本，需要支持SESSION<br>下载<a href="http://windows.php.net/download#php-7.0" target="_blank" rel="external">PHP(windows下)</a>,我选择的是VC11 x64 Thread Safe (2016-Oct-14 20:34:09)，如果与Apache注意选择thread safe版的，否则解压出来没有php5apache2_4.dll文件。而non thread safe主要与IIS搭配环境。<br>为了能连接MongoDB，需要安装<a href="http://www.php.net/manual/en/mongo.installation.php" target="_blank" rel="external">php_mongo</a>扩展。下载后将压缩包解压，复制php_mongo.dll文件到PHP文件夹下的ext目录下。<br>解压PHP压缩包，将php的目录路径和php主目录下的ext一起加到环境变量。然后复制<code>php.ini-production</code>文件，重命名为<code>php.ini</code>并打开。<br>将<code>extension=php_mbstring.dll</code>字段前的分号去掉，并加入新的字段<code>extension=php_mongo.dll</code>。extension支持完整路径，所以如果出现php无法加载模块时可以考虑采用完整路径，我的完整路径为<code>extension=c:/php-5.6.27/ext/php_mbstring.dll</code>和<code>extension=c:/php-5.6.27/ext/php_mongo.dll</code>。<br>检查环境：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[method1]</div><div class="line">打开htdocs下的index.html,在结尾处加入<span class="meta">&lt;?php</span> phpinfo()<span class="meta">?&gt;</span></div><div class="line">在浏览器中打开localhost,如果正确输出PHP信息说明PHP+Apache配置完成，如果能找到mongo的支持信息，说明和mongodb的连接也配置完成了，否则需要重新配置与mongo相关的信息。</div><div class="line">[method2]</div><div class="line">在命令行输入：php -i | findstr mongo查看mongo的支持信息。</div></pre></td></tr></table></figure>
 </li>
-<li><p>生成新的SSH Key<br>输入下面的代码，就可以生成新的key文件，我们只需要默认设置就好，所以当需要输入文件名的时候，回车就好。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C <span class="string">"邮件地址@youremail.com"</span></div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/your_user_directory/.ssh/id_rsa):&lt;回车就好or自定义路径&gt;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>然后系统会要你输入加密串（Passphrase）&lt;可以直接Enter&gt;。</p>
-<ol>
-<li><p>添加SSH Key到GitHub<br>用文本编辑工具打开id_rsa.pub文件，如果看不到这个文件，你需要设置显示隐藏文件。准确的复制这个文件的内容，才能保证设置的成功。<br>在GitHub的主页上点击设置按钮。选择SSH Keys项，把复制的内容粘贴进去，然后点击Add Key按钮即可。PS：如果需要配置多个GitHub账号，可以搜索<em> 多个github帐号的SSH key切换的方法。</em></p>
-</li>
-<li><p>建立连接<br>我们如何让本地git项目与远程的GitHub建立联系呢？用SSH key。在桌面或开始菜单中找到 Git Shell，打开后输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div><div class="line">(如果是下面之类的反馈（或者显示 Hi xxx）：</div><div class="line"></div><div class="line">The authenticity of host <span class="string">'github.com (207.97.227.239)'</span> can\<span class="string">'t be established. RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48. Are you sure you want to continue connecting (yes/no)?</span></div><div class="line"></div><div class="line">输入`yes`即可。)</div></pre></td></tr></table></figure>
-</li>
-<li><p>设置你的账号信息(可选)<br>现在你已经可以通过SSH链接到GitHub了，还有一些个人信息需要完善的。Git会根据用户的名字和邮箱来记录提交。GitHub也是用这些信息来做权限的处理，输入下面的代码进行个人信息的设置，把名称和邮箱替换成你自己的，名字必须是你的真名，而不是GitHub的昵称。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name <span class="string">"你的名字"</span></div><div class="line">$ git config --global user.email <span class="string">"your_email@youremail.com"</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="用Hexo创建博客框架"><a href="#用Hexo创建博客框架" class="headerlink" title="用Hexo创建博客框架"></a><a id="index3">用Hexo创建博客框架<a></a></a></h1><h2 id="Hexo安装（在Git-Bash中操作）"><a href="#Hexo安装（在Git-Bash中操作）" class="headerlink" title="Hexo安装（在Git Bash中操作）"></a><a id="index31">Hexo安装（在Git Bash中操作）<a></a></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/your_path/</div><div class="line">$ npm install hexo-cli -g</div><div class="line">(如果速度慢可以在后面加入`--registry=http://registry.npm.taobao.org`淘宝源)</div></pre></td></tr></table></figure>
-<h2 id="Hexo部署（在Git-Bash中操作）"><a href="#Hexo部署（在Git-Bash中操作）" class="headerlink" title="Hexo部署（在Git Bash中操作）"></a><a id="index32">Hexo部署（在Git Bash中操作）<a></a></a></h2><p>Hexo的部署可采用如下方法，输入命令： hexo init [文件名]。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/your_path/</div><div class="line">$ hexo init your_profilename</div></pre></td></tr></table></figure></p>
-<p>然后cd到your_profilename中，再输入以下命令，安装依赖文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> your_profilename</div><div class="line">$ npm install</div></pre></td></tr></table></figure></p>
-<p>部署成功之后，Hexo 会自动在目标文件夹建立博客网站所需要的所有文件。此时可以通过输入以下命令在本地进行预览（在刚才创建的文件夹里）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div><div class="line">$ hexo server</div></pre></td></tr></table></figure></p>
-<p>此时打开浏览器，在浏览器地址栏输入 http://localhost:4000/ （默认端口为4000）, 便可以看到最原始的博客了。</p>
-<h1 id="将本地文件部署到-GitHub"><a href="#将本地文件部署到-GitHub" class="headerlink" title="将本地文件部署到 GitHub"></a><a id="index4">将本地文件部署到 GitHub<a></a></a></h1><ol>
-<li>修改 Hexo 文件中的 _config.yml 文件<br>找到其中的 deploy 标签，改成下图所示形式，并保存。注意：冒号后面要加上一个空格，否则会报错。<img src="/2016/10/20/article-2/gaideploy.JPG" alt="gaideploy.JPG" title=""></li>
-<li>将其 deploy 到仓库中（在Git Bash中操作）<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>如果出现下图错误:<br><img src="/2016/10/20/article-2/err1.jpg" alt="err1.jpg" title=""><br>将_config.yml中的 deploy 标签的 type 改成 git，然后再在 Git Shell 中运行以下命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
-<p>之后重复第二步中的命令即可。到这一步，个人博客就已经部署到 GitHub 上了，你可以到你的GitHub仓库查看是否已经更新。此时,通过 your_user_name.github.io（即你那个仓库的名称，形如：”你的 GitHub 用户名”.github.io）,就可以看到你的个人博客了。</p>
-<h1 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a><a id="index5">写博客<a></a></a></h1><p>具体操作可以参考<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">官方文档</a><br>快捷命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ hexo g == hexo generate</div><div class="line">$ hexo d == hexo deploy</div><div class="line">$ hexo s == hexo server</div><div class="line">$ hexo n == hexo new</div><div class="line"><span class="comment"># 还能组合使用，如：</span></div><div class="line">$ hexo d -g</div></pre></td></tr></table></figure></p>
-<h1 id="安装第三方主题"><a href="#安装第三方主题" class="headerlink" title="安装第三方主题 "></a><a id="index6">安装第三方主题 <a></a></a></h1><p>使用Hexo生成的博客使用的是Hexo的默认主题：Landscape。可以采用<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">其他主题</a>。本博客采用的NexT主题。</p>
-<p>NexT主题安装参看其<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">文档</a>。</p>
-<p>本文参考了这边篇<a href="http://sunwhut.com/2015/10/30/buildBlog/" target="_blank" rel="external">博文</a>和自己的搭建经历总结而成，有疑问处自行<a href="https://github.com/XX-net/XX-Net" target="_blank" rel="external">Google</a>之。</p>
-<h1 id="任意门"><a href="#任意门" class="headerlink" title="任意门"></a><a id="index7">任意门<a></a></a></h1><ul>
-<li><a href="http://jekyll.com.cn/" target="_blank" rel="external">jekyll</a></li>
 </ul>
+<h2 id="RockMongo"><a href="#RockMongo" class="headerlink" title="RockMongo"></a>RockMongo</h2><p>不要在官网上下载，否则由于版本问题导致无法启动，到<a href="https://github.com/iwind/rockmongo" target="_blank" rel="external">github上下载</a>，然后解压出来放到你的Apache配置文件中的DocumentRoot字段指定的目录，我的是<code>c:\Apache24\htdocs</code>。<br>至此环境搭建完毕。打开MongoDB，在浏览器地址中输入<code>localhost/rockmongo/index.php</code>即可进行登录和管理数据库了。</p>
 
           
         
@@ -406,7 +360,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -447,7 +401,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

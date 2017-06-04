@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/09/linux-index/" itemprop="url">
-                  linux专题(1)
+                <a class="post-title-link" href="/2017/05/09/linux-index1/" itemprop="url">
+                  linux专题(2):多线程与同步
                 </a>
               
             
@@ -263,7 +263,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-09T10:01:03+08:00" content="2017-05-09">
+            <time itemprop="dateCreated" datetime="2017-05-09T20:47:28+08:00" content="2017-05-09">
               2017-05-09
             </time>
           </span>
@@ -312,10 +312,20 @@
       
         
           
-            <h1 id="文件系统的实现"><a href="#文件系统的实现" class="headerlink" title="文件系统的实现"></a>文件系统的实现</h1><p>观察常见存储设备.最开始的区域是MBR,用于Linux开机启动.剩余的空间可能分成数个分区(partition).每个分区有一个相关的分区表(Partition table),记录分区的相关信息.这个分区表是储存在分区之外的.分区表说明了对应分区的起始位置和分区的大小.<br><img src="/2017/05/09/linux-index/filesystem1.png" alt="filesystem1.png" title=""><br>我们在Windows系统常常看到C分区、D分区等.Linux系统下也可以有多个分区,但都被挂载在同一个文件系统树上.数据被存入到某个分区中.一个典型的Linux分区(partition)包含有下面各个部分:<br><img src="/2017/05/09/linux-index/filesystem2.png" alt="filesystem2.png" title=""><br>分区的第一个部分是启动区(Boot block),它主要是为计算机开机服务的.Linux开机启动后,会首先载入MBR,随后MBR从某个硬盘的启动区加载程序.该程序负责进一步的操作系统的加载和启动.为了方便管理,即使某个分区中没有安装操作系统,Linux也会在该分区预留启动区.启动区之后的是超级区(Super block).它存储有文件系统的相关信息,包括文件系统的类型,inode的数目,数据块的数目.随后是多个inodes,它们是实现文件存储的关键.在Linux系统中,一个文件可以分成几个数据块存储.每个文件对应一个inode,这个inode中包含多个指针,指向属于该文件各个数据块.最后一部分,就是真正储存数据的数据块们(data blocks)了.</p>
-<h4 id="inode"><a href="#inode" class="headerlink" title="inode"></a>inode</h4><p>一个文件除了自身的数据之外,还有一个附属信息,即文件的元数据(metadata).这个元数据用于记录文件的许多信息,比如文件大小,拥有人,所属的组,修改日期等等.元数据并不包含在文件的数据中,而是由操作系统维护的.事实上,这个所谓的元数据就包含在inode中.我们可以用$ls -l filename来查看这些元数据.正如我们上面看到的,inode所占据的区域与数据块的区域不同.每个inode有一个唯一的整数编号(inode number)表示.inode储存由一些指针,这些指针指向存储设备中的一些数据块,文件的内容就储存在这些数据块中.当Linux想要打开一个文件时,只需要找到文件对应的inode,然后沿着指针,将所有的数据块收集起来,就可以在内存中组成一个文件的数据了.<br><img src="/2017/05/09/linux-index/filesystem3.png" alt="filesystem3.png" title=""><br>inode并不是组织文件的唯一方式.最简单的组织文件的方法,是把文件依次顺序的放入存储设备,DVD就采取了类似的方式.但如果有删除操作,删除造成的空余空间夹杂在正常文件之间,很难利用和管理.复杂的方式可以使用链表,每个数据块都有一个指针,指向属于同一文件的下一个数据块.这样的好处是可以利用零散的空余空间,坏处是对文件的操作必须按照线性方式进行.如果想随机存取,那么必须遍历链表,直到目标位置.在Linux下,可以使用$stat filename,来查询某个文件对应的inode编号.</p>
-<p>FAT系统是将上面链表的指针取出,放入到内存的一个数组中.这样,FAT可以根据内存的索引,迅速的找到一个文件.这样做的主要问题是,索引数组的大小与数据块的总数相同.因此,存储设备很大的话,这个索引数组会比较大.<br>/var/test.txt:<br><img src="/2017/05/09/linux-index/filesystem4.png" alt="filesystem4.png" title=""></p>
-<h4 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h4><p>在Linux的进程中,当我们打开一个文件时,返回的是一个文件描述符.这个文件描述符是一个数组的下标,对应数组元素为一个指针.有趣的是,这个指针并没有直接指向文件的inode,而是指向了一个文件表格,再通过该表格,指向加载到内存中的目标文件的inode.如下图,一个进程打开了两个文件.<br><img src="/2017/05/09/linux-index/filesystem5.png" alt="filesystem5.png" title=""><br>可以看到,每个文件表格中记录了文件打开的状态(status flags),比如只读,写入等,还记录了每个文件的当前读写位置(offset).当有两个进程打开同一个文件时,可以有两个文件表格,每个文件表格对应的打开状态和当前位置不同,从而支持一些文件共享的操作,比如同时读取.<br>要注意的是进程fork之后的情况,子进程将只复制文件描述符的数组,而和父进程共享内核维护的文件表格和inode.此时要特别小心程序的编写.</p>
+            <h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><p>多线程相当于一个并发(concunrrency)系统.并发系统一般同时执行多个任务.如果多个任务可以共享资源,特别是同时写入某个变量的时候,就需要解决同步的问题.比如说,我们有一个多线程火车售票系统,用全局变量i存储剩余的票数.多个线程不断地卖票(i = i - 1),直到剩余票数为0.所以每个都需要执行如下操作:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*mu is a global mutex*/</span></div><div class="line"><span class="comment">// 伪C代码</span></div><div class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;                        <span class="comment">/*infinite loop*/</span></div><div class="line">    <span class="keyword">if</span> (i != <span class="number">0</span>) i = i <span class="number">-1</span>;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">      <span class="built_in">printf</span>(<span class="string">"no more tickets"</span>);</div><div class="line">      <span class="built_in">exit</span>();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里的if结构会给CPU两个指令, 一个是判断是否有剩余的票(i != 0), 一个是卖票 (i = i -1).某个线程会先判断是否有票(比如说此时i为1),但两个指令之间存在一个时间窗口,其它线程可能在此时间窗口内执行卖票操作(i = i -1),导致该线程卖票的条件不再成立.但该线程由于已经执行过了判断指令,所以无从知道i发生了变化,所以继续执行卖票指令,以至于卖出不存在的票 (i成为负数).对于一个真实的售票系统来说,这将成为一个严重的错误 (售出了过多的票,火车爆满).</p>
+<p>在并发情况下,指令执行的先后顺序由内核决定.同一个线程内部,指令按照先后顺序执行,但不同线程之间的指令很难说清除哪一个会先执行.如果运行的结果依赖于不同线程执行的先后的话,那么就会造成竞争条件(race condition),在这样的状况下,计算机的结果很难预知.我们应该尽量避免竞争条件的形成.最常见的解决竞争条件的方法是将原先分离的两个指令构成不可分隔的一个原子操作(atomic operation),而其它任务不能插入到原子操作中.</p>
+<h2 id="多线程同步"><a href="#多线程同步" class="headerlink" title="多线程同步"></a>多线程同步</h2><p>对于多线程程序来说,同步(synchronization)是指在一定的时间内只允许某一个线程访问某个资源 .而在此时间内,不允许其它的线程访问该资源.我们可以通过互斥锁(mutex),条件变量(condition variable)和读写锁(reader-writer lock)来同步资源.</p>
+<ol>
+<li>互斥锁<br>互斥锁是一个特殊的变量,它有锁上(lock)和打开(unlock)两个状态.互斥锁一般被设置成全局变量.打开的互斥锁可以由某个线程获得.一旦获得,这个互斥锁会锁上,此后只有该线程有权打开.</li>
+<li>条件变量<br>条件变量是另一种常用的变量.它也常常被保存为全局变量,并和互斥锁合作.假设这样一个状况: 有100个工人,每人负责装修一个房间.当有10个房间装修完成的时候,老板就通知相应的十个工人一起去喝啤酒.<br>我们如何实现呢？老板让工人在装修好房间之后,去检查已经装修好的房间数.但多线程条件下,会有竞争条件的危险.也就是说,其他工人有可能会在该工人装修好房子和检查之间完成工作.采用下面方式解决：<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*mu: global mutex, cond: global codition variable, num: global int*/</span></div><div class="line"><span class="comment">// 伪C代码</span></div><div class="line">mutex_lock(mu)</div><div class="line">num = num + <span class="number">1</span>;                      <span class="comment">/*worker build the room*/</span></div><div class="line"><span class="keyword">if</span> (num &lt;= <span class="number">10</span>) &#123;                     <span class="comment">/*worker is within the first 10 to finish*/</span></div><div class="line">    cond_wait(mu, cond);            <span class="comment">/*wait*/</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"drink beer"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (num = <span class="number">11</span>) &#123;                <span class="comment">/*workder is the 11th to finish*/</span></div><div class="line">  cond_broadcast(mu, cond);         <span class="comment">/*inform the other 9 to wake up*/</span></div><div class="line">&#125;</div><div class="line">mutex_unlock(mu);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面使用了条件变量.条件变量除了要和互斥锁配合之外,还需要和另一个全局变量配合(这里的num, 也就是装修好的房间数).这个全局变量用来构成各个条件.<br>具体思路如下.我们让工人在装修好房间(num = num + 1)之后,去检查已经装修好的房间数( num &lt; 10 ).由于mu被锁上,所以不会有其他工人在此期间装修房间(改变num的值).如果该工人是前十个完成的人,那么我们就调用cond_wait()函数.<br>cond_wait()做两件事情,一个是释放mu,从而让别的工人可以建房.另一个是等待,直到cond的通知.这样的话,符合条件的线程就开始等待.<br>当有通知(第十个房间已经修建好)到达的时候,condwait()会再次锁上mu.线程的恢复运行,执行下一句prinft(“drink beer”) (喝啤酒！).从这里开始,直到mutex_unlock(),就构成了另一个互斥锁结构.<br>那么,前面十个调用cond_wait()的线程如何得到的通知呢？我们注意到elif if,即修建好第11个房间的人,负责调用cond_broadcast().这个函数会给所有调用cond_wait()的线程放送通知,以便让那些线程恢复运行.<br>条件变量特别适用于多个线程等待某个条件的发生.如果不使用条件变量,那么每个线程就需要不断尝试获得互斥锁并检查条件是否发生,这样大大浪费了系统的资源.</p>
+<ol>
+<li>读写锁<br>读写锁与互斥锁非常相似.r、RW lock有三种状态: 共享读取锁(shared-read), 互斥写入锁(exclusive-write lock), 打开(unlock).后两种状态与之前的互斥锁两种状态完全相同.<br>一个unlock的RW lock可以被某个线程获取R锁或者W锁.<br>如果被一个线程获得R锁,RW lock可以被其它线程继续获得R锁,而不必等待该线程释放R锁.但是,如果此时有其它线程想要获得W锁,它必须等到所有持有共享读取锁的线程释放掉各自的R锁.<br>如果一个锁被一个线程获得W锁,那么其它线程,无论是想要获取R锁还是W锁,都必须等待该线程释放W锁.<br>这样,多个线程就可以同时读取共享资源.而具有危险性的写入操作则得到了互斥锁的保护.</li>
+</ol>
+<p>需要同步并发系统,这为程序员编程带来了难度.但是多线程系统可以很好的解决许多IO瓶颈的问题.比如我们监听网络端口.如果我们只有一个线程,那么我们必须监听,接收请求,处理,回复,再监听.如果我们使用多线程系统,则可以让多个线程监听.当我们的某个线程进行处理的时候,我们还可以有其他的线程继续监听,这样,就大大提高了系统的利用率.在数据越来越大,服务器读写操作越来越多的今天,这具有相当的意义.多线程还可以更有效地利用多CPU的环境.<br>(就像做饭一样,不断切换去处理不同的菜.)</p>
 
           
         
@@ -348,7 +358,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -389,7 +399,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
