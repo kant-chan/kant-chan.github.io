@@ -84,15 +84,49 @@
 
 
 
-<meta name="description" content="性燥皆因经麻少  心平只缘折磨多">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MuzhI">
-<meta property="og:url" content="http://yoursite.com/page/13/index.html">
+<meta name="description" content="环境配置
+ubuntu软件安装 
+apt&amp;amp;dpkg
+ubuntu nginx配置
+LNMP配置
+
+
+环境变量
+
+
+
+环境配置ubuntu软件安装apt&amp;amp;dpkg(1)apt-get install安装应用程序(apt-get理论上是要求能够联网,但是如果制作了本地源,就不需要联网.下载的deb文件都会存放在/var/cache/apt/archives/下.)apt-get in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LINUX TRICK & TRAP">
+<meta property="og:url" content="http://yoursite.com/2016/12/11/linux-index0/index.html">
 <meta property="og:site_name" content="MuzhI">
-<meta property="og:description" content="性燥皆因经麻少  心平只缘折磨多">
+<meta property="og:description" content="环境配置
+ubuntu软件安装 
+apt&amp;amp;dpkg
+ubuntu nginx配置
+LNMP配置
+
+
+环境变量
+
+
+
+环境配置ubuntu软件安装apt&amp;amp;dpkg(1)apt-get install安装应用程序(apt-get理论上是要求能够联网,但是如果制作了本地源,就不需要联网.下载的deb文件都会存放在/var/cache/apt/archives/下.)apt-get in">
+<meta property="og:updated_time" content="2017-06-15T08:27:06.802Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MuzhI">
-<meta name="twitter:description" content="性燥皆因经麻少  心平只缘折磨多">
+<meta name="twitter:title" content="LINUX TRICK & TRAP">
+<meta name="twitter:description" content="环境配置
+ubuntu软件安装 
+apt&amp;amp;dpkg
+ubuntu nginx配置
+LNMP配置
+
+
+环境变量
+
+
+
+环境配置ubuntu软件安装apt&amp;amp;dpkg(1)apt-get install安装应用程序(apt-get理论上是要求能够联网,但是如果制作了本地源,就不需要联网.下载的deb文件都会存放在/var/cache/apt/archives/下.)apt-get in">
 
 
 
@@ -113,10 +147,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/13/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/11/linux-index0/"/>
 
 
-  <title> MuzhI </title>
+  <title> LINUX TRICK & TRAP | MuzhI </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -137,9 +171,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -226,9 +258,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -248,10 +280,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/12/11/Linux/" itemprop="url">
-                  LINUX TRICK & TRAP
-                </a>
+                LINUX TRICK & TRAP
               
             
           </h1>
@@ -310,9 +339,7 @@
       
 
       
-        
-          
-            <ul>
+        <ul>
 <li><a href="#1">环境配置</a><ul>
 <li><a href="#1.1">ubuntu软件安装</a> <ul>
 <li><a href="#1.1.1">apt&amp;dpkg</a></li>
@@ -369,16 +396,36 @@
 </ul>
 <h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a><a id="1.2">环境变量</a></h2><p>登陆系统时shell读取的顺序应该是:<br><code>/etc/profile(所有用户的环境变量) -&gt; /etc/enviroment(系统的环境变量) -&gt; $HOME/.profile -&gt; $HOME/.env</code><br>（1）/etc/profile：      此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行. 并从/etc/profile.d目录的配置文件中搜集shell的设置。<br>（2）/etc/bashrc: 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取。<br>（3）~/.bash_profile: 每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件。<code>export PATH=/opt/EmbedSky/4.3.3/bin:$PATH</code><br>（4）~/.bashrc: 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该该文件被读取。<br>（5） ~/.bash_logout:当每次退出系统(退出bash shell)时,执行该文件. 另外,/etc/profile中设定的变量(全局)的可以作用于任何用户,而~/.bashrc等中设定的变量(局部)只能继承 /etc/profile中的变量,他们是”父子”关系。<br>（6）~/.bash_profile 是交互式、login 方式进入 bash 运行的~/.bashrc 是交互式 non-login 方式进入 bash 运行的通常二者设置大致相同，所以通常前者会调用后者。    </p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="木之 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
     </div>
+  </div>
 
-    <div>
+
       
     </div>
 
@@ -386,23 +433,36 @@
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/11/Linux/" rel="next" title="LINUX TRICK & TRAP">
+                <i class="fa fa-chevron-left"></i> LINUX TRICK & TRAP
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/11/others/" rel="prev" title="待定">
+                待定 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -410,6 +470,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -429,8 +493,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/muzhi.jpg"
@@ -496,6 +569,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境配置"><span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu软件安装"><span class="nav-text">ubuntu软件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#apt-amp-dpkg"><span class="nav-text">apt&dpkg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ubuntu-nginx配置"><span class="nav-text">ubuntu nginx配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LNMP配置"><span class="nav-text">LNMP配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量"><span class="nav-text">环境变量</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -583,6 +667,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
