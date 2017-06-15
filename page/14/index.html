@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/28/JS-use-trick/" itemprop="url">
-                  JS_AngularJS_jQuery's TRICK
+                <a class="post-title-link" href="/2016/11/05/article-3/" itemprop="url">
+                  RockMongo-PHP MongoDB Administrator-配置(Windows环境)
                 </a>
               
             
@@ -263,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-28T15:55:40+08:00" content="2016-11-28">
-              2016-11-28
+            <time itemprop="dateCreated" datetime="2016-11-05T16:25:14+08:00" content="2016-11-05">
+              2016-11-05
             </time>
           </span>
 
@@ -277,8 +277,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/FRONTEND/" itemprop="url" rel="index">
-                    <span itemprop="name">FRONTEND</span>
+                  <a href="/categories/BACKEND/" itemprop="url" rel="index">
+                    <span itemprop="name">BACKEND</span>
                   </a>
                 </span>
 
@@ -312,12 +312,22 @@
       
         
           
-            <h2 id="内联元素与块级元素区别"><a href="#内联元素与块级元素区别" class="headerlink" title="内联元素与块级元素区别"></a>内联元素与块级元素区别</h2><ul>
-<li>block<br>（1）独占一行<br>（2）width\height\padding\margin都可控<br>（3）address\blockquote\center\dir\div\dl\fieldset\form\h\hr\isindex\menu\noframe\noscript\ol\p\pre\table\ul\li</li>
-<li>inline<br>（1）与相邻内联元素同一行<br>（2）width\height\padding-top\padding-bottom\margin-top\margin-bottom都不可控<br>（3）a\abbr\acronym\b\bdo\big\br\cite\code\dfn\em\font\i\img\input\kbd\label\q\s\samp\select\small\span\strike\strong\sub\sup\textarea\tt\u\var           </li>
-<li>在CSS中的应用<br>display:block/inline/inline-block(表现为同行显示但是可以修改宽高内外边距)      </li>
-<li>内联元素中也可以放块级元素，而且内部的块级元素会撑大外部的内联标签。</li>
+            <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>RockMongo是PHP5写的一个MongoDB管理工具。    </p>
+<ul>
+<li><p>一个能运行PHP的Web服务器，比如<code>Apache</code> ，<code>Httpd</code>, <code>Nginx</code>…<br>我选择的是Apache服务器，具体配置如下：   </p>
+<ul>
+<li>环境配置<br><a href="http://httpd.apache.org/download.cgi" target="_blank" rel="external">下载地址</a>，选择对应平台，下载。下载截图如下所示：<img src="/2016/11/05/article-3/apache_down1.JPG" alt="apache_down1.JPG" title="">
+<img src="/2016/11/05/article-3/apache_down2.JPG" alt="apache_down2.JPG" title="">
+<img src="/2016/11/05/article-3/apache_down3.JPG" alt="apache_down3.JPG" title=""></li>
+<li>安装与设置<br>解压下载的压缩包，找到<code>readme_first.html</code>文件，里面有详细的安装步骤。<br>找到Apache的配置文件<code>httpd.config</code>打开，修改包括<code>ServerRoot</code>、<code>DocumentRoot</code>、<code>Directory</code>，<code>ScriptAlias</code>等字段，需要改为你的Apache目录的地址。也可以自定义端口号通过<code>listen port</code>字段。<br>为了支持PHP5，还需要添加以下内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># php5 support</div><div class="line">LoadModule php5_module path/to/php5apache2_4.dll(即解压的PHP压缩包中的php5apache2_4.dll文件的目录)</div><div class="line">AddType application/x-httpd-php .php .html .htm</div><div class="line"># configure the path to php.ini</div><div class="line">PHPIniDir &quot;your php path&quot;</div></pre></td></tr></table></figure>
+</li>
 </ul>
+</li>
+<li><p>PHP - 需要PHP v5.1.6或更高版本，需要支持SESSION<br>下载<a href="http://windows.php.net/download#php-7.0" target="_blank" rel="external">PHP(windows下)</a>,我选择的是VC11 x64 Thread Safe (2016-Oct-14 20:34:09)，如果与Apache注意选择thread safe版的，否则解压出来没有php5apache2_4.dll文件。而non thread safe主要与IIS搭配环境。<br>为了能连接MongoDB，需要安装<a href="http://www.php.net/manual/en/mongo.installation.php" target="_blank" rel="external">php_mongo</a>扩展。下载后将压缩包解压，复制php_mongo.dll文件到PHP文件夹下的ext目录下。<br>解压PHP压缩包，将php的目录路径和php主目录下的ext一起加到环境变量。然后复制<code>php.ini-production</code>文件，重命名为<code>php.ini</code>并打开。<br>将<code>extension=php_mbstring.dll</code>字段前的分号去掉，并加入新的字段<code>extension=php_mongo.dll</code>。extension支持完整路径，所以如果出现php无法加载模块时可以考虑采用完整路径，我的完整路径为<code>extension=c:/php-5.6.27/ext/php_mbstring.dll</code>和<code>extension=c:/php-5.6.27/ext/php_mongo.dll</code>。<br>检查环境：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[method1]</div><div class="line">打开htdocs下的index.html,在结尾处加入<span class="meta">&lt;?php</span> phpinfo()<span class="meta">?&gt;</span></div><div class="line">在浏览器中打开localhost,如果正确输出PHP信息说明PHP+Apache配置完成，如果能找到mongo的支持信息，说明和mongodb的连接也配置完成了，否则需要重新配置与mongo相关的信息。</div><div class="line">[method2]</div><div class="line">在命令行输入：php -i | findstr mongo查看mongo的支持信息。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="RockMongo"><a href="#RockMongo" class="headerlink" title="RockMongo"></a>RockMongo</h2><p>不要在官网上下载，否则由于版本问题导致无法启动，到<a href="https://github.com/iwind/rockmongo" target="_blank" rel="external">github上下载</a>，然后解压出来放到你的Apache配置文件中的DocumentRoot字段指定的目录，我的是<code>c:\Apache24\htdocs</code>。<br>至此环境搭建完毕。打开MongoDB，在浏览器地址中输入<code>localhost/rockmongo/index.php</code>即可进行登录和管理数据库了。</p>
 
           
         
@@ -350,7 +360,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -391,7 +401,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
