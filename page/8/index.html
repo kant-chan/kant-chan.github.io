@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/20/python-craw/" itemprop="url">
-                  python爬虫系列(1)
+                <a class="post-title-link" href="/2017/03/20/python-regexp/" itemprop="url">
+                  python正则表达式
                 </a>
               
             
@@ -263,7 +263,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-20T18:34:16+08:00" content="2017-03-20">
+            <time itemprop="dateCreated" datetime="2017-03-20T19:37:54+08:00" content="2017-03-20">
               2017-03-20
             </time>
           </span>
@@ -312,15 +312,8 @@
       
         
           
-            <h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a><a id="1">Cookie</a></h2><p>Cookie,指某些网站为了辨别用户身份,进行session跟踪而储存在用户本地终端上的数据,通常经过加密.比如有些网站需要登录后才能访问某个页面,在登录之前,抓取某个页面内容是不允许的.可以利用Urllib2库保存登录的Cookie,然后再抓取其他页面.</p>
-<ol>
-<li>Opener<br>获取一个URL时使用一个opener(urllib2.OpenerDirector的实例),urlopen为默认opener.需要创建更一般的opener来实现对Cookie的设置.</li>
-<li>Cookielib<br>cookielib模块的主要作用是提供可存储cookie的对象,以便于与urllib2模块配合使用来访问Internet资源.可以利用本模块的CookieJar类的对象来捕获cookie并在后续连接请求时重新发送,比如可以实现模拟登录功能.该模块主要的对象有CookieJar,FileCookieJar,MozillaCookieJar,LWPCookieJar.它们的关系：CookieJar —-派生—-&gt;FileCookieJar—-派生—–&gt;MozillaCookieJar和LWPCookieJar.<br><em>获取Cookie保存到变量</em><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">import</span> cookielib</div><div class="line"><span class="comment">#声明一个CookieJar对象实例来保存cookie</span></div><div class="line"><span class="comment">#将cookie保存到了cookie这个变量中</span></div><div class="line">cookie = cookielib.CookieJar()</div><div class="line"><span class="comment">#利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器</span></div><div class="line">handler=urllib2.HTTPCookieProcessor(cookie)</div><div class="line"><span class="comment">#通过handler来构建opener</span></div><div class="line">opener = urllib2.build_opener(handler)</div><div class="line"><span class="comment">#此处的open方法同urllib2的urlopen方法，也可以传入request</span></div><div class="line">response = opener.open(<span class="string">'http://www.baidu.com'</span>)</div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> cookie:</div><div class="line">    <span class="keyword">print</span> <span class="string">'Name = '</span>+item.name</div><div class="line">    <span class="keyword">print</span> <span class="string">'Value = '</span>+item.value</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><em>保存Cookie到文件</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cookielib</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="comment">#ignore_discard的意思是即使cookies将被丢弃也将它保存下来,ignore_expires</span></div><div class="line"><span class="comment">#意思是如果在该文件中cookies已经存在,则覆盖原文件写入</span></div><div class="line"><span class="comment">#设置保存cookie的文件，同级目录下的cookie.txt</span></div><div class="line">filename = <span class="string">'cookie.txt'</span></div><div class="line"><span class="comment">#声明一个MozillaCookieJar对象实例来保存cookie，之后写入文件</span></div><div class="line">cookie = cookielib.MozillaCookieJar(filename)</div><div class="line"><span class="comment">#利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器</span></div><div class="line">handler = urllib2.HTTPCookieProcessor(cookie)</div><div class="line"><span class="comment">#通过handler来构建opener</span></div><div class="line">opener = urllib2.build_opener(handler)</div><div class="line"><span class="comment">#创建一个请求，原理同urllib2的urlopen</span></div><div class="line">response = opener.open(<span class="string">"http://www.baidu.com"</span>)</div><div class="line"><span class="comment">#保存cookie到文件</span></div><div class="line">cookie.save(ignore_discard=<span class="keyword">True</span>, ignore_expires=<span class="keyword">True</span>)</div></pre></td></tr></table></figure></p>
-<p><em>从文件中获取Cookie并访问</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cookielib</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"> </div><div class="line"><span class="comment">#创建MozillaCookieJar实例对象</span></div><div class="line">cookie = cookielib.MozillaCookieJar()</div><div class="line"><span class="comment">#从文件中读取cookie内容到变量</span></div><div class="line">cookie.load(<span class="string">'cookie.txt'</span>, ignore_discard=<span class="keyword">True</span>, ignore_expires=<span class="keyword">True</span>)</div><div class="line"><span class="comment">#创建请求的request</span></div><div class="line">req = urllib2.Request(<span class="string">"http://www.baidu.com"</span>)</div><div class="line"><span class="comment">#利用urllib2的build_opener方法创建一个opener</span></div><div class="line">opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))</div><div class="line">response = opener.open(req)</div><div class="line"><span class="keyword">print</span> response.read()</div></pre></td></tr></table></figure></p>
-<p><em>利用cookie模拟网站登录</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">import</span> cookielib</div><div class="line"> </div><div class="line">filename = <span class="string">'cookie.txt'</span></div><div class="line"><span class="comment">#声明一个MozillaCookieJar对象实例来保存cookie，之后写入文件</span></div><div class="line">cookie = cookielib.MozillaCookieJar(filename)</div><div class="line">opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))</div><div class="line">postdata = urllib.urlencode(&#123;</div><div class="line">            <span class="string">'stuid'</span>:<span class="string">'201200131012'</span>,</div><div class="line">            <span class="string">'pwd'</span>:<span class="string">'23342321'</span></div><div class="line">        &#125;)</div><div class="line"><span class="comment">#登录教务系统的URL</span></div><div class="line">loginUrl = <span class="string">'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login'</span></div><div class="line"><span class="comment">#模拟登录，并把cookie保存到变量</span></div><div class="line">result = opener.open(loginUrl,postdata)</div><div class="line"><span class="comment">#保存cookie到cookie.txt中</span></div><div class="line">cookie.save(ignore_discard=<span class="keyword">True</span>, ignore_expires=<span class="keyword">True</span>)</div><div class="line"><span class="comment">#利用cookie请求访问另一个网址，此网址是成绩查询网址</span></div><div class="line">gradeUrl = <span class="string">'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bkscjcx.curscopre'</span></div><div class="line"><span class="comment">#请求访问成绩查询网址</span></div><div class="line">result = opener.open(gradeUrl)</div><div class="line"><span class="keyword">print</span> result.read()</div></pre></td></tr></table></figure></p>
+            <h2 id="正则表达式的语法规则"><a href="#正则表达式的语法规则" class="headerlink" title="正则表达式的语法规则"></a>正则表达式的语法规则</h2><img src="/2017/03/20/python-regexp/regexp.png" alt="regexp.png" title="">
+<h2 id="数量词的贪婪模式与非贪婪模式"><a href="#数量词的贪婪模式与非贪婪模式" class="headerlink" title="数量词的贪婪模式与非贪婪模式"></a>数量词的贪婪模式与非贪婪模式</h2><p>正则表达式通常用于在文本中查找匹配的字符串.Python里数量词默认是贪婪的(在少数语言里也可能是默认非贪婪),总是尝试匹配尽可能多的字符:非贪婪的则相反,总是尝试匹配尽可能少的字符.例如:正则表达式<code>ab*</code>如果用于查找<code>abbbc</code>,将找到<code>abbb</code>.而如果使用非贪婪的数量词<code>ab*?</code>,将找到<code>a</code>.注:我们一般使用非贪婪模式来提取.</p>
 
           
         
@@ -353,7 +346,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -394,7 +387,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

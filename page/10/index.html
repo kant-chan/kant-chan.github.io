@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/11/others/" itemprop="url">
-                  待定
+                <a class="post-title-link" href="/2017/01/06/caffe-config/" itemprop="url">
+                  caffe配置
                 </a>
               
             
@@ -263,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-11T04:42:31+08:00" content="2016-12-11">
-              2016-12-11
+            <time itemprop="dateCreated" datetime="2017-01-06T20:30:59+08:00" content="2017-01-06">
+              2017-01-06
             </time>
           </span>
 
@@ -277,8 +277,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Computer-Lang/" itemprop="url" rel="index">
-                    <span itemprop="name">Computer Lang</span>
+                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
                   </a>
                 </span>
 
@@ -313,19 +313,55 @@
         
           
             <ul>
-<li><a href="#1">语言</a><ul>
-<li><a href="#1.1">C/C++</a> </li>
-<li><a href="#1.2">matlab</a></li>
+<li><a href="#1">安装openCV</a></li>
+<li><a href="#2">安装CUDA</a></li>
 </ul>
+<ul>
+<li><p>安装依赖库（一）：<br><code>$ lspci | grep -i nvidia</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler</div><div class="line">$ sudo apt-get install --no-install-recommends libboost-all-dev</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装ATLAS：(可以安装OpenBLAS 或 MKL，以提升CPU性能，但是要修改caffe中Makefile文件…)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libatlas-base-dev</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="语言"><a href="#语言" class="headerlink" title="语言"></a><a id="1">语言</a></h1><h2 id="C-C"><a href="#C-C" class="headerlink" title="C/C++"></a><a id="1.1">C/C++</a></h2><p>在c中左移是逻辑左移，右移是算术右移(符号位填补)。<br>多文件工程，模块化编程。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//fun.c  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span>  </span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun1</span><span class="params">()</span></span>&#123;  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"The first function!\n"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun2</span><span class="params">()</span></span>&#123;  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"The second function!\n"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun3</span><span class="params">()</span></span>&#123;  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"The third function!\n"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line"><span class="comment">//fun.h  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _FUN_H  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _FUN_H  </span></div><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">fun1</span><span class="params">(<span class="keyword">void</span>)</span></span>;  </div><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">fun2</span><span class="params">(<span class="keyword">void</span>)</span></span>;  </div><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">fun3</span><span class="params">(<span class="keyword">void</span>)</span></span>;  </div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="comment">//main.c   </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span>  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span>  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"fun.h"</span>  </span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;  </div><div class="line">    fun1();  </div><div class="line">    fun2();  </div><div class="line">    fun3();  </div><div class="line">    system(<span class="string">"pause"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="matlab"><a href="#matlab" class="headerlink" title="matlab"></a><a id="1.2">matlab</a></h2><blockquote>
-<p>matlab自定义函数及调用：<br>(1)函数文件+调用函数文件<br><code>y=myfile(t);</code><br>(2)函数文件+子函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function=funtry()   </div><div class="line">y=lfg2(t);   </div><div class="line">end   </div><div class="line">function y=lfg2()  </div><div class="line">y=x^(1/3);  </div><div class="line">``` </div><div class="line"></div><div class="line">(3)inline：无需M文件直接定义</div></pre></td></tr></table></figure></p>
-</blockquote>
-<p>f=inline(‘x^2+y’,’x’,’y’);<br>z=f(2,3);<br>此法只支持数值代入，不支持符号代入。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(4)syms+subs</div><div class="line">```  </div><div class="line">syms f x;  </div><div class="line">f=1/(1+x^2);  </div><div class="line">subs(f,’x’,代替x的数值或符号)；</div></pre></td></tr></table></figure></p>
-<p>(5)字符串+subs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">f=’1/(1+x^2)’;%定义字符串  </div><div class="line">z=subs(f,’x’,2);</div></pre></td></tr></table></figure></p>
-<p>(6)句柄<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">f=@(x,y)(x-siny);  </div><div class="line">f(2,3);</div></pre></td></tr></table></figure></p>
+<h2 id="安装openCV-ubuntu14-04"><a href="#安装openCV-ubuntu14-04" class="headerlink" title="安装openCV(ubuntu14.04)"></a><a id="1">安装openCV(ubuntu14.04)</a></h2><p>搭建编译环境：<code>sudo apt-get install build-essential</code><br>安装依赖库：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev</div><div class="line">$ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev</div></pre></td></tr></table></figure></p>
+<p>下载OpenCV3.0-alpha版本：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir ~/opencv</div><div class="line">$ <span class="built_in">cd</span> ~/opencv</div><div class="line">$ wget https://github.com/Itseez/opencv/archive/3.0.0-alpha.zip -O opencv-3.0.0-alpha.zip</div><div class="line">$ unzip opencv-3.0.0-alpha.zip</div></pre></td></tr></table></figure></p>
+<p>安装opencv：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ cmake .</div><div class="line">$ sudo make</div><div class="line">$ sudo make install</div><div class="line">$ sudo /bin/bash -c <span class="string">'echo "/usr/local/lib" &gt; /etc/ld.so.conf.d/opencv.conf'</span></div><div class="line">$ sudo ldconfig</div><div class="line">[[如果cmake过程中提示：ippicv_linux_20141027.tgz的<span class="built_in">hash</span>码不对，则将下载的ippicv_linux_20141027.tgz手动复制到 opencv-3.0.0-beta/3rdparty/ippicv/downloads/linux-8b449a536a2157bcad08a2b9f266828b文件夹中，重新cmake即可]]</div></pre></td></tr></table></figure></p>
+<p>可能需要的配置：<br>1)sudo vim /etc/ld.so.conf.d/opencv.conf在其后加入/usr/local/lib;然后sudo ldconfig.<br>2)添加环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">PKG_CONFIG_PATH=$</div><div class="line">PKG_CONFIG_PATH:/usr/<span class="built_in">local</span>/lib/pkgconfig</div><div class="line"><span class="built_in">export</span> PKG_CONFIG_PATH</div></pre></td></tr></table></figure></p>
+<p>3)查看是否配置成功<br><code>pkg-config --cflags opencv</code>,<code>pkg-config --libs opencv</code><br>编译samples程序：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/opencv/samples</div><div class="line">$ sudo cmake .</div><div class="line">$ sudo make -j $(nproc)</div><div class="line"></div><div class="line">运行测试程序：</div><div class="line">alpha版本：</div><div class="line"><span class="comment"># 注：使用alpha版本，images在opencv/cpp文件夹下</span></div><div class="line">$ <span class="built_in">cd</span> cpp/</div><div class="line">$ ./cpp-example-facedetect lena.jpg</div></pre></td></tr></table></figure></p>
+<p>编译写好的Cpp代码:g++ test.cpp -o test <code>pkg-config --cflags --libs opencv</code></p>
+<ul>
+<li><p>安装依赖库（二）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev</div></pre></td></tr></table></figure>
+</li>
+<li><p>下载Caffe：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ git clone git://github.com/BVLC/caffe.git</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">a、修改(caffe)Makefile，在</div><div class="line">LIBRARIES += glog gflags protobuf leveldb snappy \</div><div class="line">lmdb boost_system hdf5_hl hdf5 m \</div><div class="line">opencv_core opencv_highgui opencv_imgproc opencv_imgcodecs</div><div class="line">处加入后面的opencv_imgcodecs，因为opencv3.0.0把imread相关函数放到imgcodecs.lib中了（原来是imgproc.lib）</div><div class="line">b、修改caffe/examples/cpp_classification/classification.cpp文件，加入：</div><div class="line">#include &lt;opencv2/imgproc/types_c.h&gt;</div><div class="line">#include &lt;opencv2/objdetect/objdetect_c.h&gt;</div><div class="line">否则会出现”CV_BGR2GRAY”的错误</div></pre></td></tr></table></figure>
+<ul>
+<li><p>编译Caffe：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ cd ~/caffe</div><div class="line">$ cp Makefile.config.example Makefile.config</div><div class="line"># 修改Makefile.config文件：去掉CPU_ONLY:= 1的注释</div><div class="line">$ make all</div><div class="line">$ make test</div><div class="line">$ make runtest</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置pycaffe：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">(安装依赖库)</div><div class="line">$ sudo apt-get install python-numpy python-scipy python-matplotlib python-sklearn python-skimage python-h5py python-protobuf python-leveldb python-networkx python-nose python-pandas python-gflags Cython ipython</div><div class="line">$ sudo apt-get install protobuf-c-compiler protobuf-compiler</div><div class="line">(编译)</div><div class="line">$ cd ~/caffe</div><div class="line">$ make pycaffe</div><div class="line">(添加~/caffe/Python到$PYTHONPATH)</div><div class="line">$ sudo gedit /etc/profile</div><div class="line"># 末尾添加： export PYTHONPATH=/path/to/caffe/python:$PYTHONPATH</div><div class="line"># 用完整路径，不要用~</div><div class="line">$ source /etc/profile # 使之生效</div><div class="line">(测试是否可以引用)</div><div class="line">$ python</div><div class="line">Python 2.7.6 (default, Jun 22 2015, 17:58:13) </div><div class="line">[GCC 4.8.2] on linux2</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; import caffe</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装CUDA-包含有驱动"><a href="#安装CUDA-包含有驱动" class="headerlink" title="安装CUDA(包含有驱动)"></a><a id="2">安装CUDA(包含有驱动)</a></h2><ol>
+<li>验证硬件支持GPU CUDA，只要型号存在于https://developer.nvidia.com/cuda-gpus，就没问题</li>
+<li>Download the NVIDIA CUDA Toolkit<br>下载地址：https://developer.nvidia.com/cuda-toolkit<br>验证地址：https://developer.nvidia.com/rdp/cuda-rc-checksums<br>$ md5sum filename<br>例如：md5sum cuda_7.0.28_linux.run ，这个文件的正确 md5         =312aede1c3d1d3425c8aa67bbb7a55e</li>
+<li>需要的库<code>sudo apt-get install freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa-dev</code></li>
+<li>如果安装过nvidia其它版本则先卸载，<code>sudo nvidia-uninstall</code>,清除nvidia相关的库<code>sudo apt-get --purge remove nvidia-*</code></li>
+<li>Graphical Interface Shutdown,退出GUI,也就是X-Win(桌面管理器)界面,操作方法是:同时按:CTRL+ALT+F1（F2-F6），切换到TTY1-6命令行模式.关闭桌面服务:<code>$ sudo service lightdm stop</code>(装驱动前须禁用lightdm)</li>
+<li>禁用nouveau驱动,<code># sudo vi /etc/modprobe.d/blacklist-nouveau.conf</code>,输入<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">blacklist nouveau</div><div class="line">options nouveau modset=0</div><div class="line">保存退出（:wq)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后执行<code># sudo update-initramfs -u</code>,执行 lspci | grep nouveau查看是否有内容,如果没有内容,说明禁用成功,如果有内容,就重启一下再查看.重启后,进入登录界面的时候,不要登录进入桌面,直接按Ctrl+Alt+F1进入命令提示符.</p>
+<ol>
+<li>安装完成后,重启,然后用ls查看一下,是否生成了四个左右以nvidia开头的文件夹<code># ls /dev/nvidia*</code>,如果有,说明安装成功了,如果没有,可能不成功,需要卸载重装.卸载命令如下：<code># sudo /usr/local/cuda-7.5/bin/uninstall_cuda_7.5.pl</code>,<code># sudo /usr/bin/nvidia-uninstall</code>,如果你还不放心是否安装成功,请参考其它教程,编译Samples进行测试,最后,配置环境变量,<code># sudo vi /etc/profile</code>,<code>export PATH=/usr/local/cuda-7.5/bin:$PATH</code>,<code>export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:$LD_LIBRARY_PATH</code>保存退出,至此cuda 7.5安装完毕.<code>nvcc --version</code></li>
+<li>cuda samples<br>/usr/local/cuda-7.5/samples<br>cd /home/xuezhisd/NVIDIA_CUDA-7.0_Samples<br>编译 make （安装命令 sudo apt-get install cmake)<br>编译完毕，切换release目录<br>cd ./bin/x86_64/linux/release<br>检验是否成功<br>运行实例 ./deviceQuery<br>./deviceQuery</li>
+</ol>
+<h3 id="查看CUDA计算容量："><a href="#查看CUDA计算容量：" class="headerlink" title="查看CUDA计算容量："></a>查看CUDA计算容量：</h3><p>$ ./~/cuda/NVIDIA_CUDA-7.0_Samples/bin/x86_64/linux/release/deviceQuery<br>查看CUDA Capability Major/Minor version number这一项，为5.2<br>在Makefile.config文件中，修改<br>CUDA_ARCH := -gencode arch=compute_20,code=sm_20 \<br>        -gencode arch=compute_20,code=sm_21 \<br>        -gencode arch=compute_30,code=sm_30 \<br>        -gencode arch=compute_35,code=sm_35 \<br>        -gencode arch=compute_50,code=sm_50 \<br>        -gencode arch=compute_52,code=sm_52 \<br>        -gencode arch=compute_50,code=compute_50</p>
 
           
         
@@ -358,7 +394,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -399,7 +435,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
