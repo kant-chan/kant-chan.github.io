@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/01/06/caffe-config/" itemprop="url">
-                  caffe配置
+                <a class="post-title-link" href="/2017/03/20/python-craw/" itemprop="url">
+                  python爬虫系列(1)
                 </a>
               
             
@@ -263,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-06T20:30:59+08:00" content="2017-01-06">
-              2017-01-06
+            <time itemprop="dateCreated" datetime="2017-03-20T18:34:16+08:00" content="2017-03-20">
+              2017-03-20
             </time>
           </span>
 
@@ -277,8 +277,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Deep Learning</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -312,56 +312,15 @@
       
         
           
-            <ul>
-<li><a href="#1">安装openCV</a></li>
-<li><a href="#2">安装CUDA</a></li>
-</ul>
-<ul>
-<li><p>安装依赖库（一）：<br><code>$ lspci | grep -i nvidia</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler</div><div class="line">$ sudo apt-get install --no-install-recommends libboost-all-dev</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装ATLAS：(可以安装OpenBLAS 或 MKL，以提升CPU性能，但是要修改caffe中Makefile文件…)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libatlas-base-dev</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="安装openCV-ubuntu14-04"><a href="#安装openCV-ubuntu14-04" class="headerlink" title="安装openCV(ubuntu14.04)"></a><a id="1">安装openCV(ubuntu14.04)</a></h2><p>搭建编译环境：<code>sudo apt-get install build-essential</code><br>安装依赖库：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev</div><div class="line">$ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev</div></pre></td></tr></table></figure></p>
-<p>下载OpenCV3.0-alpha版本：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir ~/opencv</div><div class="line">$ <span class="built_in">cd</span> ~/opencv</div><div class="line">$ wget https://github.com/Itseez/opencv/archive/3.0.0-alpha.zip -O opencv-3.0.0-alpha.zip</div><div class="line">$ unzip opencv-3.0.0-alpha.zip</div></pre></td></tr></table></figure></p>
-<p>安装opencv：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ cmake .</div><div class="line">$ sudo make</div><div class="line">$ sudo make install</div><div class="line">$ sudo /bin/bash -c <span class="string">'echo "/usr/local/lib" &gt; /etc/ld.so.conf.d/opencv.conf'</span></div><div class="line">$ sudo ldconfig</div><div class="line">[[如果cmake过程中提示：ippicv_linux_20141027.tgz的<span class="built_in">hash</span>码不对，则将下载的ippicv_linux_20141027.tgz手动复制到 opencv-3.0.0-beta/3rdparty/ippicv/downloads/linux-8b449a536a2157bcad08a2b9f266828b文件夹中，重新cmake即可]]</div></pre></td></tr></table></figure></p>
-<p>可能需要的配置：<br>1)sudo vim /etc/ld.so.conf.d/opencv.conf在其后加入/usr/local/lib;然后sudo ldconfig.<br>2)添加环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">PKG_CONFIG_PATH=$</div><div class="line">PKG_CONFIG_PATH:/usr/<span class="built_in">local</span>/lib/pkgconfig</div><div class="line"><span class="built_in">export</span> PKG_CONFIG_PATH</div></pre></td></tr></table></figure></p>
-<p>3)查看是否配置成功<br><code>pkg-config --cflags opencv</code>,<code>pkg-config --libs opencv</code><br>编译samples程序：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/opencv/samples</div><div class="line">$ sudo cmake .</div><div class="line">$ sudo make -j $(nproc)</div><div class="line"></div><div class="line">运行测试程序：</div><div class="line">alpha版本：</div><div class="line"><span class="comment"># 注：使用alpha版本，images在opencv/cpp文件夹下</span></div><div class="line">$ <span class="built_in">cd</span> cpp/</div><div class="line">$ ./cpp-example-facedetect lena.jpg</div></pre></td></tr></table></figure></p>
-<p>编译写好的Cpp代码:g++ test.cpp -o test <code>pkg-config --cflags --libs opencv</code></p>
-<ul>
-<li><p>安装依赖库（二）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev</div></pre></td></tr></table></figure>
-</li>
-<li><p>下载Caffe：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ git clone git://github.com/BVLC/caffe.git</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">a、修改(caffe)Makefile，在</div><div class="line">LIBRARIES += glog gflags protobuf leveldb snappy \</div><div class="line">lmdb boost_system hdf5_hl hdf5 m \</div><div class="line">opencv_core opencv_highgui opencv_imgproc opencv_imgcodecs</div><div class="line">处加入后面的opencv_imgcodecs，因为opencv3.0.0把imread相关函数放到imgcodecs.lib中了（原来是imgproc.lib）</div><div class="line">b、修改caffe/examples/cpp_classification/classification.cpp文件，加入：</div><div class="line">#include &lt;opencv2/imgproc/types_c.h&gt;</div><div class="line">#include &lt;opencv2/objdetect/objdetect_c.h&gt;</div><div class="line">否则会出现”CV_BGR2GRAY”的错误</div></pre></td></tr></table></figure>
-<ul>
-<li><p>编译Caffe：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ cd ~/caffe</div><div class="line">$ cp Makefile.config.example Makefile.config</div><div class="line"># 修改Makefile.config文件：去掉CPU_ONLY:= 1的注释</div><div class="line">$ make all</div><div class="line">$ make test</div><div class="line">$ make runtest</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置pycaffe：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">(安装依赖库)</div><div class="line">$ sudo apt-get install python-numpy python-scipy python-matplotlib python-sklearn python-skimage python-h5py python-protobuf python-leveldb python-networkx python-nose python-pandas python-gflags Cython ipython</div><div class="line">$ sudo apt-get install protobuf-c-compiler protobuf-compiler</div><div class="line">(编译)</div><div class="line">$ cd ~/caffe</div><div class="line">$ make pycaffe</div><div class="line">(添加~/caffe/Python到$PYTHONPATH)</div><div class="line">$ sudo gedit /etc/profile</div><div class="line"># 末尾添加： export PYTHONPATH=/path/to/caffe/python:$PYTHONPATH</div><div class="line"># 用完整路径，不要用~</div><div class="line">$ source /etc/profile # 使之生效</div><div class="line">(测试是否可以引用)</div><div class="line">$ python</div><div class="line">Python 2.7.6 (default, Jun 22 2015, 17:58:13) </div><div class="line">[GCC 4.8.2] on linux2</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; import caffe</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="安装CUDA-包含有驱动"><a href="#安装CUDA-包含有驱动" class="headerlink" title="安装CUDA(包含有驱动)"></a><a id="2">安装CUDA(包含有驱动)</a></h2><ol>
-<li>验证硬件支持GPU CUDA，只要型号存在于https://developer.nvidia.com/cuda-gpus，就没问题</li>
-<li>Download the NVIDIA CUDA Toolkit<br>下载地址：https://developer.nvidia.com/cuda-toolkit<br>验证地址：https://developer.nvidia.com/rdp/cuda-rc-checksums<br>$ md5sum filename<br>例如：md5sum cuda_7.0.28_linux.run ，这个文件的正确 md5         =312aede1c3d1d3425c8aa67bbb7a55e</li>
-<li>需要的库<code>sudo apt-get install freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa-dev</code></li>
-<li>如果安装过nvidia其它版本则先卸载，<code>sudo nvidia-uninstall</code>,清除nvidia相关的库<code>sudo apt-get --purge remove nvidia-*</code></li>
-<li>Graphical Interface Shutdown,退出GUI,也就是X-Win(桌面管理器)界面,操作方法是:同时按:CTRL+ALT+F1（F2-F6），切换到TTY1-6命令行模式.关闭桌面服务:<code>$ sudo service lightdm stop</code>(装驱动前须禁用lightdm)</li>
-<li>禁用nouveau驱动,<code># sudo vi /etc/modprobe.d/blacklist-nouveau.conf</code>,输入<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">blacklist nouveau</div><div class="line">options nouveau modset=0</div><div class="line">保存退出（:wq)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>然后执行<code># sudo update-initramfs -u</code>,执行 lspci | grep nouveau查看是否有内容,如果没有内容,说明禁用成功,如果有内容,就重启一下再查看.重启后,进入登录界面的时候,不要登录进入桌面,直接按Ctrl+Alt+F1进入命令提示符.</p>
+            <h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a><a id="1">Cookie</a></h2><p>Cookie,指某些网站为了辨别用户身份,进行session跟踪而储存在用户本地终端上的数据,通常经过加密.比如有些网站需要登录后才能访问某个页面,在登录之前,抓取某个页面内容是不允许的.可以利用Urllib2库保存登录的Cookie,然后再抓取其他页面.</p>
 <ol>
-<li>安装完成后,重启,然后用ls查看一下,是否生成了四个左右以nvidia开头的文件夹<code># ls /dev/nvidia*</code>,如果有,说明安装成功了,如果没有,可能不成功,需要卸载重装.卸载命令如下：<code># sudo /usr/local/cuda-7.5/bin/uninstall_cuda_7.5.pl</code>,<code># sudo /usr/bin/nvidia-uninstall</code>,如果你还不放心是否安装成功,请参考其它教程,编译Samples进行测试,最后,配置环境变量,<code># sudo vi /etc/profile</code>,<code>export PATH=/usr/local/cuda-7.5/bin:$PATH</code>,<code>export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:$LD_LIBRARY_PATH</code>保存退出,至此cuda 7.5安装完毕.<code>nvcc --version</code></li>
-<li>cuda samples<br>/usr/local/cuda-7.5/samples<br>cd /home/xuezhisd/NVIDIA_CUDA-7.0_Samples<br>编译 make （安装命令 sudo apt-get install cmake)<br>编译完毕，切换release目录<br>cd ./bin/x86_64/linux/release<br>检验是否成功<br>运行实例 ./deviceQuery<br>./deviceQuery</li>
+<li>Opener<br>获取一个URL时使用一个opener(urllib2.OpenerDirector的实例),urlopen为默认opener.需要创建更一般的opener来实现对Cookie的设置.</li>
+<li>Cookielib<br>cookielib模块的主要作用是提供可存储cookie的对象,以便于与urllib2模块配合使用来访问Internet资源.可以利用本模块的CookieJar类的对象来捕获cookie并在后续连接请求时重新发送,比如可以实现模拟登录功能.该模块主要的对象有CookieJar,FileCookieJar,MozillaCookieJar,LWPCookieJar.它们的关系：CookieJar —-派生—-&gt;FileCookieJar—-派生—–&gt;MozillaCookieJar和LWPCookieJar.<br><em>获取Cookie保存到变量</em><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">import</span> cookielib</div><div class="line"><span class="comment">#声明一个CookieJar对象实例来保存cookie</span></div><div class="line"><span class="comment">#将cookie保存到了cookie这个变量中</span></div><div class="line">cookie = cookielib.CookieJar()</div><div class="line"><span class="comment">#利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器</span></div><div class="line">handler=urllib2.HTTPCookieProcessor(cookie)</div><div class="line"><span class="comment">#通过handler来构建opener</span></div><div class="line">opener = urllib2.build_opener(handler)</div><div class="line"><span class="comment">#此处的open方法同urllib2的urlopen方法，也可以传入request</span></div><div class="line">response = opener.open(<span class="string">'http://www.baidu.com'</span>)</div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> cookie:</div><div class="line">    <span class="keyword">print</span> <span class="string">'Name = '</span>+item.name</div><div class="line">    <span class="keyword">print</span> <span class="string">'Value = '</span>+item.value</div></pre></td></tr></table></figure>
+</li>
 </ol>
-<h3 id="查看CUDA计算容量："><a href="#查看CUDA计算容量：" class="headerlink" title="查看CUDA计算容量："></a>查看CUDA计算容量：</h3><p>$ ./~/cuda/NVIDIA_CUDA-7.0_Samples/bin/x86_64/linux/release/deviceQuery<br>查看CUDA Capability Major/Minor version number这一项，为5.2<br>在Makefile.config文件中，修改<br>CUDA_ARCH := -gencode arch=compute_20,code=sm_20 \<br>        -gencode arch=compute_20,code=sm_21 \<br>        -gencode arch=compute_30,code=sm_30 \<br>        -gencode arch=compute_35,code=sm_35 \<br>        -gencode arch=compute_50,code=sm_50 \<br>        -gencode arch=compute_52,code=sm_52 \<br>        -gencode arch=compute_50,code=compute_50</p>
+<p><em>保存Cookie到文件</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cookielib</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="comment">#ignore_discard的意思是即使cookies将被丢弃也将它保存下来,ignore_expires</span></div><div class="line"><span class="comment">#意思是如果在该文件中cookies已经存在,则覆盖原文件写入</span></div><div class="line"><span class="comment">#设置保存cookie的文件，同级目录下的cookie.txt</span></div><div class="line">filename = <span class="string">'cookie.txt'</span></div><div class="line"><span class="comment">#声明一个MozillaCookieJar对象实例来保存cookie，之后写入文件</span></div><div class="line">cookie = cookielib.MozillaCookieJar(filename)</div><div class="line"><span class="comment">#利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器</span></div><div class="line">handler = urllib2.HTTPCookieProcessor(cookie)</div><div class="line"><span class="comment">#通过handler来构建opener</span></div><div class="line">opener = urllib2.build_opener(handler)</div><div class="line"><span class="comment">#创建一个请求，原理同urllib2的urlopen</span></div><div class="line">response = opener.open(<span class="string">"http://www.baidu.com"</span>)</div><div class="line"><span class="comment">#保存cookie到文件</span></div><div class="line">cookie.save(ignore_discard=<span class="keyword">True</span>, ignore_expires=<span class="keyword">True</span>)</div></pre></td></tr></table></figure></p>
+<p><em>从文件中获取Cookie并访问</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cookielib</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"> </div><div class="line"><span class="comment">#创建MozillaCookieJar实例对象</span></div><div class="line">cookie = cookielib.MozillaCookieJar()</div><div class="line"><span class="comment">#从文件中读取cookie内容到变量</span></div><div class="line">cookie.load(<span class="string">'cookie.txt'</span>, ignore_discard=<span class="keyword">True</span>, ignore_expires=<span class="keyword">True</span>)</div><div class="line"><span class="comment">#创建请求的request</span></div><div class="line">req = urllib2.Request(<span class="string">"http://www.baidu.com"</span>)</div><div class="line"><span class="comment">#利用urllib2的build_opener方法创建一个opener</span></div><div class="line">opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))</div><div class="line">response = opener.open(req)</div><div class="line"><span class="keyword">print</span> response.read()</div></pre></td></tr></table></figure></p>
+<p><em>利用cookie模拟网站登录</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">import</span> cookielib</div><div class="line"> </div><div class="line">filename = <span class="string">'cookie.txt'</span></div><div class="line"><span class="comment">#声明一个MozillaCookieJar对象实例来保存cookie，之后写入文件</span></div><div class="line">cookie = cookielib.MozillaCookieJar(filename)</div><div class="line">opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))</div><div class="line">postdata = urllib.urlencode(&#123;</div><div class="line">            <span class="string">'stuid'</span>:<span class="string">'201200131012'</span>,</div><div class="line">            <span class="string">'pwd'</span>:<span class="string">'23342321'</span></div><div class="line">        &#125;)</div><div class="line"><span class="comment">#登录教务系统的URL</span></div><div class="line">loginUrl = <span class="string">'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login'</span></div><div class="line"><span class="comment">#模拟登录，并把cookie保存到变量</span></div><div class="line">result = opener.open(loginUrl,postdata)</div><div class="line"><span class="comment">#保存cookie到cookie.txt中</span></div><div class="line">cookie.save(ignore_discard=<span class="keyword">True</span>, ignore_expires=<span class="keyword">True</span>)</div><div class="line"><span class="comment">#利用cookie请求访问另一个网址，此网址是成绩查询网址</span></div><div class="line">gradeUrl = <span class="string">'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bkscjcx.curscopre'</span></div><div class="line"><span class="comment">#请求访问成绩查询网址</span></div><div class="line">result = opener.open(gradeUrl)</div><div class="line"><span class="keyword">print</span> result.read()</div></pre></td></tr></table></figure></p>
 
           
         
@@ -394,7 +353,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -435,7 +394,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
