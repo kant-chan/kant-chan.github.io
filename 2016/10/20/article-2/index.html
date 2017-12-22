@@ -1,20 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
 
 
 
@@ -34,50 +45,34 @@
 
 
 
-  
-  
-  
-  
 
-  
-    
-    
-  
 
-  
 
-  
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-  
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
-  
 
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
 
 
 
 
 
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="博客搭建 Hexo," />
 
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -102,7 +97,7 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitHub + Hexo搭建个人博客总结">
 <meta property="og:url" content="http://yoursite.com/2016/10/20/article-2/index.html">
-<meta property="og:site_name" content="MuzhI">
+<meta property="og:site_name" content="木之">
 <meta property="og:description" content="前期准备
 连接远程库
 用Hexo创建博客框架
@@ -120,7 +115,7 @@ Hexo部署
 GitHub账号。并新建repository。与GitHub建立好连接之后，就可以方便的使用它提供的 Pages 服务，GitHubPages分两种，一种是用你的GitHub用户名建立的username.github.io这">
 <meta property="og:image" content="http://yoursite.com/2016/10/20/article-2/gaideploy.JPG">
 <meta property="og:image" content="http://yoursite.com/2016/10/20/article-2/err1.jpg">
-<meta property="og:updated_time" content="2017-07-11T22:46:27.663Z">
+<meta property="og:updated_time" content="2017-12-22T11:18:55.080Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub + Hexo搭建个人博客总结">
 <meta name="twitter:description" content="前期准备
@@ -142,31 +137,39 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://yoursite.com/2016/10/20/article-2/"/>
 
 
-  <title> GitHub + Hexo搭建个人博客总结 | MuzhI </title>
-</head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
+
+  <title>GitHub + Hexo搭建个人博客总结 | 木之</title>
   
 
 
@@ -176,36 +179,42 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
 
 
 
+</head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">MuzhI</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木之</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-  <p class="site-subtitle"></p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -225,8 +234,18 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -235,18 +254,8 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -262,6 +271,8 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -275,49 +286,68 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/20/article-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhi.chan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/muzhi.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木之">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                GitHub + Hexo搭建个人博客总结
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">GitHub + Hexo搭建个人博客总结</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-20T02:41:47+08:00" content="2016-10-20">
-              2016-10-20
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-20T02:41:47+08:00">
+                2016-10-20
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/FRONTEND/" itemprop="url" rel="index">
                     <span itemprop="name">FRONTEND</span>
                   </a>
@@ -325,7 +355,6 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
 
                 
                 
-
               
             </span>
           
@@ -335,16 +364,21 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
           
 
           
-
-          
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -418,38 +452,27 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div></div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="木之 WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-    </div>
-  </div>
-
-
-      
-    </div>
+    
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/博客搭建-Hexo/" rel="tag"># 博客搭建 Hexo</a>
+          
+        </div>
+      
+
+      
+      
       
 
       
@@ -461,6 +484,8 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -475,6 +500,10 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -490,9 +519,7 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
+  
 
 
         </div>
@@ -508,98 +535,132 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/muzhi.jpg"
-               alt="木之" />
-          <p class="site-author-name" itemprop="name">木之</p>
-          <p class="site-description motion-element" itemprop="description">性燥皆因经麻少  心平只缘折磨多</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">18</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/muzhi.jpg"
+                alt="muzhi.chan" />
+            
+              <p class="site-author-name" itemprop="name">muzhi.chan</p>
+              <p class="site-description motion-element" itemprop="description">性燥皆因经麻少  心平只缘折磨多</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kant-chan" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/mu-zhi-71/" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/64650499/" target="_blank" title="豆瓣">
+                    
+                      <i class="fa fa-fw fa-globe"></i>豆瓣</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/64650499/" target="_blank" title="Instagram">
+                    
+                      <i class="fa fa-fw fa-globe"></i>Instagram</a>
+                </span>
+              
+            
           </div>
 
           
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">10</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
+          
+
+          
           
 
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/mu-zhi-71/" target="_blank" title="知乎">
-                  
-                  知乎
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.douban.com/people/64650499/" target="_blank" title="豆瓣">
-                  
-                  豆瓣
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/kant-chan" target="_blank" title="GitHub">
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
         </div>
-
-        
-        
-
-        
-        
-
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前期准备"><span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接远程库"><span class="nav-text">连接远程库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用Hexo创建博客框架"><span class="nav-text">用Hexo创建博客框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo安装（在Git-Bash中操作）"><span class="nav-text">Hexo安装（在Git Bash中操作）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo部署（在Git-Bash中操作）"><span class="nav-text">Hexo部署（在Git Bash中操作）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将本地文件部署到-GitHub"><span class="nav-text">将本地文件部署到 GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将本地文件部署到阿里云"><span class="nav-text">将本地文件部署到阿里云</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写博客"><span class="nav-text">写博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装第三方主题"><span class="nav-text">安装第三方主题 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任意门"><span class="nav-text">任意门</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前期准备"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接远程库"><span class="nav-number">2.</span> <span class="nav-text">连接远程库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用Hexo创建博客框架"><span class="nav-number">3.</span> <span class="nav-text">用Hexo创建博客框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo安装（在Git-Bash中操作）"><span class="nav-number">3.1.</span> <span class="nav-text">Hexo安装（在Git Bash中操作）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo部署（在Git-Bash中操作）"><span class="nav-number">3.2.</span> <span class="nav-text">Hexo部署（在Git Bash中操作）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将本地文件部署到-GitHub"><span class="nav-number">4.</span> <span class="nav-text">将本地文件部署到 GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将本地文件部署到阿里云"><span class="nav-number">5.</span> <span class="nav-text">将本地文件部署到阿里云</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写博客"><span class="nav-number">6.</span> <span class="nav-text">写博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装第三方主题"><span class="nav-number">7.</span> <span class="nav-text">安装第三方主题 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任意门"><span class="nav-number">8.</span> <span class="nav-text">任意门</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -612,27 +673,50 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">木之</span>
+  <span class="author" itemprop="copyrightHolder">muzhi.chan</span>
+
+  
 </div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div>
+
 
 
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
   </div>
 
   
@@ -652,6 +736,15 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
 
 
   
+
+
+
+
+
+
+
+
+
 
 
 
@@ -677,68 +770,83 @@ GitHub账号。并新建repository。与GitHub建立好连接之后，就可以�
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
-
-
-
-  
-
-
-
-  
-
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
 
 
 
   
   
 
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
 
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
 
+  
+  
+
+
+  
+
+  
 
 </body>
 </html>

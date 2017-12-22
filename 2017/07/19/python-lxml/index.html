@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,爬虫," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="XPath语法12345678&amp;lt;bookstore&amp;gt;  &amp;lt;book&amp;gt;    &amp;lt;title&amp;gt;Harry Potter&amp;lt;/title&amp;gt;    &amp;lt;author&amp;gt;J K. Rowling&amp;lt;/author&amp;gt;    &amp;lt;year&amp;gt;2005&amp;lt;/year&amp;gt;    &amp;lt;price&amp;gt;29.99&amp;lt;/price&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python-lxml">
+<meta property="og:url" content="http://yoursite.com/2017/07/19/python-lxml/index.html">
+<meta property="og:site_name" content="木之">
+<meta property="og:description" content="XPath语法12345678&amp;lt;bookstore&amp;gt;  &amp;lt;book&amp;gt;    &amp;lt;title&amp;gt;Harry Potter&amp;lt;/title&amp;gt;    &amp;lt;author&amp;gt;J K. Rowling&amp;lt;/author&amp;gt;    &amp;lt;year&amp;gt;2005&amp;lt;/year&amp;gt;    &amp;lt;price&amp;gt;29.99&amp;lt;/price&amp;">
+<meta property="og:updated_time" content="2017-12-22T11:22:24.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python-lxml">
+<meta name="twitter:description" content="XPath语法12345678&amp;lt;bookstore&amp;gt;  &amp;lt;book&amp;gt;    &amp;lt;title&amp;gt;Harry Potter&amp;lt;/title&amp;gt;    &amp;lt;author&amp;gt;J K. Rowling&amp;lt;/author&amp;gt;    &amp;lt;year&amp;gt;2005&amp;lt;/year&amp;gt;    &amp;lt;price&amp;gt;29.99&amp;lt;/price&amp;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/19/python-lxml/"/>
+
+
+
+
+
+  <title>python-lxml | 木之</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木之</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/19/python-lxml/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhi.chan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/muzhi.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木之">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python-lxml</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T22:08:58+08:00">
+                2017-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="XPath语法"><a href="#XPath语法" class="headerlink" title="XPath语法"></a>XPath语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;bookstore&gt;</div><div class="line">  &lt;book&gt;</div><div class="line">    &lt;title&gt;Harry Potter&lt;/title&gt;</div><div class="line">    &lt;author&gt;J K. Rowling&lt;/author&gt;</div><div class="line">    &lt;year&gt;2005&lt;/year&gt;</div><div class="line">    &lt;price&gt;29.99&lt;/price&gt;</div><div class="line">  &lt;/book&gt;</div><div class="line">&lt;/bookstore&gt;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>路径表达式</th>
+<th>描述</th>
+<th>type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bookstore</td>
+<td>选取此节点的所有子节点</td>
+<td>90</td>
+</tr>
+<tr>
+<td>/bookstore</td>
+<td>选取根元素bookstore。注释：假如路径起始于正斜杠( / )，则此路径始终代表到某元素的绝对路径</td>
+<td>100</td>
+</tr>
+<tr>
+<td>bookstore/book</td>
+<td>选取属于bookstore的子元素的所有book元素</td>
+<td>90</td>
+</tr>
+<tr>
+<td>//book</td>
+<td>选取所有book子元素，而不管它们在文档中的位置</td>
+<td></td>
+</tr>
+<tr>
+<td>bookstore//book</td>
+<td>选择属于bookstore元素的后代的所有book元素，而不管它们位于bookstore之下的什么位置</td>
+<td></td>
+</tr>
+<tr>
+<td>//@lang</td>
+<td>选取名为lang的所有属性</td>
+</tr>
+</tbody>
+</table>
+<h3 id="谓语"><a href="#谓语" class="headerlink" title="谓语"></a>谓语</h3><table>
+<thead>
+<tr>
+<th>路径表达式</th>
+<th>描述</th>
+<th>type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/bookstore/book[1]</td>
+<td>选取属于bookstore子元素的第一个book元素</td>
+<td>90</td>
+</tr>
+<tr>
+<td>/bookstore/book[last()]</td>
+<td>选取属于bookstore子元素的最后一个book元素</td>
+<td>100</td>
+</tr>
+<tr>
+<td>/bookstore/book[last()-1]</td>
+<td>倒数第二个</td>
+<td>90</td>
+</tr>
+<tr>
+<td>/bookstore/book[position()&lt;3]</td>
+<td>选取最前面的两个属于bookstore元素的子元素的book元素</td>
+<td></td>
+</tr>
+<tr>
+<td>//title[@lang]</td>
+<td>选取所有拥有名为lang的属性的title元素</td>
+<td></td>
+</tr>
+<tr>
+<td>//title[@lang=’eng’]</td>
+<td>选取所有title元素，且这些元素拥有值为eng的lang属性</td>
+<td></td>
+</tr>
+<tr>
+<td>/bookstore/book[price&gt;35.00]</td>
+<td>选取 bookstore 元素的所有book元素，且其中的price元素的值须大于35.00</td>
+<td></td>
+</tr>
+<tr>
+<td>/bookstore/book[price&gt;35.00]/title</td>
+<td>选取bookstore元素中的book元素的所有title元素，且其中的price元素的值须大于35.00</td>
+</tr>
+</tbody>
+</table>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> lxml.etree  </div><div class="line"><span class="keyword">import</span> sys  </div><div class="line">  </div><div class="line">html = <span class="string">'''</span></div><div class="line">&lt;html&gt; </div><div class="line">　　&lt;head&gt; </div><div class="line">　　　　&lt;meta name="content-type" content="text/html; charset=utf-8" /&gt; </div><div class="line">　　　　&lt;title&gt;友情链接查询 - 站长工具&lt;/title&gt; </div><div class="line">　　　　&lt;!-- uRj0Ak8VLEPhjWhg3m9z4EjXJwc --&gt; </div><div class="line">　　　　&lt;meta name="Keywords" content="友情链接查询" /&gt; </div><div class="line">　　　　&lt;meta name="Description" content="友情链接查询" /&gt; </div><div class="line"> </div><div class="line">　　&lt;/head&gt; </div><div class="line">　　&lt;body&gt; </div><div class="line">　　　　&lt;h1 class="heading"&gt;Top News&lt;/h1&gt; </div><div class="line">　　　　&lt;p style="font-size: 200%"&gt;World News only on this page&lt;/p&gt; </div><div class="line">　　　　Ah, and here's some more text, by the way. </div><div class="line">　　　　&lt;p&gt;... and this is a parsed fragment ...&lt;/p&gt; </div><div class="line"> </div><div class="line">　　　　&lt;a href="http://www.cydf.org.cn/" rel="nofollow" target="_blank"&gt;青少年发展基金会&lt;/a&gt;  </div><div class="line">　　　　&lt;a href="http://www.4399.com/flash/32979.htm" target="_blank"&gt;洛克王国&lt;/a&gt;  </div><div class="line">　　　　&lt;a href="http://www.4399.com/flash/35538.htm" target="_blank"&gt;奥拉星&lt;/a&gt;  </div><div class="line">　　　　&lt;a href="http://game.3533.com/game/" target="_blank"&gt;手机游戏&lt;/a&gt; </div><div class="line">　　　　&lt;a href="http://game.3533.com/tupian/" target="_blank"&gt;手机壁纸&lt;/a&gt; </div><div class="line">　　　　&lt;a href="http://www.4399.com/" target="_blank"&gt;4399小游戏&lt;/a&gt;  </div><div class="line">　　　　&lt;a href="http://www.91wan.com/" target="_blank"&gt;91wan游戏&lt;/a&gt; </div><div class="line">       &lt;div class="news"&gt; </div><div class="line">        1. &lt;b&gt;无流量站点清理公告&lt;/b&gt;  2013-02-22&lt;br /&gt; </div><div class="line">        取不到的内容11 </div><div class="line">        &lt;/div&gt; </div><div class="line">        &lt;div class="news"&gt; </div><div class="line">        2. &lt;strong&gt;无流量站点清理公告&lt;/strong&gt;  2013-02-22&lt;br /&gt;取不到的内容22 </div><div class="line">        &lt;/div&gt;  </div><div class="line">        &lt;div class="news"&gt; 3. &lt;span&gt;无流量站点清理公告&lt;/span&gt;  2013-02-22&lt;br /&gt;取不到的内容33 </div><div class="line">        &lt;/div&gt;  </div><div class="line">        &lt;div class="news"&gt; 4. &lt;u&gt;无流量站点清理公告&lt;/u&gt;  2013-02-22&lt;br /&gt;取不到的内容44 </div><div class="line">        &lt;/div&gt; </div><div class="line">    　　&lt;/body&gt; </div><div class="line">&lt;/html&gt; </div><div class="line">'''  </div><div class="line">page = etree.HTML(html.decode(<span class="string">'utf-8'</span>))</div><div class="line">hrefs = page.xpath(<span class="string">"//a"</span>) </div><div class="line"><span class="keyword">for</span> href <span class="keyword">in</span> hrefs:  </div><div class="line">    <span class="keyword">print</span> href.get(<span class="string">'href'</span>)  </div><div class="line">    <span class="keyword">print</span> href.text.encode(<span class="string">"utf-8"</span>)  </div><div class="line"><span class="keyword">print</span> <span class="string">'*'</span>*<span class="number">10</span> </div><div class="line">ps = page.xpath(<span class="string">"/html/body/p[@style='font-size: 200%']"</span>)</div><div class="line"><span class="keyword">for</span> p <span class="keyword">in</span> ps:  </div><div class="line">    <span class="keyword">print</span> p.values()  </div><div class="line">    <span class="keyword">print</span> p.text.encode(<span class="string">'utf8'</span>) </div><div class="line"><span class="keyword">print</span> <span class="string">'-'</span>*<span class="number">10</span></div><div class="line">hard_get = page.xpath(<span class="string">"//br"</span>)</div><div class="line"><span class="keyword">for</span> hg <span class="keyword">in</span> hard_get:</div><div class="line">    <span class="keyword">print</span> <span class="string">'---'</span>+hg.tail.encode(<span class="string">'utf8'</span>).strip()+<span class="string">'---'</span>  </div><div class="line"><span class="keyword">print</span> <span class="string">'-'</span>*<span class="number">10</span></div><div class="line">  </div><div class="line">html1 = <span class="string">""" </span></div><div class="line">&lt;html&gt;&lt;head&gt;&lt;title&gt;为什么len(y) &lt;= 1&lt;/title&gt;&lt;script&gt;var y = 1&lt;/script&gt;&lt;/head&gt;sample.&lt;html&gt; </div><div class="line">"""    </div><div class="line">page1 = etree.HTML(html1.decode(<span class="string">'utf8'</span>))  </div><div class="line">title = page1.xpath(<span class="string">"//title"</span>)[<span class="number">0</span>].text  </div><div class="line"><span class="keyword">print</span> <span class="string">'title:%s'</span>%title.encode(<span class="string">'utf-8'</span>)  </div><div class="line"><span class="keyword">print</span> <span class="string">'-'</span>*<span class="number">10</span></div><div class="line">  </div><div class="line"><span class="keyword">from</span> lxml.html <span class="keyword">import</span> clean</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/12/xxnet-remote/" rel="next" title="xx-net远程代理(阿里云)">
+                <i class="fa fa-chevron-left"></i> xx-net远程代理(阿里云)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/20/cpp-iostream/" rel="prev" title="cpp_iostream">
+                cpp_iostream <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/muzhi.jpg"
+                alt="muzhi.chan" />
+            
+              <p class="site-author-name" itemprop="name">muzhi.chan</p>
+              <p class="site-description motion-element" itemprop="description">性燥皆因经麻少  心平只缘折磨多</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kant-chan" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/mu-zhi-71/" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/64650499/" target="_blank" title="豆瓣">
+                    
+                      <i class="fa fa-fw fa-globe"></i>豆瓣</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/64650499/" target="_blank" title="Instagram">
+                    
+                      <i class="fa fa-fw fa-globe"></i>Instagram</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XPath语法"><span class="nav-number">1.</span> <span class="nav-text">XPath语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#谓语"><span class="nav-number">1.1.</span> <span class="nav-text">谓语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">1.2.</span> <span class="nav-text">示例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhi.chan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
