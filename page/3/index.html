@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/02/book-store/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/24/autossh-config/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="muzhi.chan">
@@ -304,7 +304,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/02/book-store/" itemprop="url">闲情偶记</a></h1>
+                <a class="post-title-link" href="/2017/05/24/autossh-config/" itemprop="url">autossh反向连接</a></h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-02T22:04:19+08:00">
-                2017-04-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T01:12:51+08:00">
+                2017-05-24
               </time>
             
 
@@ -339,8 +339,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/闲情偶记/" itemprop="url" rel="index">
-                    <span itemprop="name">闲情偶记</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -356,7 +356,7 @@
 
           
           
-             <span id="/2017/04/02/book-store/" class="leancloud_visitors" data-flag-title="闲情偶记">
+             <span id="/2017/05/24/autossh-config/" class="leancloud_visitors" data-flag-title="autossh反向连接">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -389,21 +389,15 @@
       
         
           
-          四方上下  往来古今
-计算机
-语言
+          外网与内网连接
+Port Forwarding(端口映射)
+Reverse Connection(反向连接)内网主机主动连接外网主机,NAT路由和防火墙内网host与外网host之间建立映射.但这种映射是由NAT路由自动维持的,不会持续下去,连接断开或网络不稳都会导致通信失效.
 
-
-
-计算机LANGC/C++
-网站CodeProject - For those who code[LeetCode]&lt;主要收集了各大IT公司的笔试面试题&gt;(https://leetcode.com/)lintcode
-
-算法
-书《数据结构与算法分析
+ssh 实现反向连
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/02/book-store/#more" rel="contents">
+            <a class="btn" href="/2017/05/24/autossh-config/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -454,7 +448,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/python-regexp/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/09/linux-index2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="muzhi.chan">
@@ -473,7 +467,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/python-regexp/" itemprop="url">python正则表达式</a></h1>
+                <a class="post-title-link" href="/2017/05/09/linux-index2/" itemprop="url">linux专题(3):进程间通信</a></h1>
         
 
         <div class="post-meta">
@@ -485,8 +479,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T19:37:54+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-09T23:36:49+08:00">
+                2017-05-09
               </time>
             
 
@@ -508,8 +502,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -525,7 +519,7 @@
 
           
           
-             <span id="/2017/03/20/python-regexp/" class="leancloud_visitors" data-flag-title="python正则表达式">
+             <span id="/2017/05/09/linux-index2/" class="leancloud_visitors" data-flag-title="linux专题(3):进程间通信">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -558,12 +552,13 @@
       
         
           
-          正则表达式的语法规则
-数量词的贪婪模式与非贪婪模式正则表达式通常用于在文本中查找匹配的字符串.Python里数量词默认是贪婪的(在少数语言里也可能是默认非贪婪),总是尝试匹配尽可能多的字符:非贪婪的则相反,总是尝试匹配尽可能少的字符.例如:正则表达式ab*如果用于查找abbbc,将找到abbb.而如
+          信号可以看作一种粗糙的进程间通信(IPC, interprocess communication)的方式,用以向进程封闭的内存空间传递信息.为了让进程间传递更多的信息量,我们需要其他的进程间通信方式.这些进程间通信方式可以分为两种:
+
+管道(PIPE)机制.在Linux文本流中,我们提到可以使用管道
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/python-regexp/#more" rel="contents">
+            <a class="btn" href="/2017/05/09/linux-index2/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -614,7 +609,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/python-craw/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/09/linux-index1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="muzhi.chan">
@@ -633,7 +628,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/python-craw/" itemprop="url">python爬虫系列(1)</a></h1>
+                <a class="post-title-link" href="/2017/05/09/linux-index1/" itemprop="url">linux专题(2):多线程与同步</a></h1>
         
 
         <div class="post-meta">
@@ -645,8 +640,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T18:34:16+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-09T20:47:28+08:00">
+                2017-05-09
               </time>
             
 
@@ -668,8 +663,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -685,7 +680,7 @@
 
           
           
-             <span id="/2017/03/20/python-craw/" class="leancloud_visitors" data-flag-title="python爬虫系列(1)">
+             <span id="/2017/05/09/linux-index1/" class="leancloud_visitors" data-flag-title="linux专题(2):多线程与同步">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -718,13 +713,11 @@
       
         
           
-          CookieCookie,指某些网站为了辨别用户身份,进行session跟踪而储存在用户本地终端上的数据,通常经过加密.比如有些网站需要登录后才能访问某个页面,在登录之前,抓取某个页面内容是不允许的.可以利用Urllib2库保存登录的Cookie,然后再抓取其他页面.
-
-Opener获取一个URL时
+          并发多线程相当于一个并发(concunrrency)系统.并发系统一般同时执行多个任务.如果多个任务可以共享资源,特别是同时写入某个变量的时候,就需要解决同步的问题.比如说,我们有一个多线程火车售票系统,用全局变量i存储剩余的票数.多个线程不断地卖票(i = i - 1),直到剩余票数为0.所以每个
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/python-craw/#more" rel="contents">
+            <a class="btn" href="/2017/05/09/linux-index1/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -775,7 +768,7 @@ Opener获取一个URL时
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/06/caffe-config/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/09/linux-index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="muzhi.chan">
@@ -794,7 +787,7 @@ Opener获取一个URL时
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/01/06/caffe-config/" itemprop="url">caffe配置</a></h1>
+                <a class="post-title-link" href="/2017/05/09/linux-index/" itemprop="url">linux专题(1)</a></h1>
         
 
         <div class="post-meta">
@@ -806,8 +799,8 @@ Opener获取一个URL时
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-06T20:30:59+08:00">
-                2017-01-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-09T10:01:03+08:00">
+                2017-05-09
               </time>
             
 
@@ -829,8 +822,8 @@ Opener获取一个URL时
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Deep Learning</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -846,7 +839,7 @@ Opener获取一个URL时
 
           
           
-             <span id="/2017/01/06/caffe-config/" class="leancloud_visitors" data-flag-title="caffe配置">
+             <span id="/2017/05/09/linux-index/" class="leancloud_visitors" data-flag-title="linux专题(1)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -879,17 +872,11 @@ Opener获取一个URL时
       
         
           
-          
-安装openCV
-安装CUDA
-
-
-安装依赖库（一）：$ lspci | grep -i nvidia
-12$ sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-seria
+          文件系统的实现观察常见存储设备.最开始的区域是MBR,用于Linux开机启动.剩余的空间可能分成数个分区(partition).每个分区有一个相关的分区表(Partition table),记录分区的相关信息.这个分区表是储存在分区之外的.分区表说明了对应分区的起始位置和分区的大小.我们在Windo
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/01/06/caffe-config/#more" rel="contents">
+            <a class="btn" href="/2017/05/09/linux-index/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -940,7 +927,7 @@ Opener获取一个URL时
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/11/others/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/06/caffe-sourcecodes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="muzhi.chan">
@@ -959,7 +946,7 @@ Opener获取一个URL时
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/12/11/others/" itemprop="url">待定</a></h1>
+                <a class="post-title-link" href="/2017/05/06/caffe-sourcecodes/" itemprop="url">caffe源码阅读(1)--protobuf</a></h1>
         
 
         <div class="post-meta">
@@ -971,8 +958,8 @@ Opener获取一个URL时
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-11T04:42:31+08:00">
-                2016-12-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-06T01:15:10+08:00">
+                2017-05-06
               </time>
             
 
@@ -994,8 +981,8 @@ Opener获取一个URL时
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Lang/" itemprop="url" rel="index">
-                    <span itemprop="name">Computer Lang</span>
+                  <a href="/categories/CAFFE/" itemprop="url" rel="index">
+                    <span itemprop="name">CAFFE</span>
                   </a>
                 </span>
 
@@ -1011,7 +998,7 @@ Opener获取一个URL时
 
           
           
-             <span id="/2016/12/11/others/" class="leancloud_visitors" data-flag-title="待定">
+             <span id="/2017/05/06/caffe-sourcecodes/" class="leancloud_visitors" data-flag-title="caffe源码阅读(1)--protobuf">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1045,17 +1032,10 @@ Opener获取一个URL时
         
           
           
-语言
-C/C++ 
-matlab
-
-
-
-语言C/C++在c中左移是逻辑左移，右移是算术右移(符号位填补)。多文件工程，模块化编程。1234567891011121314151617181920212223242526272829303132//fun.c  #include &lt;stdio.h
-          ...
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/12/11/others/#more" rel="contents">
+            <a class="btn" href="/2017/05/06/caffe-sourcecodes/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1097,7 +1077,7 @@ matlab
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1147,7 +1127,7 @@ matlab
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1169,7 +1149,7 @@ matlab
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1234,7 +1214,7 @@ matlab
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

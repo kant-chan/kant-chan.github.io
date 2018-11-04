@@ -83,9 +83,9 @@
 Port Forwarding(端口映射)
 Reverse Connection(反向连接)内网主机主动连接外网主机,NAT路由和防火墙内网host与外网host之间建立映射.但这种映射是由NAT路由自动维持的,不会持续下去,连接断开或网络不稳都会导致通信失效.
 
-autossh实现持续反向连接现有内网主机A和外网主机B：
-
-A : localhostB : 120.27.104.">
+ssh 实现反向连接
+A: (内网)局域网内, IP 为 a.a.a.a, 用户名为 userA
+B: (外网)局域网">
 <meta property="og:type" content="article">
 <meta property="og:title" content="autossh反向连接">
 <meta property="og:url" content="http://yoursite.com/2017/05/24/autossh-config/index.html">
@@ -94,19 +94,19 @@ A : localhostB : 120.27.104.">
 Port Forwarding(端口映射)
 Reverse Connection(反向连接)内网主机主动连接外网主机,NAT路由和防火墙内网host与外网host之间建立映射.但这种映射是由NAT路由自动维持的,不会持续下去,连接断开或网络不稳都会导致通信失效.
 
-autossh实现持续反向连接现有内网主机A和外网主机B：
-
-A : localhostB : 120.27.104.">
-<meta property="og:updated_time" content="2017-12-22T11:21:03.199Z">
+ssh 实现反向连接
+A: (内网)局域网内, IP 为 a.a.a.a, 用户名为 userA
+B: (外网)局域网">
+<meta property="og:updated_time" content="2018-11-04T05:07:36.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="autossh反向连接">
 <meta name="twitter:description" content="外网与内网连接
 Port Forwarding(端口映射)
 Reverse Connection(反向连接)内网主机主动连接外网主机,NAT路由和防火墙内网host与外网host之间建立映射.但这种映射是由NAT路由自动维持的,不会持续下去,连接断开或网络不稳都会导致通信失效.
 
-autossh实现持续反向连接现有内网主机A和外网主机B：
-
-A : localhostB : 120.27.104.">
+ssh 实现反向连接
+A: (内网)局域网内, IP 为 a.a.a.a, 用户名为 userA
+B: (外网)局域网">
 
 
 
@@ -407,9 +407,21 @@ A : localhostB : 120.27.104.">
 <li>Port Forwarding(端口映射)</li>
 <li>Reverse Connection(反向连接)<br>内网主机主动连接外网主机,NAT路由和防火墙内网host与外网host之间建立映射.但这种映射是由NAT路由自动维持的,不会持续下去,连接断开或网络不稳都会导致通信失效.</li>
 </ul>
+<h3 id="ssh-实现反向连接"><a href="#ssh-实现反向连接" class="headerlink" title="ssh 实现反向连接"></a>ssh 实现反向连接</h3><blockquote>
+<p>A: (内网)局域网内, IP 为 a.a.a.a, 用户名为 userA</p>
+<p>B: (外网)局域网外, 作为访问 A 的服务器, IP 为 b.b.b.b, 用户名为 userB</p>
+<p>C: 局域网内或者局域网外, IP 为 c.c.c.c, 用户名为 userC</p>
+</blockquote>
+<p><strong>实现</strong></p>
+<ol>
+<li>在 A 上建立 A 到 B 的反向连接. <code>ssh -fCNR protB:a.a.a.a:portA userB@b.b.b.b</code>. 此时, B 可以通过 <code>ssh -p portB userA@localhost</code>. 但是 C 不能通过 <code>ssh userA@b.b.b.b -p portB</code> 连接 A.</li>
+<li>在 B 上建立 B 到 A 上的正向连接, 以实现和外网的通信. <code>ssh -fCNL *:portB1:localhost:portB userB@localhost</code>. portB1 用作本地转发的端口, 用来和外网通信, 并将数据转发到 portB, 实现从其他机器可以访问. <code>*</code> 表示接受来自任意机器的访问.</li>
+<li>现在 C 可以通过 <code>ssh -p portB1 userA@b.b.b.b</code> 来访问 A.</li>
+<li><code>-fNCRL</code>: <code>-f</code> – 后台运行. <code>-C</code> – 允许压缩数据. <code>-N</code> – 不执行任何命令. <code>-R</code> – 将端口绑定到远程服务器, 反向连接. <code>-L</code> – 将端口绑定到本地客户端, 正向连接.</li>
+</ol>
 <h3 id="autossh实现持续反向连接"><a href="#autossh实现持续反向连接" class="headerlink" title="autossh实现持续反向连接"></a>autossh实现持续反向连接</h3><p>现有内网主机A和外网主机B：</p>
 <blockquote>
-<p>A : localhost<br>B : 120.27.104.101<br>在B终端执行:<code>ssh -NfR 8890:localhost:8888 user@120.27.104.101 -p 22</code>,将A的8888端口和B的8890端口绑定,sshd的端口号为22.</p>
+<p>A : localhost<br>B : 120.27.104.101<br>在A终端执行:<code>ssh -NfR 8890:localhost:8888 user@120.27.104.101 -p 22</code>,将A的8888端口和B的8890端口绑定,sshd的端口号为22.</p>
 </blockquote>
 <p>要实现autossh还要安装<code>sudo apt-get install autossh</code>(在A host上),和<code>sudo apt-get install openssh-server</code>(在B host上).</p>
 <p>(1) 在主机A上<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/.ssh</div><div class="line">ssh-keygen</div><div class="line">ssh-copy-id user@120.27.104.101</div></pre></td></tr></table></figure></p>
@@ -456,8 +468,8 @@ A : localhostB : 120.27.104.">
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/06/05/linux-cmd-set/" rel="prev" title="linux常用命令">
-                linux常用命令 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/12/xxnet-remote/" rel="prev" title="xx-net远程代理(阿里云)">
+                xx-net远程代理(阿里云) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -537,7 +549,7 @@ A : localhostB : 120.27.104.">
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -559,7 +571,7 @@ A : localhostB : 120.27.104.">
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -620,7 +632,7 @@ A : localhostB : 120.27.104.">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#外网与内网连接"><span class="nav-number">1.</span> <span class="nav-text">外网与内网连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autossh实现持续反向连接"><span class="nav-number">2.</span> <span class="nav-text">autossh实现持续反向连接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#外网与内网连接"><span class="nav-number">1.</span> <span class="nav-text">外网与内网连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh-实现反向连接"><span class="nav-number">2.</span> <span class="nav-text">ssh 实现反向连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autossh实现持续反向连接"><span class="nav-number">3.</span> <span class="nav-text">autossh实现持续反向连接</span></a></li></ol></div>
             
 
           </div>
@@ -640,7 +652,7 @@ A : localhostB : 120.27.104.">
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
